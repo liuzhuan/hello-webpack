@@ -7,4 +7,5 @@
   - [Output](./content/core-concepts/output.md)
   - [Loaders](./content/core-concepts/loaders.md)
   - [Plugins](./content/core-concepts/plugins.md)
+- [版本迁移](./content/migrating-versions/README.md)
 - [参考文献](./content/references.md)
