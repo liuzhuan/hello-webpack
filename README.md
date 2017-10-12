@@ -8,6 +8,8 @@ webpack 是德国程序员 Tobias Koppers 开发的一个前端模块打包器�
 
 2012年5月10日，Tobias 在 webpack 库中[第一次提交 2e1460](https://github.com/webpack/webpack/commit/2e1460036c5349951da86c582006c7787c56c543)。
 
+在编写本书时，使用的版本是 webpack v3.7.1 。
+
 ## 参考文献
 
 - [Webpack - survivejs](https://survivejs.com/webpack/foreword/)
