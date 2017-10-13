@@ -41,6 +41,32 @@ npm install --save-dev css-loader
 npm install --save-dev ts-loader
 ```
 
+然后配置 webpack :
+
+```js
+module.exports = {
+  module: {
+    rules: [
+      { test: /\.css$/, use: 'css-loader' },
+      { test: /\.ts$/, use: 'ts-loader' }
+    ]
+  }
+}
+```
+
+### Loader 特性
+
+- 可链式调用。
+- Loaders 可以输出附加的任意文件。
+
+### 解析 Loaders
+
+Loader 遵循标准的模块解析规则。大多数情况下，它来自于模块路径（比如 `npm install`，`node_modules` 之类的）。
+
+loader 模块需要暴露一个函数，使用 Node.js 兼容语法（也就是不要用 ES6 模块写法）。通常它们都是由 npm 管理，但你也可以在应用程序中使用自定义 loaders。
+
+按照惯例，loader 的命名类似于 `xxx-loader`（比如 `json-loader`）。
+
 ### 参考文献
 
 - [Loaders](https://webpack.js.org/concepts/loaders/) - webpack.js.org
