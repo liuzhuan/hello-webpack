@@ -58,6 +58,22 @@ plugins: [
 ]
 ```
 
+### Node API
+
+```js
+const webpack = require('webpack')
+const configuration = require('./webpack.config.js')
+
+let compiler = webpack(configuration)
+compiler.apply(new webpack.ProgressPlugin())
+
+compiler.run(function(err, stats) {
+  // ...
+})
+```
+
+上面的例子和 webpack 自身源代码高度相似。webpack 源代码蕴藏着很多宝藏，要善于挖掘利用哦。
+
 ### 参考文献
 
 - [Plugins](https://webpack.js.org/concepts/plugins/) - webpack.js.org
