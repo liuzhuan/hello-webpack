@@ -53,9 +53,10 @@ import 'module/lib/file'
 - 如果目录没有 `package.json` 文件，或字段中没有合法的路径名，会遍历 `resolve.mainFiles` 列出的字段，检查有无匹配的文件。
 - 文件扩展名的解析规则与 `resolve.extensions` 选项规则一致。
 
-webpack 会根据不同的编译目标提供相应的默认值。
-
 ![Module Resolution](../../assets/module-resolve.png)
+模块路径解析规则示意图
+
+webpack 会根据不同的编译目标提供相应的默认值。
 
 ### 参考文献
 
