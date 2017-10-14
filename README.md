@@ -12,6 +12,8 @@ Tobias 开发 Java 期间，使用过谷歌的 GWT (Google Web Toolkit)。GWT �
 
 在编写本书时，使用的版本是 webpack v3.7.1 。
 
+本书托管在 gitbook.io，这里是[在线阅读地址](https://liuzhuan.gitbooks.io/hello-webpack/content/)。
+
 ## 参考文献
 
 - [Webpack - survivejs](https://survivejs.com/webpack/foreword/)
