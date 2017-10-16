@@ -58,6 +58,14 @@ import 'module/lib/file'
 
 webpack 会根据不同的编译目标提供相应的默认值。
 
+### 解析 Loaders 路径
+
+Loaders 的解析规则与文件相同，只不过 `resolveLoader` 属性提供了专门的设置项。
+
+### 缓存
+
+每次读取文件时，都会缓存其中内容，这样对一个文件并行读取或多个串行读取时，速度会更快。在监听模式（watch mode）下，被修改的文件会从缓存中剔除。如果关闭监听模式，每次编译前都会清空缓存。
+
 ### 参考文献
 
 - [Module Resolution](https://webpack.js.org/concepts/module-resolution/) - webpack.js.org
