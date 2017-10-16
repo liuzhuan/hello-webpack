@@ -9,6 +9,8 @@
   - [Plugins](./content/core-concepts/plugins.md)
 - [模块](./content/modules/README.md)
   - [模块的路径解析](./content/modules/resolution.md)
+- [Targets](./content/targets/README.md)
 - [编写 Loader](./content/contribute/write-a-loader.md)
+- [webpack & HTTP/2](./content/optimize/webpack-vs-http2.md)
 - [版本迁移](./content/migrating-versions/README.md)
 - [参考文献](./content/references.md)
