@@ -12,6 +12,8 @@
   - [模块方法](./content/modules/methods.md)
 - [Targets](./content/targets/README.md)
 - [Manifest](./content/manifest/README.md)
+- [热更新](./content/hmr/README.md)
+- [output 详解](./content/output/README.md)
 - [编写 Loader](./content/contribute/write-a-loader.md)
 - [常见 Loaders](./content/loaders/README.md)
   - [babel-loader](./content/loaders/babel-loader.md)
