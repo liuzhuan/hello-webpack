@@ -39,4 +39,6 @@
   - [clean-webpack-plugin](./content/plugins/clean-webpack-plugin.md)
 - [webpack & HTTP/2](./content/optimize/webpack-vs-http2.md)
 - [版本迁移](./content/migrating-versions/README.md)
+  - [`module.loaders` 变为 `module.rules`](./content/migrating-versions/module-loaders.md)
+  - [级联 loaders](./content/migrating-versions/chaining-loaders.md)
 - [参考文献](./content/references.md)
