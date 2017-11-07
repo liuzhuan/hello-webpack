@@ -9,6 +9,7 @@
   - [Plugins](./content/core-concepts/plugins.md)
 - [Guides](./content/guides/README.md)
   - [缓存](./content/guides/caching.md)
+  - [素材管理](./content/guides/asset-management.md)
 - [模块](./content/modules/README.md)
   - [模块的路径解析](./content/modules/resolution.md)
   - [模块方法](./content/modules/methods.md)
