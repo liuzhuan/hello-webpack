@@ -1,0 +1,909 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>CommonsChunkPlugin · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="DefinePlugin.md" />
+    
+    
+    <link rel="prev" href="README.md" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../dedicate.html">
+            
+                <a href="../dedicate.html">
+            
+                    
+                    感谢
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../core-concepts/">
+            
+                <a href="../core-concepts/">
+            
+                    
+                    核心概念
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../core-concepts/entry.html">
+            
+                <a href="../core-concepts/entry.html">
+            
+                    
+                    入口文件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../core-concepts/output.html">
+            
+                <a href="../core-concepts/output.html">
+            
+                    
+                    输出文件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../core-concepts/loaders.html">
+            
+                <a href="../core-concepts/loaders.html">
+            
+                    
+                    加载器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="../core-concepts/plugins.html">
+            
+                <a href="../core-concepts/plugins.html">
+            
+                    
+                    插件系统
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../guides/README.md">
+            
+                <span>
+            
+                    
+                    Guides
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../guides/caching.html">
+            
+                <a href="../guides/caching.html">
+            
+                    
+                    缓存
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../guides/asset-management.html">
+            
+                <a href="../guides/asset-management.html">
+            
+                    
+                    素材管理
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../modules/">
+            
+                <a href="../modules/">
+            
+                    
+                    模块
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../modules/resolution.html">
+            
+                <a href="../modules/resolution.html">
+            
+                    
+                    模块的路径解析
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../modules/methods.html">
+            
+                <a href="../modules/methods.html">
+            
+                    
+                    模块方法
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../targets/">
+            
+                <a href="../targets/">
+            
+                    
+                    Targets
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../manifest/">
+            
+                <a href="../manifest/">
+            
+                    
+                    Manifest
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="../hmr/">
+            
+                <a href="../hmr/">
+            
+                    
+                    热更新
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="../output/">
+            
+                <a href="../output/">
+            
+                    
+                    output 详解
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1" data-path="../output/public-path.html">
+            
+                <a href="../output/public-path.html">
+            
+                    
+                    output.publicPath
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="../contribute/write-a-loader.html">
+            
+                <a href="../contribute/write-a-loader.html">
+            
+                    
+                    编写 Loader
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="../loaders/">
+            
+                <a href="../loaders/">
+            
+                    
+                    常见 Loaders
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.11.1" data-path="../loaders/css-loader.html">
+            
+                <a href="../loaders/css-loader.html">
+            
+                    
+                    css-loader
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.2" data-path="../loaders/style-loader.html">
+            
+                <a href="../loaders/style-loader.html">
+            
+                    
+                    style-loader
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.3" data-path="../loaders/babel-loader.md">
+            
+                <span>
+            
+                    
+                    babel-loader
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.4" data-path="../loaders/file-loader.md">
+            
+                <span>
+            
+                    
+                    file-loader
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.5" data-path="../loaders/juicer-loader.md">
+            
+                <span>
+            
+                    
+                    juicer-loader
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.6" data-path="../loaders/less-loader.md">
+            
+                <span>
+            
+                    
+                    less-loader
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.7" data-path="../loaders/postcss-loader.md">
+            
+                <span>
+            
+                    
+                    postcss-loader
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.8" data-path="../loaders/url-loader.md">
+            
+                <span>
+            
+                    
+                    url-loader
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.9" data-path="../loaders/vue-loader.md">
+            
+                <span>
+            
+                    
+                    vue-loader
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="../contribute/write-a-plugin.md">
+            
+                <span>
+            
+                    
+                    编写插件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13" data-path="README.md">
+            
+                <span>
+            
+                    
+                    常见插件
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="1.13.1" data-path="CommonsChunkPlugin.html">
+            
+                <a href="CommonsChunkPlugin.html">
+            
+                    
+                    CommonsChunkPlugin
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.2" data-path="DefinePlugin.md">
+            
+                <span>
+            
+                    
+                    DefinePlugin
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.3" data-path="ProvidePlugin.md">
+            
+                <span>
+            
+                    
+                    ProvidePlugin
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.4" data-path="OccurrenceOrderPlugin.md">
+            
+                <span>
+            
+                    
+                    OccurrenceOrderPlugin
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.5" data-path="UglifyJsPlugin.md">
+            
+                <span>
+            
+                    
+                    UglifyJsPlugin
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.6" data-path="html-webpack-plugin.md">
+            
+                <span>
+            
+                    
+                    html-webpack-plugin
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.7" data-path="extract-text-webpack-plugin.md">
+            
+                <span>
+            
+                    
+                    extract-text-webpack-plugin
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.8" data-path="optimize-css-assets-webpack-plugin.md">
+            
+                <span>
+            
+                    
+                    optimize-css-assets-webpack-plugin
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.9" data-path="webpack-uglify-parallel.md">
+            
+                <span>
+            
+                    
+                    webpack-uglify-parallel
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.10" data-path="clean-webpack-plugin.html">
+            
+                <a href="clean-webpack-plugin.html">
+            
+                    
+                    clean-webpack-plugin
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14" data-path="../optimize/webpack-vs-http2.html">
+            
+                <a href="../optimize/webpack-vs-http2.html">
+            
+                    
+                    webpack & HTTP/2
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15" data-path="../migrating-versions/">
+            
+                <a href="../migrating-versions/">
+            
+                    
+                    版本迁移
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.15.1" data-path="../migrating-versions/module-loaders.html">
+            
+                <a href="../migrating-versions/module-loaders.html">
+            
+                    
+                    module.loaders 变为 module.rules
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.2" data-path="../migrating-versions/chaining-loaders.html">
+            
+                <a href="../migrating-versions/chaining-loaders.html">
+            
+                    
+                    级联 loaders
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16" data-path="../references.html">
+            
+                <a href="../references.html">
+            
+                    
+                    参考文献
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >CommonsChunkPlugin</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h2 id="commonschunkplugin">CommonsChunkPlugin</h2>
+<p><code>CommonsChunkPlugin</code> &#x53EF;&#x4EE5;&#x628A;&#x591A;&#x4E2A;&#x5165;&#x53E3;&#x6587;&#x4EF6;&#x516C;&#x7528;&#x7684;&#x6A21;&#x5757;&#x63D0;&#x53D6;&#x51FA;&#x6765;&#xFF0C;&#x653E;&#x7F6E;&#x5230;&#x4E00;&#x4E2A;&#x5355;&#x72EC;&#x7684;&#x6587;&#x4EF6;&#xFF08;&#x4E5F;&#x79F0;&#x4E4B;&#x4E3A; chunk&#xFF09;&#x3002;&#x8FD9;&#x6837;&#x53EA;&#x9700;&#x4E0B;&#x8F7D;&#x4E00;&#x6B21;&#x516C;&#x7528;&#x6A21;&#x5757;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x4FDD;&#x7559;&#x5728;&#x6D4F;&#x89C8;&#x5668;&#x7F13;&#x5B58;&#x4E2D;&#xFF0C;&#x63D0;&#x5347;&#x9875;&#x9762;&#x52A0;&#x8F7D;&#x901F;&#x5EA6;&#x3002;</p>
+<pre><code class="lang-js"><span class="hljs-keyword">new</span> webpack.optimize.CommonsChunkPlugin(options)
+</code></pre>
+<h3 id="&#x9009;&#x9879;">&#x9009;&#x9879;</h3>
+<pre><code class="lang-js">{
+  // &#x516C;&#x7528; chunk &#x7684; chunk &#x540D;&#x3002;
+  name: string,
+  names: string[], 
+  // &#x516C;&#x7528; chunk &#x7684;&#x6587;&#x4EF6;&#x540D;&#x6A21;&#x677F;&#x3002;&#x53EF;&#x4EE5;&#x5305;&#x542B;&#x4E0E; `output.filename` &#x7C7B;&#x4F3C;&#x7684;&#x5360;&#x4F4D;&#x7B26;&#x3002;
+  filename: string, 
+  // &#x53EA;&#x6709;&#x591A;&#x4E8E;&#x8FD9;&#x4E2A;&#x6570;&#x5B57;&#x7684; chunks &#x5305;&#x542B;&#x4E00;&#x4E2A; module&#xFF0C;&#x624D;&#x4F1A;&#x5C06;&#x8FD9;&#x4E2A; module &#x79FB;&#x5165;&#x516C;&#x7528; chunk&#x3002;
+  minChunks: number|Infinity|function(module, count) -&gt; boolean,
+  // &#x901A;&#x8FC7;&#x4EE3;&#x7801;&#x5757;&#x540D;&#x79F0;&#x9009;&#x62E9;&#x6E90;&#x4EE3;&#x7801;&#x5757;&#x3002;
+  chunks: string[],
+  // &#x5982;&#x679C;&#x662F; `true`&#xFF0C;&#x5219;&#x9009;&#x62E9;&#x6240;&#x6709;&#x7684;&#x516C;&#x7528;&#x4EE3;&#x7801;&#x5757;&#x5B50;&#x5143;&#x7D20;
+  children: boolean, 
+  // &#x5982;&#x679C;&#x662F; `true`&#xFF0C;&#x5219;&#x9009;&#x62E9;&#x6240;&#x6709;&#x529F;&#x7528;&#x4EE3;&#x7801;&#x5757;&#x7684;&#x540E;&#x53F0;&#x5143;&#x7D20;
+  deepChildren: boolean,
+  // &#x5982;&#x679C;&#x662F; `true`&#xFF0C;&#x5219;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x5F02;&#x6B65;&#x6A21;&#x5757;&#x88AB;&#x521B;&#x5EFA;&#xFF0C;&#x4F5C;&#x4E3A; `options.name` &#x7684;&#x5B50;&#x5143;&#x7D20;&#x548C; `options.chunks` &#x7684;&#x5144;&#x5F1F;&#x5143;&#x7D20;
+  async: boolean|string,
+  // &#x6240;&#x6709;&#x516C;&#x7528;&#x4EE3;&#x7801;&#x5757;&#x6700;&#x5C0F;&#x4F53;&#x79EF;
+  minSize: number,
+}
+</code></pre>
+<h3 id="&#x6837;&#x4F8B;">&#x6837;&#x4F8B;</h3>
+<p>&#x521B;&#x5EFA;&#x5165;&#x53E3;&#x7684;&#x516C;&#x7528; chunk </p>
+<pre><code class="lang-js"><span class="hljs-keyword">new</span> webpack.optimize.CommonsChunkPlugin({
+  name: <span class="hljs-string">&apos;commons&apos;</span>,
+  filename: <span class="hljs-string">&apos;commons.js&apos;</span>,
+})
+</code></pre>
+<p>&#x5FC5;&#x987B;&#x5728;&#x5165;&#x53E3;&#x6587;&#x4EF6;&#x4E4B;&#x524D;&#x52A0;&#x8F7D;&#x4EA7;&#x751F;&#x7684; chunk&#xFF1A;</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;commons.js&quot;</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;utf-8&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;entry.bundle.js&quot;</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;utf-8&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</code></pre>
+<p>&#x660E;&#x786E;&#x7684;&#x7B2C;&#x4E09;&#x65B9; chunk</p>
+<pre><code class="lang-js">entry {
+  vendor: [<span class="hljs-string">&apos;jquery&apos;</span>, <span class="hljs-string">&apos;other-lib&apos;</span>],
+  app: <span class="hljs-string">&apos;./entry&apos;</span>
+},
+plugins: [
+  <span class="hljs-keyword">new</span> webpack.optimize.CommonsChunkPlugin({
+    name: <span class="hljs-string">&apos;vendor&apos;</span>,
+    minChunks: <span class="hljs-literal">Infinity</span>,
+  })
+]
+</code></pre>
+<h3 id="&#x53C2;&#x8003;&#x8D44;&#x6599;">&#x53C2;&#x8003;&#x8D44;&#x6599;</h3>
+<ul>
+<li><a href="https://webpack.js.org/plugins/commons-chunk-plugin/" target="_blank">https://webpack.js.org/plugins/commons-chunk-plugin/</a></li>
+<li><a href="https://github.com/webpack/webpack/blob/master/lib/optimize/CommonsChunkPlugin.js" target="_blank">https://github.com/webpack/webpack/blob/master/lib/optimize/CommonsChunkPlugin.js</a></li>
+</ul>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="README.md" class="navigation navigation-prev " aria-label="Previous page: 常见插件">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="DefinePlugin.md" class="navigation navigation-next " aria-label="Next page: DefinePlugin">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"CommonsChunkPlugin","level":"1.13.1","depth":2,"next":{"title":"DefinePlugin","level":"1.13.2","depth":2,"path":"content/plugins/DefinePlugin.md","ref":"./content/plugins/DefinePlugin.md","articles":[]},"previous":{"title":"常见插件","level":"1.13","depth":1,"path":"content/plugins/README.md","ref":"./content/plugins/README.md","articles":[{"title":"CommonsChunkPlugin","level":"1.13.1","depth":2,"path":"content/plugins/CommonsChunkPlugin.md","ref":"./content/plugins/CommonsChunkPlugin.md","articles":[]},{"title":"DefinePlugin","level":"1.13.2","depth":2,"path":"content/plugins/DefinePlugin.md","ref":"./content/plugins/DefinePlugin.md","articles":[]},{"title":"ProvidePlugin","level":"1.13.3","depth":2,"path":"content/plugins/ProvidePlugin.md","ref":"./content/plugins/ProvidePlugin.md","articles":[]},{"title":"OccurrenceOrderPlugin","level":"1.13.4","depth":2,"path":"content/plugins/OccurrenceOrderPlugin.md","ref":"./content/plugins/OccurrenceOrderPlugin.md","articles":[]},{"title":"UglifyJsPlugin","level":"1.13.5","depth":2,"path":"content/plugins/UglifyJsPlugin.md","ref":"./content/plugins/UglifyJsPlugin.md","articles":[]},{"title":"html-webpack-plugin","level":"1.13.6","depth":2,"path":"content/plugins/html-webpack-plugin.md","ref":"./content/plugins/html-webpack-plugin.md","articles":[]},{"title":"extract-text-webpack-plugin","level":"1.13.7","depth":2,"path":"content/plugins/extract-text-webpack-plugin.md","ref":"./content/plugins/extract-text-webpack-plugin.md","articles":[]},{"title":"optimize-css-assets-webpack-plugin","level":"1.13.8","depth":2,"path":"content/plugins/optimize-css-assets-webpack-plugin.md","ref":"./content/plugins/optimize-css-assets-webpack-plugin.md","articles":[]},{"title":"webpack-uglify-parallel","level":"1.13.9","depth":2,"path":"content/plugins/webpack-uglify-parallel.md","ref":"./content/plugins/webpack-uglify-parallel.md","articles":[]},{"title":"clean-webpack-plugin","level":"1.13.10","depth":2,"path":"content/plugins/clean-webpack-plugin.md","ref":"./content/plugins/clean-webpack-plugin.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":[],"root":"./src","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"content/plugins/CommonsChunkPlugin.md","mtime":"2018-02-17T14:19:53.125Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-02-17T14:39:27.119Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

@@ -1,6 +1,6 @@
 ## Entry
 
-在 webpack 中，应用程序的入口称为 `entry point`，通过配置文件的 `entry` 属性定义。
+在 webpack 中，应用程序的入口称为 *entry point*，通过配置文件的 `entry` 属性定义。
 
 ### 单入口语法
 

@@ -1,12 +1,11 @@
 # 目录
 
 - [感谢](./content/dedicate.md)
-- [最简样例](./content/simple-demo.md)
 - [核心概念](./content/core-concepts/README.md)
-  - [Entry](./content/core-concepts/entry.md)
-  - [Output](./content/core-concepts/output.md)
-  - [Loaders](./content/core-concepts/loaders.md)
-  - [Plugins](./content/core-concepts/plugins.md)
+  - [入口文件](./content/core-concepts/entry.md)
+  - [输出文件](./content/core-concepts/output.md)
+  - [加载器](./content/core-concepts/loaders.md)
+  - [插件系统](./content/core-concepts/plugins.md)
 - [Guides](./content/guides/README.md)
   - [缓存](./content/guides/caching.md)
   - [素材管理](./content/guides/asset-management.md)
