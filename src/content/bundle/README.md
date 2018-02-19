@@ -541,7 +541,7 @@ webpackJsonp([0],[
 webpackJsonp([1],[],[0])
 ```
 
-小结以下，通过使用 `CommonsChunkPlugin`，webpack 将 webpack 运行时和公共代码提取到一个单独文件，并暴露出一个全局变量 `webpackJsonp` ，其他的函数只需调用 `webpackJsonp` 即可。如果各函数有自己的独特模块，也可以出入到 `moreModules` 中。
+小结一下，通过使用 `CommonsChunkPlugin`，webpack 将 webpack 运行时和公共代码提取到一个单独文件，并暴露出一个全局变量 `webpackJsonp` ，其他的函数只需调用 `webpackJsonp` 即可。如果各函数有自己的独特模块，也可以出入到 `moreModules` 中。
 
 ## REF
 

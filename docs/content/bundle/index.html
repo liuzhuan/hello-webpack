@@ -1,0 +1,1347 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>webpack bundle 详解 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../migrating-versions/" />
+    
+    
+    <link rel="prev" href="../optimize/webpack-vs-http2.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../dedicate.html">
+            
+                <a href="../dedicate.html">
+            
+                    
+                    感谢
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../core-concepts/">
+            
+                <a href="../core-concepts/">
+            
+                    
+                    核心概念
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../core-concepts/entry.html">
+            
+                <a href="../core-concepts/entry.html">
+            
+                    
+                    入口文件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../core-concepts/output.html">
+            
+                <a href="../core-concepts/output.html">
+            
+                    
+                    输出文件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../core-concepts/loaders.html">
+            
+                <a href="../core-concepts/loaders.html">
+            
+                    
+                    加载器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="../core-concepts/plugins.html">
+            
+                <a href="../core-concepts/plugins.html">
+            
+                    
+                    插件系统
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../guides/README.md">
+            
+                <span>
+            
+                    
+                    Guides
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../guides/caching.html">
+            
+                <a href="../guides/caching.html">
+            
+                    
+                    缓存
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../guides/asset-management.html">
+            
+                <a href="../guides/asset-management.html">
+            
+                    
+                    素材管理
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../modules/">
+            
+                <a href="../modules/">
+            
+                    
+                    模块
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../modules/resolution.html">
+            
+                <a href="../modules/resolution.html">
+            
+                    
+                    模块的路径解析
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../modules/methods.html">
+            
+                <a href="../modules/methods.html">
+            
+                    
+                    模块方法
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../targets/">
+            
+                <a href="../targets/">
+            
+                    
+                    Targets
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../manifest/">
+            
+                <a href="../manifest/">
+            
+                    
+                    Manifest
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="../hmr/">
+            
+                <a href="../hmr/">
+            
+                    
+                    热更新
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="../output/">
+            
+                <a href="../output/">
+            
+                    
+                    output 详解
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1" data-path="../output/public-path.html">
+            
+                <a href="../output/public-path.html">
+            
+                    
+                    output.publicPath
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="../contribute/write-a-loader.html">
+            
+                <a href="../contribute/write-a-loader.html">
+            
+                    
+                    编写 Loader
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="../loaders/">
+            
+                <a href="../loaders/">
+            
+                    
+                    常见 Loaders
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.11.1" data-path="../loaders/css-loader.html">
+            
+                <a href="../loaders/css-loader.html">
+            
+                    
+                    css-loader
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.2" data-path="../loaders/style-loader.html">
+            
+                <a href="../loaders/style-loader.html">
+            
+                    
+                    style-loader
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.3" data-path="../loaders/babel-loader.md">
+            
+                <span>
+            
+                    
+                    babel-loader
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.4" data-path="../loaders/file-loader.md">
+            
+                <span>
+            
+                    
+                    file-loader
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.5" data-path="../loaders/juicer-loader.md">
+            
+                <span>
+            
+                    
+                    juicer-loader
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.6" data-path="../loaders/less-loader.md">
+            
+                <span>
+            
+                    
+                    less-loader
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.7" data-path="../loaders/postcss-loader.md">
+            
+                <span>
+            
+                    
+                    postcss-loader
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.8" data-path="../loaders/url-loader.md">
+            
+                <span>
+            
+                    
+                    url-loader
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.9" data-path="../loaders/vue-loader.md">
+            
+                <span>
+            
+                    
+                    vue-loader
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="../contribute/write-a-plugin.md">
+            
+                <span>
+            
+                    
+                    编写插件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13" data-path="../plugins/README.md">
+            
+                <span>
+            
+                    
+                    常见插件
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.13.1" data-path="../plugins/CommonsChunkPlugin.html">
+            
+                <a href="../plugins/CommonsChunkPlugin.html">
+            
+                    
+                    CommonsChunkPlugin
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.2" data-path="../plugins/DefinePlugin.md">
+            
+                <span>
+            
+                    
+                    DefinePlugin
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.3" data-path="../plugins/ProvidePlugin.md">
+            
+                <span>
+            
+                    
+                    ProvidePlugin
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.4" data-path="../plugins/OccurrenceOrderPlugin.md">
+            
+                <span>
+            
+                    
+                    OccurrenceOrderPlugin
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.5" data-path="../plugins/UglifyJsPlugin.md">
+            
+                <span>
+            
+                    
+                    UglifyJsPlugin
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.6" data-path="../plugins/html-webpack-plugin.md">
+            
+                <span>
+            
+                    
+                    html-webpack-plugin
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.7" data-path="../plugins/extract-text-webpack-plugin.md">
+            
+                <span>
+            
+                    
+                    extract-text-webpack-plugin
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.8" data-path="../plugins/optimize-css-assets-webpack-plugin.md">
+            
+                <span>
+            
+                    
+                    optimize-css-assets-webpack-plugin
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.9" data-path="../plugins/webpack-uglify-parallel.md">
+            
+                <span>
+            
+                    
+                    webpack-uglify-parallel
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.10" data-path="../plugins/clean-webpack-plugin.html">
+            
+                <a href="../plugins/clean-webpack-plugin.html">
+            
+                    
+                    clean-webpack-plugin
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14" data-path="../optimize/webpack-vs-http2.html">
+            
+                <a href="../optimize/webpack-vs-http2.html">
+            
+                    
+                    webpack & HTTP/2
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.15" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    webpack bundle 详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16" data-path="../migrating-versions/">
+            
+                <a href="../migrating-versions/">
+            
+                    
+                    版本迁移
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.16.1" data-path="../migrating-versions/module-loaders.html">
+            
+                <a href="../migrating-versions/module-loaders.html">
+            
+                    
+                    module.loaders 变为 module.rules
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16.2" data-path="../migrating-versions/chaining-loaders.html">
+            
+                <a href="../migrating-versions/chaining-loaders.html">
+            
+                    
+                    级联 loaders
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.17" data-path="../references.html">
+            
+                <a href="../references.html">
+            
+                    
+                    参考文献
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >webpack bundle 详解</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="&#x6253;&#x5305;&#x6587;&#x4EF6;&#x8BE6;&#x89E3;">&#x6253;&#x5305;&#x6587;&#x4EF6;&#x8BE6;&#x89E3;</h1>
+<p>&#x7406;&#x89E3; webpack &#x6700;&#x597D;&#x7684;&#x65B9;&#x5F0F;&#x662F;<strong>&#x89C2;&#x5BDF;&#x5B9E;&#x9A8C;</strong>&#x3002;&#x901A;&#x8FC7;&#x8C03;&#x6574;&#x4E0D;&#x540C;&#x7684;&#x914D;&#x7F6E;&#x53C2;&#x6570;&#xFF0C;&#x89C2;&#x5BDF;&#x751F;&#x6210;&#x7684;&#x6253;&#x5305;&#x6587;&#x4EF6;&#x5982;&#x4F55;&#x53D8;&#x5316;&#x3002;&#x8FD9;&#x6837;&#x5C31;&#x80FD;&#x5207;&#x5B9E;&#x638C;&#x63E1;&#x4E0D;&#x540C;&#x53C2;&#x6570;&#x3001;&#x4E0D;&#x540C;&#x63D2;&#x4EF6;&#x7684;&#x771F;&#x5B9E;&#x529F;&#x7528;&#x3002;</p>
+<p>&#x5047;&#x5982;&#x6709;&#x4E24;&#x4E2A;&#x6587;&#x4EF6; <code>app.js</code> &#x548C; <code>bar.js</code>&#xFF0C;&#x5185;&#x5BB9;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-js"><span class="hljs-comment">/** app.js */</span>
+<span class="hljs-keyword">import</span> bar <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./bar&apos;</span>
+bar()
+
+<span class="hljs-comment">/** bar.js */</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">bar</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;bar running...&apos;</span>)
+}
+</code></pre>
+<p>&#x914D;&#x5957;&#x7684; <code>webpack.conf.js</code> &#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-js"><span class="hljs-comment">/** webpack.config.js */</span>
+<span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;path&apos;</span>)
+
+<span class="hljs-built_in">module</span>.exports = {
+  entry: {
+    main: <span class="hljs-string">&apos;./app.js&apos;</span>
+  },
+  output: {
+    path: path.resolve(__dirname, <span class="hljs-string">&apos;dist&apos;</span>),
+    filename: <span class="hljs-string">&apos;bundle.js&apos;</span>
+  }
+}
+</code></pre>
+<p>&#x7ECF; webpack &#x6253;&#x5305;&#x540E;&#xFF0C;&#x4F1A;&#x751F;&#x6210;&#x5982;&#x4E0B;&#x6587;&#x4EF6;&#xFF08;&#x5220;&#x9664;&#x524D;&#x5BFC;&#x6CE8;&#x91CA;&#xFF09;&#xFF1A;</p>
+<pre><code class="lang-js"><span class="hljs-comment">/** bundle.js */</span>
+(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">modules</span>) </span>{ <span class="hljs-comment">// webpackBootstrap</span>
+    <span class="hljs-comment">// The module cache</span>
+    <span class="hljs-keyword">var</span> installedModules = {};
+    <span class="hljs-comment">// The require function</span>
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__webpack_require__</span>(<span class="hljs-params">moduleId</span>) </span>{
+        <span class="hljs-comment">// Check if module is in cache</span>
+        <span class="hljs-keyword">if</span>(installedModules[moduleId]) {
+            <span class="hljs-keyword">return</span> installedModules[moduleId].exports;
+        }
+        <span class="hljs-comment">// Create a new module (and put it into the cache)</span>
+        <span class="hljs-keyword">var</span> <span class="hljs-built_in">module</span> = installedModules[moduleId] = {
+            i: moduleId,
+            l: <span class="hljs-literal">false</span>,
+            exports: {}
+        };
+        <span class="hljs-comment">// Execute the module function</span>
+        modules[moduleId].call(<span class="hljs-built_in">module</span>.exports, <span class="hljs-built_in">module</span>, <span class="hljs-built_in">module</span>.exports, __webpack_require__);
+        <span class="hljs-comment">// Flag the module as loaded</span>
+        <span class="hljs-built_in">module</span>.l = <span class="hljs-literal">true</span>;
+        <span class="hljs-comment">// Return the exports of the module</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">module</span>.exports;
+    }
+    <span class="hljs-comment">// expose the modules object (__webpack_modules__)</span>
+    __webpack_require__.m = modules;
+    <span class="hljs-comment">// expose the module cache</span>
+    __webpack_require__.c = installedModules;
+    <span class="hljs-comment">// define getter function for harmony exports</span>
+    __webpack_require__.d = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">exports, name, getter</span>) </span>{
+        <span class="hljs-keyword">if</span>(!__webpack_require__.o(exports, name)) {
+            <span class="hljs-built_in">Object</span>.defineProperty(exports, name, {
+                configurable: <span class="hljs-literal">false</span>,
+                enumerable: <span class="hljs-literal">true</span>,
+                get: getter
+            });
+        }
+    };
+    <span class="hljs-comment">// getDefaultExport function for compatibility with non-harmony modules</span>
+    __webpack_require__.n = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">module</span>) </span>{
+        <span class="hljs-keyword">var</span> getter = <span class="hljs-built_in">module</span> &amp;&amp; <span class="hljs-built_in">module</span>.__esModule ?
+            <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getDefault</span>(<span class="hljs-params"></span>) </span>{ <span class="hljs-keyword">return</span> <span class="hljs-built_in">module</span>[<span class="hljs-string">&apos;default&apos;</span>]; } :
+            <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getModuleExports</span>(<span class="hljs-params"></span>) </span>{ <span class="hljs-keyword">return</span> <span class="hljs-built_in">module</span>; };
+        __webpack_require__.d(getter, <span class="hljs-string">&apos;a&apos;</span>, getter);
+        <span class="hljs-keyword">return</span> getter;
+    };
+    <span class="hljs-comment">// Object.prototype.hasOwnProperty.call</span>
+    __webpack_require__.o = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">object, property</span>) </span>{ <span class="hljs-keyword">return</span> <span class="hljs-built_in">Object</span>.prototype.hasOwnProperty.call(object, property); };
+    <span class="hljs-comment">// __webpack_public_path__</span>
+    __webpack_require__.p = <span class="hljs-string">&quot;&quot;</span>;
+    <span class="hljs-comment">// Load entry module and return exports</span>
+    <span class="hljs-keyword">return</span> __webpack_require__(__webpack_require__.s = <span class="hljs-number">0</span>);
+})
+<span class="hljs-comment">/************************************************************************/</span>
+([
+<span class="hljs-comment">/* 0 */</span>
+(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">module, __webpack_exports__, __webpack_require__</span>) </span>{
+<span class="hljs-meta">&quot;use strict&quot;</span>;
+<span class="hljs-built_in">Object</span>.defineProperty(__webpack_exports__, <span class="hljs-string">&quot;__esModule&quot;</span>, { value: <span class="hljs-literal">true</span> });
+<span class="hljs-keyword">var</span> __WEBPACK_IMPORTED_MODULE_0__bar__ = __webpack_require__(<span class="hljs-number">1</span>);
+
+<span class="hljs-built_in">Object</span>(__WEBPACK_IMPORTED_MODULE_0__bar__[<span class="hljs-string">&quot;a&quot;</span> <span class="hljs-comment">/* default */</span>])()
+}),
+<span class="hljs-comment">/* 1 */</span>
+(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">module, __webpack_exports__, __webpack_require__</span>) </span>{
+<span class="hljs-meta">&quot;use strict&quot;</span>;
+<span class="hljs-comment">/* harmony export (immutable) */</span> __webpack_exports__[<span class="hljs-string">&quot;a&quot;</span>] = bar;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">bar</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;bar running...&apos;</span>)
+}
+})
+]);
+</code></pre>
+<p>&#x8BE5; bundle &#x6587;&#x4EF6;&#x5B9A;&#x4E49;&#x4E86;&#x4E00;&#x4E2A;&#x7ACB;&#x5373;&#x6267;&#x884C;&#x533F;&#x540D;&#x51FD;&#x6570;&#xFF0C;&#x5F62;&#x53C2;&#x662F; <code>modules</code>&#xFF0C;&#x5B9E;&#x53C2;&#x662F;&#x4E00;&#x4E2A;&#x51FD;&#x6570;&#x6570;&#x7EC4;&#xFF0C;&#x5143;&#x7D20;&#x5206;&#x522B;&#x4E3A;&#x5904;&#x7406;&#x540E;&#x7684; <code>app.js</code> &#x548C; <code>bar.js</code>&#x3002;</p>
+<p>&#x51FD;&#x6570;&#x6570;&#x7EC4;&#x7684;&#x6BCF;&#x4E2A;&#x51FD;&#x6570;&#xFF0C;&#x5F62;&#x53C2;&#x6709;&#x4E09;&#x4E2A;&#xFF0C;&#x5206;&#x522B;&#x662F; <code>module</code>, <code>__webpack_exports__</code> &#x548C; <code>__webpack_require__</code> &#x3002;&#x4ECE;&#x540D;&#x79F0;&#x53EF;&#x4EE5;&#x63A8;&#x65AD;&#xFF0C;<code>__webpack_exports__</code> &#x7528;&#x4E8E;&#x5BFC;&#x51FA;&#x6A21;&#x5757;&#xFF0C;<code>__webpack_require__</code> &#x7528;&#x4E8E;&#x5F15;&#x5165;&#x6A21;&#x5757;&#x3002;</p>
+<h2 id="webpackrequire"><code>__webpack_require__()</code></h2>
+<p>&#x4E0B;&#x9762;&#x6765;&#x89C2;&#x5BDF; <code>__webpack_require__</code> &#x662F;&#x5982;&#x4F55;&#x5B9A;&#x4E49;&#x7684;&#x3002;</p>
+<pre><code class="lang-js"><span class="hljs-comment">// &#x6A21;&#x5757;&#x7F13;&#x5B58;&#x533A;</span>
+<span class="hljs-keyword">var</span> installedModules = {}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__webpack_require__</span>(<span class="hljs-params">moduleId</span>) </span>{
+  <span class="hljs-comment">// &#x68C0;&#x67E5;&#x6A21;&#x5757;&#x662F;&#x5426;&#x5728;&#x7F13;&#x5B58;&#x4E2D;</span>
+  <span class="hljs-keyword">if</span>(installedModules[moduleId]) {
+    <span class="hljs-keyword">return</span> installedModules[moduleId].exports
+  }
+
+  <span class="hljs-comment">// &#x521B;&#x5EFA;&#x65B0;&#x6A21;&#x5757;&#xFF0C;&#x5E76;&#x653E;&#x5165;&#x7F13;&#x5B58;&#x4E2D;&#xFF08;&#x6B64;&#x65F6;&#x6A21;&#x5757;&#x5C1A;&#x672A;&#x52A0;&#x8F7D;&#xFF09;</span>
+  <span class="hljs-keyword">var</span> <span class="hljs-built_in">module</span> = installedModules[moduleId] = {
+    i: moduleId,
+    l: <span class="hljs-literal">false</span>,
+    exports: {}
+  }
+
+  <span class="hljs-comment">// &#x771F;&#x6B63;&#x6267;&#x884C;&#x6A21;&#x5757;&#x7684;&#x51FD;&#x6570;</span>
+  modules[moduleId].call(<span class="hljs-built_in">module</span>.exports, <span class="hljs-built_in">module</span>, <span class="hljs-built_in">module</span>.exports, __webpack_require__)
+
+  <span class="hljs-comment">// &#x5C06;&#x6A21;&#x5757;&#x6807;&#x5B9A;&#x4E3A;&#x5DF2;&#x52A0;&#x8F7D;</span>
+  <span class="hljs-built_in">module</span>.l = <span class="hljs-literal">true</span>
+
+  <span class="hljs-comment">// &#x8FD4;&#x56DE;&#x6A21;&#x5757;&#x7684;&#x8F93;&#x51FA;&#x503C;</span>
+  <span class="hljs-keyword">return</span> <span class="hljs-built_in">module</span>.exports
+}
+</code></pre>
+<p>&#x5B9A;&#x4E49;&#x5B8C; <code>__webpack_require__</code> &#x4E3B;&#x8981;&#x529F;&#x80FD;&#x540E;&#xFF0C;&#x63A5;&#x4E0B;&#x6765;&#x5B9A;&#x4E49;&#x51E0;&#x4E2A;&#x53D8;&#x91CF;&#xFF1A;</p>
+<pre><code class="lang-js"><span class="hljs-comment">// &#x66B4;&#x9732;&#x6A21;&#x5757;&#x6570;&#x7EC4; (__webpack_modules__)</span>
+__webpack_require__.m = modules
+
+<span class="hljs-comment">// &#x66B4;&#x9732;&#x6A21;&#x5757;&#x7F13;&#x5B58;</span>
+__webpack_require__.c = installedModules
+
+<span class="hljs-comment">// &#x4E3A; harmony &#x8F93;&#x51FA;&#x5B9A;&#x4E49; getter &#x51FD;&#x6570;</span>
+__webpack_require__.d = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">exports, name, getter</span>) </span>{
+  <span class="hljs-keyword">if</span>(!__webpack_require__.o(exports, name)) {
+    <span class="hljs-built_in">Object</span>.defineProperty(exports, name, {
+      configurable: <span class="hljs-literal">false</span>,
+      enumerable: <span class="hljs-literal">true</span>,
+      get: getter
+    })
+  }
+}
+
+<span class="hljs-comment">// getDefaultExport function for compatibility with non-harmony modules</span>
+__webpack_require__.n = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">module</span>) </span>{
+  <span class="hljs-keyword">var</span> getter = <span class="hljs-built_in">module</span> &amp;&amp; <span class="hljs-built_in">module</span>.__esModule ?
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getDefault</span>(<span class="hljs-params"></span>) </span>{ <span class="hljs-keyword">return</span> <span class="hljs-built_in">module</span>[<span class="hljs-string">&apos;default&apos;</span>] } :
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getModuleExports</span>(<span class="hljs-params"></span>) </span>{ <span class="hljs-keyword">return</span> <span class="hljs-built_in">module</span> };
+  __webpack_require__.d(getter, <span class="hljs-string">&apos;a&apos;</span>, getter)
+  <span class="hljs-keyword">return</span> getter
+}
+
+<span class="hljs-comment">// Object.prototype.hasOwnProperty.call</span>
+__webpack_require__.o = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">object, property</span>) </span>{ 
+  <span class="hljs-keyword">return</span> <span class="hljs-built_in">Object</span>.prototype.hasOwnProperty.call(object, property)
+}
+
+<span class="hljs-comment">// __webpack_public_path__</span>
+__webpack_require__.p = <span class="hljs-string">&quot;&quot;</span>
+</code></pre>
+<p>&#x6700;&#x540E;&#xFF0C;&#x5F15;&#x5165;&#x7B2C;&#x4E00;&#x4E2A;&#x6A21;&#x5757;&#xFF0C;&#x5E76;&#x6267;&#x884C;&#xFF1A;</p>
+<pre><code class="lang-js"><span class="hljs-comment">// &#x52A0;&#x8F7D;&#x5165;&#x53E3;&#x6A21;&#x5757;&#xFF0C;&#x5E76;&#x8FD4;&#x56DE;&#x5176;&#x8F93;&#x51FA;&#x503C;</span>
+<span class="hljs-keyword">return</span> __webpack_require__(__webpack_require__.s = <span class="hljs-number">0</span>)
+</code></pre>
+<h3 id="&#x603B;&#x7ED3;">&#x603B;&#x7ED3;</h3>
+<p>&#x5BF9;&#x4E8E;&#x7B80;&#x5355;&#x7684;&#x5355;&#x8F93;&#x5165;&#x5355;&#x8F93;&#x51FA;&#x914D;&#x7F6E;&#xFF0C;webpack &#x4F1A;&#x5C06;&#x5404;&#x4EE3;&#x7801;&#x5206;&#x522B;&#x5C01;&#x88C5;&#x4E3A;&#x51FD;&#x6570;&#xFF0C;&#x5E76;&#x628A;&#x539F;&#x59CB;&#x7684; ES6 &#x6A21;&#x5757;&#x8BED;&#x53E5;&#x8F6C;&#x8BD1;&#x4E3A; <code>__webpack_require__</code> &#x548C; <code>__webpack_exports__</code> &#x3002;</p>
+<p>&#x5C01;&#x88C5;&#x4E3A;&#x51FD;&#x6570;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x4FDD;&#x8BC1;&#x5404;&#x6A21;&#x5757;&#x7684;&#x53D8;&#x91CF;&#x90FD;&#x5728;&#x81EA;&#x5DF1;&#x7684;&#x4F5C;&#x7528;&#x57DF;&#xFF0C;&#x4E0D;&#x4F1A;&#x6C61;&#x67D3;&#x5168;&#x5C40;&#x4F5C;&#x7528;&#x57DF;&#x3002;</p>
+<h2 id="&#x591A;&#x5165;&#x53E3;&#x914D;&#x7F6E;">&#x591A;&#x5165;&#x53E3;&#x914D;&#x7F6E;</h2>
+<p>&#x5982;&#x679C;&#x589E;&#x52A0;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x6A21;&#x5757; <code>foo.js</code>&#xFF0C;&#x5185;&#x5BB9;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-js"><span class="hljs-comment">/** foo.js */</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-number">42</span>
+</code></pre>
+<p>&#x540C;&#x65F6;&#x4FEE;&#x6539; <code>app.js</code> &#x548C; <code>bar.js</code>&#xFF0C;&#x5404;&#x81EA;&#x5F15;&#x5165; <code>foo.js</code>&#xFF1A;</p>
+<pre><code class="lang-js"><span class="hljs-comment">/** app.js */</span>
+<span class="hljs-keyword">import</span> bar <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./bar&apos;</span>;
+<span class="hljs-keyword">import</span> foo <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./foo&apos;</span>
+
+bar()
+<span class="hljs-built_in">console</span>.log(foo)
+
+<span class="hljs-comment">/** bar.js */</span>
+<span class="hljs-keyword">import</span> foo <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./foo&apos;</span>
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">bar</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;bar running...&apos;</span>)
+  <span class="hljs-built_in">console</span>.log(foo)
+}
+</code></pre>
+<p>&#x5E76;&#x4E14;&#x5C06;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4FEE;&#x6539;&#x4E3A;&#x591A;&#x8F93;&#x5165;&#x591A;&#x8F93;&#x51FA;&#x6A21;&#x5F0F;&#xFF1A;</p>
+<pre><code class="lang-js"><span class="hljs-comment">/** webpack.config.js */</span>
+<span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;path&apos;</span>)
+
+<span class="hljs-built_in">module</span>.exports = {
+  entry: {
+    main: <span class="hljs-string">&apos;./app.js&apos;</span>,
+    vendor: <span class="hljs-string">&apos;./foo.js&apos;</span>
+  },
+  output: {
+    path: path.resolve(__dirname, <span class="hljs-string">&apos;dist&apos;</span>),
+    filename: <span class="hljs-string">&apos;[name].js&apos;</span>
+  }
+}
+</code></pre>
+<p>&#x6B64;&#x65F6;&#xFF0C;&#x8FD0;&#x884C; webpack &#xFF0C;&#x4F1A;&#x5F97;&#x5230;&#x4E24;&#x4E2A;&#x8F93;&#x51FA;&#x6587;&#x4EF6; <code>main.js</code> &#x548C; <code>vendor.js</code>&#x3002;</p>
+<p>&#x5148;&#x770B;&#x770B; webpack &#x6784;&#x5EFA;&#x7684;&#x8F93;&#x51FA;&#x5185;&#x5BB9;&#xFF1A;</p>
+<pre><code class="lang-sh">Hash: 26b478e45d80d75c14b4
+Version: webpack 3.10.0
+Time: 70ms
+    Asset     Size  Chunks             Chunk Names
+  main.js  3.51 kB    0, 1  [emitted]  main
+vendor.js  2.66 kB       1  [emitted]  vendor
+   [0] ./foo.js 17 bytes {0} {1} [built]
+   [1] ./app.js 72 bytes {0} [built]
+   [2] ./bar.js 114 bytes {0} [built]
+</code></pre>
+<p>&#x518D;&#x770B;&#x770B; <code>main.js</code> &#x5185;&#x5BB9;&#xFF1A;</p>
+<pre><code class="lang-js">(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">modules</span>) </span>{ <span class="hljs-comment">// webpackBootstrap</span>
+  <span class="hljs-comment">// ...</span>
+  <span class="hljs-keyword">return</span> __webpack_require__(__webpack_require__.s = <span class="hljs-number">1</span>);
+})
+<span class="hljs-comment">/************************************************************************/</span>
+ ([
+<span class="hljs-comment">/* 0 */</span>
+(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">module, __webpack_exports__, __webpack_require__</span>) </span>{
+<span class="hljs-meta">  &quot;use strict&quot;</span>;
+  <span class="hljs-built_in">Object</span>.defineProperty(__webpack_exports__, <span class="hljs-string">&quot;__esModule&quot;</span>, { value: <span class="hljs-literal">true</span> });
+  __webpack_exports__[<span class="hljs-string">&quot;default&quot;</span>] = (<span class="hljs-number">42</span>);
+}),
+
+<span class="hljs-comment">/* 1 */</span>
+(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">module, __webpack_exports__, __webpack_require__</span>) </span>{
+<span class="hljs-meta">  &quot;use strict&quot;</span>;
+  <span class="hljs-built_in">Object</span>.defineProperty(__webpack_exports__, <span class="hljs-string">&quot;__esModule&quot;</span>, { value: <span class="hljs-literal">true</span> });
+  <span class="hljs-keyword">var</span> __WEBPACK_IMPORTED_MODULE_0__bar__ = __webpack_require__(<span class="hljs-number">2</span>);
+  <span class="hljs-keyword">var</span> __WEBPACK_IMPORTED_MODULE_1__foo__ = __webpack_require__(<span class="hljs-number">0</span>);
+  <span class="hljs-built_in">Object</span>(__WEBPACK_IMPORTED_MODULE_0__bar__[<span class="hljs-string">&quot;a&quot;</span> <span class="hljs-comment">/* default */</span>])()
+  <span class="hljs-built_in">console</span>.log(__WEBPACK_IMPORTED_MODULE_1__foo__[<span class="hljs-string">&quot;default&quot;</span>])
+}),
+
+<span class="hljs-comment">/* 2 */</span>
+(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">module, __webpack_exports__, __webpack_require__</span>) </span>{
+<span class="hljs-meta">  &quot;use strict&quot;</span>;
+  __webpack_exports__[<span class="hljs-string">&quot;a&quot;</span>] = bar;
+  <span class="hljs-keyword">var</span> __WEBPACK_IMPORTED_MODULE_0__foo__ = __webpack_require__(<span class="hljs-number">0</span>);
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">bar</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;bar running...&apos;</span>)
+    <span class="hljs-built_in">console</span>.log(__WEBPACK_IMPORTED_MODULE_0__foo__[<span class="hljs-string">&quot;default&quot;</span>])
+  }
+})
+ ]);
+</code></pre>
+<p>&#x53EF;&#x89C1;&#xFF0C;<code>main.js</code> &#x5305;&#x542B;&#x4E86; <code>foo.js</code>, <code>main.js</code> &#x548C; <code>bar.js</code> &#x4E09;&#x4E2A;&#x6A21;&#x5757;&#x7684;&#x5185;&#x5BB9;&#x3002;</p>
+<p>&#x63A5;&#x7740;&#x770B;&#x770B; <code>vendor.js</code> &#x7684;&#x5185;&#x5BB9;&#xFF1A;</p>
+<pre><code class="lang-js">(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">modules</span>) </span>{ <span class="hljs-comment">// webpackBootstrap</span>
+    <span class="hljs-comment">// ...</span>
+    <span class="hljs-comment">// Load entry module and return exports</span>
+    <span class="hljs-keyword">return</span> __webpack_require__(__webpack_require__.s = <span class="hljs-number">0</span>);
+})
+<span class="hljs-comment">/************************************************************************/</span>
+([
+<span class="hljs-comment">/* 0 */</span>
+(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">module, __webpack_exports__, __webpack_require__</span>) </span>{
+<span class="hljs-meta">  &quot;use strict&quot;</span>;
+  <span class="hljs-built_in">Object</span>.defineProperty(__webpack_exports__, <span class="hljs-string">&quot;__esModule&quot;</span>, { value: <span class="hljs-literal">true</span> });
+  __webpack_exports__[<span class="hljs-string">&quot;default&quot;</span>] = (<span class="hljs-number">42</span>);
+})
+]);
+</code></pre>
+<p>&#x53EF;&#x4EE5;&#x770B;&#x5230; <code>vendor.js</code> &#x5305;&#x542B; <code>foo.js</code> &#x6A21;&#x5757;&#x5185;&#x5BB9;&#x3002;</p>
+<p>&#x5C0F;&#x7ED3;&#x4E00;&#x4E0B;&#xFF0C;&#x867D;&#x7136;&#x5B9E;&#x73B0;&#x4E86;&#x591A;&#x4E2A;&#x5165;&#x53E3;&#x6253;&#x5305;&#xFF0C;&#x4F46;&#x662F;&#x6253;&#x5305;&#x751F;&#x6210;&#x7684; bundle &#x6709;&#x91CD;&#x590D;&#x4EE3;&#x7801;&#xFF08;<code>foo.js</code> &#x7684;&#x5185;&#x5BB9;&#x88AB;&#x4E24;&#x6B21;&#x6253;&#x5305;&#xFF09;&#xFF0C;&#x8FD9;&#x9020;&#x6210;&#x4E86;&#x8D44;&#x6E90;&#x6D6A;&#x8D39;&#x3002;</p>
+<h2 id="&#x63D0;&#x53D6;&#x516C;&#x5171;&#x8D44;&#x6E90;">&#x63D0;&#x53D6;&#x516C;&#x5171;&#x8D44;&#x6E90;</h2>
+<p>&#x4F7F;&#x7528;&#x63D2;&#x4EF6; <strong>CommonsChunkPlugin</strong> &#x53EF;&#x4EE5;&#x628A;&#x91CD;&#x590D;&#x4EE3;&#x7801;&#x63D0;&#x53D6;&#x51FA;&#x6765;&#xFF0C;&#x5F53;&#x4F5C;&#x4E00;&#x4E2A;&#x529F;&#x7528;&#x6A21;&#x5757;&#x3002;</p>
+<p>&#x4FEE;&#x6539; <code>webpack.config.js</code> &#xFF0C;&#x5728;&#x5176;&#x4E2D;&#x589E;&#x52A0; <code>plugins</code> &#x5B57;&#x6BB5;&#xFF0C;&#x5177;&#x4F53;&#x5185;&#x5BB9;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-js"><span class="hljs-comment">// ...</span>
+plugins: [
+  <span class="hljs-keyword">new</span> webpack.optimize.CommonsChunkPlugin({
+    name: <span class="hljs-string">&apos;commons&apos;</span>,
+    filename: <span class="hljs-string">&apos;commons.js&apos;</span>
+  })
+]
+<span class="hljs-comment">// ...</span>
+</code></pre>
+<p>&#x6267;&#x884C; webpack &#xFF0C;&#x5728;&#x547D;&#x4EE4;&#x884C;&#x7A97;&#x53E3;&#x8F93;&#x51FA;&#x5982;&#x4E0B;&#x5185;&#x5BB9;&#xFF1A;</p>
+<pre><code class="lang-sh">Hash: c46701fafad8b4ac9960
+Version: webpack 3.11.0
+Time: 91ms
+     Asset       Size  Chunks             Chunk Names
+   main.js  881 bytes       0  [emitted]  main
+ vendor.js   25 bytes       1  [emitted]  vendor
+commons.js    4.09 kB       2  [emitted]  commons
+   [0] ./foo.js 17 bytes {2} [built]
+   [1] ./app.js 72 bytes {0} [built]
+   [2] ./bar.js 114 bytes {0} [built]
+</code></pre>
+<p>&#x6211;&#x4EEC;&#x5148;&#x7814;&#x7A76;&#x4E00;&#x4E0B; <code>commons.js</code> &#x4EE3;&#x7801;&#xFF1A;</p>
+<pre><code class="lang-js">(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">modules</span>) </span>{ <span class="hljs-comment">// webpackBootstrap</span>
+    <span class="hljs-comment">// install a JSONP callback for chunk loading</span>
+    <span class="hljs-keyword">var</span> parentJsonpFunction = <span class="hljs-built_in">window</span>[<span class="hljs-string">&quot;webpackJsonp&quot;</span>];
+    <span class="hljs-built_in">window</span>[<span class="hljs-string">&quot;webpackJsonp&quot;</span>] = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">webpackJsonpCallback</span>(<span class="hljs-params">chunkIds, moreModules, executeModules</span>) </span>{
+        <span class="hljs-comment">// add &quot;moreModules&quot; to the modules object,</span>
+        <span class="hljs-comment">// then flag all &quot;chunkIds&quot; as loaded and fire callback</span>
+        <span class="hljs-keyword">var</span> moduleId, chunkId, i = <span class="hljs-number">0</span>, resolves = [], result;
+        <span class="hljs-keyword">for</span>(;i &lt; chunkIds.length; i++) {
+            chunkId = chunkIds[i];
+            <span class="hljs-keyword">if</span>(installedChunks[chunkId]) {
+                resolves.push(installedChunks[chunkId][<span class="hljs-number">0</span>]);
+            }
+            installedChunks[chunkId] = <span class="hljs-number">0</span>;
+        }
+        <span class="hljs-keyword">for</span>(moduleId <span class="hljs-keyword">in</span> moreModules) {
+            <span class="hljs-keyword">if</span>(<span class="hljs-built_in">Object</span>.prototype.hasOwnProperty.call(moreModules, moduleId)) {
+                modules[moduleId] = moreModules[moduleId];
+            }
+        }
+        <span class="hljs-keyword">if</span>(parentJsonpFunction) parentJsonpFunction(chunkIds, moreModules, executeModules);
+        <span class="hljs-keyword">while</span>(resolves.length) {
+            resolves.shift()();
+        }
+        <span class="hljs-keyword">if</span>(executeModules) {
+            <span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>; i &lt; executeModules.length; i++) {
+                result = __webpack_require__(__webpack_require__.s = executeModules[i]);
+            }
+        }
+        <span class="hljs-keyword">return</span> result;
+    }
+
+    <span class="hljs-comment">// The module cache</span>
+    <span class="hljs-keyword">var</span> installedModules = {}
+
+    <span class="hljs-comment">// objects to store loaded and loading chunks</span>
+    <span class="hljs-keyword">var</span> installedChunks = {
+        <span class="hljs-number">2</span>: <span class="hljs-number">0</span>
+    }
+
+    <span class="hljs-comment">// The require function</span>
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__webpack_require__</span>(<span class="hljs-params">moduleId</span>) </span>{
+        <span class="hljs-comment">// Check if module is in cache</span>
+        <span class="hljs-keyword">if</span>(installedModules[moduleId]) {
+            <span class="hljs-keyword">return</span> installedModules[moduleId].exports;
+        }
+        <span class="hljs-comment">// Create a new module (and put it into the cache)</span>
+        <span class="hljs-keyword">var</span> <span class="hljs-built_in">module</span> = installedModules[moduleId] = {
+            i: moduleId,
+            l: <span class="hljs-literal">false</span>,
+            exports: {}
+        };
+
+        <span class="hljs-comment">// Execute the module function</span>
+        modules[moduleId].call(<span class="hljs-built_in">module</span>.exports, <span class="hljs-built_in">module</span>, <span class="hljs-built_in">module</span>.exports, __webpack_require__)
+
+        <span class="hljs-comment">// Flag the module as loaded</span>
+        <span class="hljs-built_in">module</span>.l = <span class="hljs-literal">true</span>
+
+        <span class="hljs-comment">// Return the exports of the module</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">module</span>.exports
+    }
+
+    <span class="hljs-comment">// expose the modules object (__webpack_modules__)</span>
+    __webpack_require__.m = modules
+
+    <span class="hljs-comment">// expose the module cache</span>
+    __webpack_require__.c = installedModules
+
+    <span class="hljs-comment">// define getter function for harmony exports</span>
+    __webpack_require__.d = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">exports, name, getter</span>) </span>{
+        <span class="hljs-keyword">if</span>(!__webpack_require__.o(exports, name)) {
+            <span class="hljs-built_in">Object</span>.defineProperty(exports, name, {
+                configurable: <span class="hljs-literal">false</span>,
+                enumerable: <span class="hljs-literal">true</span>,
+                get: getter
+            });
+        }
+    };
+
+    <span class="hljs-comment">// getDefaultExport function for compatibility with non-harmony modules</span>
+    __webpack_require__.n = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">module</span>) </span>{
+        <span class="hljs-keyword">var</span> getter = <span class="hljs-built_in">module</span> &amp;&amp; <span class="hljs-built_in">module</span>.__esModule ?
+            <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getDefault</span>(<span class="hljs-params"></span>) </span>{ <span class="hljs-keyword">return</span> <span class="hljs-built_in">module</span>[<span class="hljs-string">&apos;default&apos;</span>]; } :
+            <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getModuleExports</span>(<span class="hljs-params"></span>) </span>{ <span class="hljs-keyword">return</span> <span class="hljs-built_in">module</span>; };
+        __webpack_require__.d(getter, <span class="hljs-string">&apos;a&apos;</span>, getter);
+        <span class="hljs-keyword">return</span> getter;
+    }
+
+    <span class="hljs-comment">// Object.prototype.hasOwnProperty.call</span>
+    __webpack_require__.o = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">object, property</span>) </span>{ <span class="hljs-keyword">return</span> <span class="hljs-built_in">Object</span>.prototype.hasOwnProperty.call(object, property); }
+
+    <span class="hljs-comment">// __webpack_public_path__</span>
+    __webpack_require__.p = <span class="hljs-string">&quot;&quot;</span>
+
+    <span class="hljs-comment">// on error function for async loading</span>
+    __webpack_require__.oe = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err</span>) </span>{ <span class="hljs-built_in">console</span>.error(err); <span class="hljs-keyword">throw</span> err; };
+})
+<span class="hljs-comment">/************************************************************************/</span>
+([
+<span class="hljs-comment">/* 0 */</span>
+(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">module, __webpack_exports__, __webpack_require__</span>) </span>{
+<span class="hljs-meta">  &quot;use strict&quot;</span>;
+  <span class="hljs-built_in">Object</span>.defineProperty(__webpack_exports__, <span class="hljs-string">&quot;__esModule&quot;</span>, { value: <span class="hljs-literal">true</span> });
+  __webpack_exports__[<span class="hljs-string">&quot;default&quot;</span>] = (<span class="hljs-number">42</span>);
+})
+]);
+</code></pre>
+<p><code>commons.js</code> &#x65B0;&#x589E;&#x4E86;&#x4E00;&#x4E2A;&#x51FD;&#x6570; <code>webpackJsonpCallback</code>&#xFF1A;</p>
+<pre><code class="lang-js"><span class="hljs-comment">// install a JSONP callback for chunk loading</span>
+<span class="hljs-keyword">var</span> parentJsonpFunction = <span class="hljs-built_in">window</span>[<span class="hljs-string">&quot;webpackJsonp&quot;</span>];
+<span class="hljs-built_in">window</span>[<span class="hljs-string">&quot;webpackJsonp&quot;</span>] = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">webpackJsonpCallback</span>(<span class="hljs-params">chunkIds, moreModules, executeModules</span>) </span>{
+  <span class="hljs-comment">// add &quot;moreModules&quot; to the modules object,</span>
+  <span class="hljs-comment">// then flag all &quot;chunkIds&quot; as loaded and fire callback</span>
+  <span class="hljs-keyword">var</span> moduleId, chunkId, i = <span class="hljs-number">0</span>, resolves = [], result;
+  <span class="hljs-keyword">for</span>(;i &lt; chunkIds.length; i++) {
+    chunkId = chunkIds[i]
+    <span class="hljs-keyword">if</span>(installedChunks[chunkId]) {
+      resolves.push(installedChunks[chunkId][<span class="hljs-number">0</span>])
+    }
+    installedChunks[chunkId] = <span class="hljs-number">0</span>
+  }
+  <span class="hljs-keyword">for</span>(moduleId <span class="hljs-keyword">in</span> moreModules) {
+    <span class="hljs-keyword">if</span>(<span class="hljs-built_in">Object</span>.prototype.hasOwnProperty.call(moreModules, moduleId)) {
+      modules[moduleId] = moreModules[moduleId];
+    }
+  }
+  <span class="hljs-keyword">if</span>(parentJsonpFunction) parentJsonpFunction(chunkIds, moreModules, executeModules);
+  <span class="hljs-keyword">while</span>(resolves.length) {
+    resolves.shift()();
+  }
+  <span class="hljs-keyword">if</span>(executeModules) {
+    <span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>; i &lt; executeModules.length; i++) {
+      result = __webpack_require__(__webpack_require__.s = executeModules[i]);
+    }
+  }
+  <span class="hljs-keyword">return</span> result;
+}
+
+<span class="hljs-comment">// objects to store loaded and loading chunks</span>
+<span class="hljs-keyword">var</span> installedChunks = {
+  <span class="hljs-number">2</span>: <span class="hljs-number">0</span>
+}
+</code></pre>
+<p>&#x5728; <code>main.js</code> &#x4E2D;&#x6709; <code>webpackJsonp</code> &#x7684;&#x6267;&#x884C;&#x4EE3;&#x7801;&#xFF1A;</p>
+<pre><code class="lang-js">webpackJsonp([<span class="hljs-number">0</span>],[
+  <span class="hljs-comment">/* 0 */</span>,
+
+  <span class="hljs-comment">/* 1 */</span>
+  (<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">module, __webpack_exports__, __webpack_require__</span>) </span>{
+<span class="hljs-meta">    &quot;use strict&quot;</span>
+    <span class="hljs-built_in">Object</span>.defineProperty(__webpack_exports__, <span class="hljs-string">&quot;__esModule&quot;</span>, { value: <span class="hljs-literal">true</span> })
+    <span class="hljs-keyword">var</span> __WEBPACK_IMPORTED_MODULE_0__bar__ = __webpack_require__(<span class="hljs-number">2</span>)
+    <span class="hljs-keyword">var</span> __WEBPACK_IMPORTED_MODULE_1__foo__ = __webpack_require__(<span class="hljs-number">0</span>)
+
+    <span class="hljs-built_in">Object</span>(__WEBPACK_IMPORTED_MODULE_0__bar__[<span class="hljs-string">&quot;a&quot;</span> <span class="hljs-comment">/* default */</span>])()
+    <span class="hljs-built_in">console</span>.log(__WEBPACK_IMPORTED_MODULE_1__foo__[<span class="hljs-string">&quot;default&quot;</span>])
+  }),
+
+  <span class="hljs-comment">/* 2 */</span>
+  (<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">module, __webpack_exports__, __webpack_require__</span>) </span>{
+<span class="hljs-meta">    &quot;use strict&quot;</span>;
+    __webpack_exports__[<span class="hljs-string">&quot;a&quot;</span>] = bar;
+    <span class="hljs-keyword">var</span> __WEBPACK_IMPORTED_MODULE_0__foo__ = __webpack_require__(<span class="hljs-number">0</span>);
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">bar</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;bar running...&apos;</span>)
+        <span class="hljs-built_in">console</span>.log(__WEBPACK_IMPORTED_MODULE_0__foo__[<span class="hljs-string">&quot;default&quot;</span>])
+    }
+  })
+],[<span class="hljs-number">1</span>]);
+</code></pre>
+<p>&#x53EF;&#x4EE5;&#x770B;&#x5230;&#xFF0C;<code>webpackJsonp</code> &#x6709;&#x4E09;&#x4E2A;&#x5B9E;&#x53C2;&#xFF0C;&#x7C7B;&#x578B;&#x5747;&#x4E3A;&#x6570;&#x7EC4;&#xFF0C;&#x7B2C;&#x4E00;&#x4E2A;&#x6570;&#x7EC4;&#x662F;&#x516C;&#x5171;&#x4EE3;&#x7801;&#x7684;&#x7D22;&#x5F15;&#x503C;&#xFF08;<code>chunkIds</code>&#xFF09;&#xFF0C;&#x7B2C;&#x4E8C;&#x4E2A;&#x6570;&#x7EC4;&#x662F;&#x5177;&#x4F53;&#x5B9A;&#x4E49;&#x7684;&#x4EE3;&#x7801;&#xFF08;<code>moreModules</code>&#xFF09;&#xFF0C;&#x7B2C;&#x4E09;&#x4E2A;&#x6570;&#x7EC4;&#x662F;&#x9700;&#x8981;&#x6267;&#x884C;&#x7684; chunk &#x7D22;&#x5F15;&#x503C;&#xFF08;<code>executeModules</code>&#xFF09;&#x3002;</p>
+<p><code>vendor.js</code> &#x4E2D;&#x7684;&#x4EE3;&#x7801;&#x66F4;&#x7B80;&#x5355;&#xFF1A;</p>
+<pre><code class="lang-js">webpackJsonp([<span class="hljs-number">1</span>],[],[<span class="hljs-number">0</span>])
+</code></pre>
+<p>&#x5C0F;&#x7ED3;&#x4E00;&#x4E0B;&#xFF0C;&#x901A;&#x8FC7;&#x4F7F;&#x7528; <code>CommonsChunkPlugin</code>&#xFF0C;webpack &#x5C06; webpack &#x8FD0;&#x884C;&#x65F6;&#x548C;&#x516C;&#x5171;&#x4EE3;&#x7801;&#x63D0;&#x53D6;&#x5230;&#x4E00;&#x4E2A;&#x5355;&#x72EC;&#x6587;&#x4EF6;&#xFF0C;&#x5E76;&#x66B4;&#x9732;&#x51FA;&#x4E00;&#x4E2A;&#x5168;&#x5C40;&#x53D8;&#x91CF; <code>webpackJsonp</code> &#xFF0C;&#x5176;&#x4ED6;&#x7684;&#x51FD;&#x6570;&#x53EA;&#x9700;&#x8C03;&#x7528; <code>webpackJsonp</code> &#x5373;&#x53EF;&#x3002;&#x5982;&#x679C;&#x5404;&#x51FD;&#x6570;&#x6709;&#x81EA;&#x5DF1;&#x7684;&#x72EC;&#x7279;&#x6A21;&#x5757;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x51FA;&#x5165;&#x5230; <code>moreModules</code> &#x4E2D;&#x3002;</p>
+<h2 id="ref">REF</h2>
+<ul>
+<li><a href="https://webpack.js.org/plugins/commons-chunk-plugin/" target="_blank">CommonsChunkPlugin</a></li>
+</ul>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="../optimize/webpack-vs-http2.html" class="navigation navigation-prev " aria-label="Previous page: webpack & HTTP/2">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../migrating-versions/" class="navigation navigation-next " aria-label="Next page: 版本迁移">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"webpack bundle 详解","level":"1.15","depth":1,"next":{"title":"版本迁移","level":"1.16","depth":1,"path":"content/migrating-versions/README.md","ref":"./content/migrating-versions/README.md","articles":[{"title":"module.loaders 变为 module.rules","level":"1.16.1","depth":2,"path":"content/migrating-versions/module-loaders.md","ref":"./content/migrating-versions/module-loaders.md","articles":[]},{"title":"级联 loaders","level":"1.16.2","depth":2,"path":"content/migrating-versions/chaining-loaders.md","ref":"./content/migrating-versions/chaining-loaders.md","articles":[]}]},"previous":{"title":"webpack & HTTP/2","level":"1.14","depth":1,"path":"content/optimize/webpack-vs-http2.md","ref":"./content/optimize/webpack-vs-http2.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"root":"./src","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"content/bundle/README.md","mtime":"2018-02-19T04:42:09.481Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-02-19T04:44:37.918Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
