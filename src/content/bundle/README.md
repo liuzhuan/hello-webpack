@@ -321,6 +321,228 @@ vendor.js  2.66 kB       1  [emitted]  vendor
 
 小结一下，虽然实现了多个入口打包，但是打包生成的 bundle 有重复代码（`foo.js` 的内容被两次打包），这造成了资源浪费。
 
+## 提取公共资源
+
+使用插件 **CommonsChunkPlugin** 可以把重复代码提取出来，当作一个功用模块。
+
+修改 `webpack.config.js` ，在其中增加 `plugins` 字段，具体内容如下：
+
+```js
+// ...
+plugins: [
+  new webpack.optimize.CommonsChunkPlugin({
+    name: 'commons',
+    filename: 'commons.js'
+  })
+]
+// ...
+```
+
+执行 webpack ，在命令行窗口输出如下内容：
+
+```sh
+Hash: c46701fafad8b4ac9960
+Version: webpack 3.11.0
+Time: 91ms
+     Asset       Size  Chunks             Chunk Names
+   main.js  881 bytes       0  [emitted]  main
+ vendor.js   25 bytes       1  [emitted]  vendor
+commons.js    4.09 kB       2  [emitted]  commons
+   [0] ./foo.js 17 bytes {2} [built]
+   [1] ./app.js 72 bytes {0} [built]
+   [2] ./bar.js 114 bytes {0} [built]
+```
+
+我们先研究一下 `commons.js` 代码：
+
+```js
+(function(modules) { // webpackBootstrap
+	// install a JSONP callback for chunk loading
+	var parentJsonpFunction = window["webpackJsonp"];
+	window["webpackJsonp"] = function webpackJsonpCallback(chunkIds, moreModules, executeModules) {
+		// add "moreModules" to the modules object,
+		// then flag all "chunkIds" as loaded and fire callback
+		var moduleId, chunkId, i = 0, resolves = [], result;
+		for(;i < chunkIds.length; i++) {
+			chunkId = chunkIds[i];
+			if(installedChunks[chunkId]) {
+				resolves.push(installedChunks[chunkId][0]);
+			}
+			installedChunks[chunkId] = 0;
+		}
+		for(moduleId in moreModules) {
+			if(Object.prototype.hasOwnProperty.call(moreModules, moduleId)) {
+				modules[moduleId] = moreModules[moduleId];
+			}
+		}
+		if(parentJsonpFunction) parentJsonpFunction(chunkIds, moreModules, executeModules);
+		while(resolves.length) {
+			resolves.shift()();
+		}
+		if(executeModules) {
+			for(i=0; i < executeModules.length; i++) {
+				result = __webpack_require__(__webpack_require__.s = executeModules[i]);
+			}
+		}
+		return result;
+	}
+  
+	// The module cache
+	var installedModules = {}
+  
+	// objects to store loaded and loading chunks
+	var installedChunks = {
+		2: 0
+	}
+  
+	// The require function
+	function __webpack_require__(moduleId) {
+		// Check if module is in cache
+		if(installedModules[moduleId]) {
+			return installedModules[moduleId].exports;
+		}
+		// Create a new module (and put it into the cache)
+		var module = installedModules[moduleId] = {
+			i: moduleId,
+			l: false,
+			exports: {}
+		};
+
+		// Execute the module function
+		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__)
+
+		// Flag the module as loaded
+		module.l = true
+
+		// Return the exports of the module
+		return module.exports
+	}
+
+	// expose the modules object (__webpack_modules__)
+	__webpack_require__.m = modules
+
+	// expose the module cache
+	__webpack_require__.c = installedModules
+
+	// define getter function for harmony exports
+	__webpack_require__.d = function(exports, name, getter) {
+		if(!__webpack_require__.o(exports, name)) {
+			Object.defineProperty(exports, name, {
+				configurable: false,
+				enumerable: true,
+				get: getter
+			});
+		}
+	};
+
+	// getDefaultExport function for compatibility with non-harmony modules
+	__webpack_require__.n = function(module) {
+		var getter = module && module.__esModule ?
+			function getDefault() { return module['default']; } :
+			function getModuleExports() { return module; };
+		__webpack_require__.d(getter, 'a', getter);
+		return getter;
+	}
+  
+	// Object.prototype.hasOwnProperty.call
+	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); }
+  
+	// __webpack_public_path__
+	__webpack_require__.p = ""
+  
+	// on error function for async loading
+	__webpack_require__.oe = function(err) { console.error(err); throw err; };
+})
+/************************************************************************/
+([
+/* 0 */
+(function(module, __webpack_exports__, __webpack_require__) {
+  "use strict";
+  Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+  __webpack_exports__["default"] = (42);
+})
+]);
+```
+
+`commons.js` 新增了一个函数 `webpackJsonpCallback`：
+
+```js
+// install a JSONP callback for chunk loading
+var parentJsonpFunction = window["webpackJsonp"];
+window["webpackJsonp"] = function webpackJsonpCallback(chunkIds, moreModules, executeModules) {
+  // add "moreModules" to the modules object,
+  // then flag all "chunkIds" as loaded and fire callback
+  var moduleId, chunkId, i = 0, resolves = [], result;
+  for(;i < chunkIds.length; i++) {
+    chunkId = chunkIds[i]
+    if(installedChunks[chunkId]) {
+      resolves.push(installedChunks[chunkId][0])
+    }
+    installedChunks[chunkId] = 0
+  }
+  for(moduleId in moreModules) {
+    if(Object.prototype.hasOwnProperty.call(moreModules, moduleId)) {
+      modules[moduleId] = moreModules[moduleId];
+    }
+  }
+  if(parentJsonpFunction) parentJsonpFunction(chunkIds, moreModules, executeModules);
+  while(resolves.length) {
+    resolves.shift()();
+  }
+  if(executeModules) {
+    for(i=0; i < executeModules.length; i++) {
+      result = __webpack_require__(__webpack_require__.s = executeModules[i]);
+    }
+  }
+  return result;
+}
+
+// objects to store loaded and loading chunks
+var installedChunks = {
+  2: 0
+}
+```
+
+在 `main.js` 中有 `webpackJsonp` 的执行代码：
+
+```js
+webpackJsonp([0],[
+  /* 0 */,
+
+  /* 1 */
+  (function(module, __webpack_exports__, __webpack_require__) {
+    "use strict"
+    Object.defineProperty(__webpack_exports__, "__esModule", { value: true })
+    var __WEBPACK_IMPORTED_MODULE_0__bar__ = __webpack_require__(2)
+    var __WEBPACK_IMPORTED_MODULE_1__foo__ = __webpack_require__(0)
+
+    Object(__WEBPACK_IMPORTED_MODULE_0__bar__["a" /* default */])()
+    console.log(__WEBPACK_IMPORTED_MODULE_1__foo__["default"])
+  }),
+
+  /* 2 */
+  (function(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+    __webpack_exports__["a"] = bar;
+    var __WEBPACK_IMPORTED_MODULE_0__foo__ = __webpack_require__(0);
+    function bar() {
+        console.log('bar running...')
+        console.log(__WEBPACK_IMPORTED_MODULE_0__foo__["default"])
+    }
+  })
+],[1]);
+```
+
+可以看到，`webpackJsonp` 有三个实参，类型均为数组，第一个数组是公共代码的索引值（`chunkIds`），第二个数组是具体定义的代码（`moreModules`），第三个数组是需要执行的 chunk 索引值（`executeModules`）。
+
+`vendor.js` 中的代码更简单：
+
+```js
+webpackJsonp([1],[],[0])
+```
+
+小结以下，通过使用 `CommonsChunkPlugin`，webpack 将 webpack 运行时和公共代码提取到一个单独文件，并暴露出一个全局变量 `webpackJsonp` ，其他的函数只需调用 `webpackJsonp` 即可。如果各函数有自己的独特模块，也可以出入到 `moreModules` 中。
+
 ## REF
 
 - [CommonsChunkPlugin][commons-chunk]
