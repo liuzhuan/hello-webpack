@@ -90,21 +90,21 @@ module.exports = {
 /************************************************************************/
 ([
 /* 0 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+(function(module, __webpack_exports__, __webpack_require__) {
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__bar__ = __webpack_require__(1);
+var __WEBPACK_IMPORTED_MODULE_0__bar__ = __webpack_require__(1);
 
 Object(__WEBPACK_IMPORTED_MODULE_0__bar__["a" /* default */])()
-/***/ }),
+}),
 /* 1 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+(function(module, __webpack_exports__, __webpack_require__) {
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = bar;
 function bar() {
   console.log('bar running...')
 }
-/***/ })
+})
 ]);
 ```
 
@@ -191,4 +191,138 @@ return __webpack_require__(__webpack_require__.s = 0)
 
 ### 总结
 
-对于简单
+对于简单的单输入单输出配置，webpack 会将各代码分别封装为函数，并把原始的 ES6 模块语句转译为 `__webpack_require__` 和 `__webpack_exports__` 。
+
+封装为函数，就可以保证各模块的变量都在自己的作用域，不会污染全局作用域。
+
+## 多入口配置
+
+如果增加一个新的模块 `foo.js`，内容如下：
+
+```js
+/** foo.js */
+export default 42
+```
+
+同时修改 `app.js` 和 `bar.js`，各自引入 `foo.js`：
+
+```js
+/** app.js */
+import bar from './bar';
+import foo from './foo'
+
+bar()
+console.log(foo)
+
+/** bar.js */
+import foo from './foo'
+
+export default function bar() {
+  console.log('bar running...')
+  console.log(foo)
+}
+```
+
+并且将配置文件修改为多输入多输出模式：
+
+```js
+/** webpack.config.js */
+const path = require('path')
+
+module.exports = {
+  entry: {
+    main: './app.js',
+    vendor: './foo.js'
+  },
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: '[name].js'
+  }
+}
+```
+
+此时，运行 webpack ，会得到两个输出文件 `main.js` 和 `vendor.js`。
+
+先看看 webpack 构建的输出内容：
+
+```sh
+Hash: 26b478e45d80d75c14b4
+Version: webpack 3.10.0
+Time: 70ms
+    Asset     Size  Chunks             Chunk Names
+  main.js  3.51 kB    0, 1  [emitted]  main
+vendor.js  2.66 kB       1  [emitted]  vendor
+   [0] ./foo.js 17 bytes {0} {1} [built]
+   [1] ./app.js 72 bytes {0} [built]
+   [2] ./bar.js 114 bytes {0} [built]
+```
+
+再看看 `main.js` 内容：
+
+```js
+(function(modules) { // webpackBootstrap
+  // ...
+  return __webpack_require__(__webpack_require__.s = 1);
+})
+/************************************************************************/
+ ([
+/* 0 */
+(function(module, __webpack_exports__, __webpack_require__) {
+  "use strict";
+  Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+  __webpack_exports__["default"] = (42);
+}),
+
+/* 1 */
+(function(module, __webpack_exports__, __webpack_require__) {
+  "use strict";
+  Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+  var __WEBPACK_IMPORTED_MODULE_0__bar__ = __webpack_require__(2);
+  var __WEBPACK_IMPORTED_MODULE_1__foo__ = __webpack_require__(0);
+  Object(__WEBPACK_IMPORTED_MODULE_0__bar__["a" /* default */])()
+  console.log(__WEBPACK_IMPORTED_MODULE_1__foo__["default"])
+}),
+
+/* 2 */
+(function(module, __webpack_exports__, __webpack_require__) {
+  "use strict";
+  __webpack_exports__["a"] = bar;
+  var __WEBPACK_IMPORTED_MODULE_0__foo__ = __webpack_require__(0);
+  function bar() {
+    console.log('bar running...')
+    console.log(__WEBPACK_IMPORTED_MODULE_0__foo__["default"])
+  }
+})
+ ]);
+```
+
+可见，`main.js` 包含了 `foo.js`, `main.js` 和 `bar.js` 三个模块的内容。
+
+接着看看 `vendor.js` 的内容：
+
+```js
+(function(modules) { // webpackBootstrap
+	// ...
+	// Load entry module and return exports
+	return __webpack_require__(__webpack_require__.s = 0);
+})
+/************************************************************************/
+([
+/* 0 */
+(function(module, __webpack_exports__, __webpack_require__) {
+  "use strict";
+  Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+  __webpack_exports__["default"] = (42);
+})
+]);
+```
+
+可以看到 `vendor.js` 包含 `foo.js` 模块内容。
+
+小结一下，虽然实现了多个入口打包，但是打包生成的 bundle 有重复代码（`foo.js` 的内容被两次打包），这造成了资源浪费。
+
+## REF
+
+- [CommonsChunkPlugin][commons-chunk]
+
+[commons-chunk]: https://webpack.js.org/plugins/commons-chunk-plugin/
