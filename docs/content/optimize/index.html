@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>素材管理 · GitBook</title>
+        <title>webpack 优化技巧 · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,10 +57,10 @@
     <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="../modules/" />
+    <link rel="next" href="../migrating-versions/" />
     
     
-    <link rel="prev" href="caching.html" />
+    <link rel="prev" href="../bundle/" />
     
 
     </head>
@@ -186,7 +186,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4" data-path="README.md">
+        <li class="chapter " data-level="1.4" data-path="../guides/README.md">
             
                 <span>
             
@@ -200,9 +200,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.1" data-path="caching.html">
+        <li class="chapter " data-level="1.4.1" data-path="../guides/caching.html">
             
-                <a href="caching.html">
+                <a href="../guides/caching.html">
             
                     
                     缓存
@@ -213,9 +213,9 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.4.2" data-path="asset-management.html">
+        <li class="chapter " data-level="1.4.2" data-path="../guides/asset-management.html">
             
-                <a href="asset-management.html">
+                <a href="../guides/asset-management.html">
             
                     
                     素材管理
@@ -658,9 +658,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.14" data-path="../optimize/webpack-vs-http2.html">
+        <li class="chapter " data-level="1.14" data-path="webpack-vs-http2.html">
             
-                <a href="../optimize/webpack-vs-http2.html">
+                <a href="webpack-vs-http2.html">
             
                     
                     webpack & HTTP/2
@@ -684,9 +684,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.16" data-path="../optimize/">
+        <li class="chapter active" data-level="1.16" data-path="./">
             
-                <a href="../optimize/">
+                <a href="./">
             
                     
                     webpack 优化技巧
@@ -785,7 +785,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../.." >素材管理</a>
+        <a href="../.." >webpack 优化技巧</a>
     </h1>
 </div>
 
@@ -800,55 +800,96 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h2 id="&#x7D20;&#x6750;&#x7BA1;&#x7406;-asset-management">&#x7D20;&#x6750;&#x7BA1;&#x7406; Asset Management</h2>
-<p>webpack &#x6700;&#x9177;&#x7684;&#x7279;&#x6027;&#x662F;&#x53EF;&#x4EE5;&#x5305;&#x542B;&#x4EFB;&#x610F;&#x7C7B;&#x578B;&#x7684;&#x6587;&#x4EF6;&#x3002;</p>
-<h3 id="&#x52A0;&#x8F7D;-css">&#x52A0;&#x8F7D; CSS</h3>
-<p>&#x4E3A;&#x4E86;&#x5728; JavaScript &#x6A21;&#x5757;&#x4E2D;&#x5F15;&#x5165; CSS &#x6587;&#x4EF6;&#xFF0C;&#x4F60;&#x9700;&#x8981;&#x5B89;&#x88C5; <code>style-loader</code> &#x548C; <code>css-loader</code>&#xFF0C;&#x5E76;&#x5728; <code>module</code> &#x914D;&#x7F6E;&#x9879;&#x4E2D;&#x8BBE;&#x7F6E;&#xFF1A;</p>
-<pre><code>npm install --save-dev style-loader css-loader
-</code></pre><p><strong>webpack.config.js</strong></p>
-<pre><code class="lang-js"><span class="hljs-built_in">module</span>.exports = {
+                                <h1 id="webpack-&#x4F18;&#x5316;&#x6280;&#x5DE7;">webpack &#x4F18;&#x5316;&#x6280;&#x5DE7;</h1>
+<p>Google &#x5F00;&#x53D1;&#x8005;&#x793E;&#x533A;&#x6709;&#x4E00;&#x7BC7;&#x6587;&#x7AE0; <a href="https://developers.google.com/web/fundamentals/performance/webpack/" target="_blank">Web Performance Optimization with webpack</a> &#x5217;&#x4E3E;&#x4E86;&#x4E00;&#x4E9B; webpack &#x4F18;&#x5316;&#x6280;&#x5DE7;&#xFF0C;&#x6458;&#x53D6;&#x5176;&#x4E2D;&#x8981;&#x70B9;&#x5982;&#x4E0B;&#x3002;</p>
+<h2 id="&#x51CF;&#x5C0F;&#x524D;&#x7AEF;&#x5C3A;&#x5BF8;">&#x51CF;&#x5C0F;&#x524D;&#x7AEF;&#x5C3A;&#x5BF8;</h2>
+<p>&#x4F18;&#x5316;&#x7684;&#x7B2C;&#x4E00;&#x6B65;&#x662F;&#x51CF;&#x5C0F;&#x6587;&#x4EF6;&#x4F53;&#x79EF;&#x3002;</p>
+<h3 id="&#x5F00;&#x542F;&#x538B;&#x7F29;">&#x5F00;&#x542F;&#x538B;&#x7F29;</h3>
+<p>webpack &#x652F;&#x6301;&#x4E24;&#x79CD;&#x538B;&#x7F29;&#x4EE3;&#x7801;&#x7684;&#x65B9;&#x6CD5;&#xFF1A;UglifyJS &#x63D2;&#x4EF6;&#x548C; loader &#x7684;&#x7279;&#x6B8A;&#x9009;&#x9879;&#xFF0C;&#x5E94;&#x540C;&#x65F6;&#x542F;&#x7528;&#x4E24;&#x8005;&#x3002;</p>
+<p>UglifyJS &#x63D2;&#x4EF6;&#x4F1A;&#x5728;&#x7F16;&#x8BD1;&#x540E;&#x5BF9;&#x6574;&#x4E2A; bundle &#x538B;&#x7F29;&#x3002;webpack &#x81EA;&#x5E26;&#x8BE5;&#x63D2;&#x4EF6;&#xFF0C;&#x53EA;&#x9700;&#x5C06;&#x5176;&#x52A0;&#x5165; <code>plugins</code> &#x6570;&#x7EC4;&#x5373;&#x53EF;&#xFF1A;</p>
+<pre><code class="lang-js"><span class="hljs-comment">/** webpack.config.js */</span>
+<span class="hljs-keyword">const</span> webpack = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;webpack&apos;</span>)
+
+<span class="hljs-built_in">module</span>.exports = {
+  plugins: [
+    <span class="hljs-keyword">new</span> webpack.optimize.UglifyJsPlugin()
+  ]
+}
+</code></pre>
+<p>loader &#x76F8;&#x5173;&#x7684;&#x538B;&#x7F29;&#x9009;&#x9879;&#xFF0C;&#x53EF;&#x4EE5;&#x538B;&#x7F29; UglifyJsPlugin &#x65E0;&#x80FD;&#x4E3A;&#x529B;&#x7684;&#x4EE3;&#x7801;&#x3002;&#x6BD4;&#x5982;&#xFF0C;&#x5982;&#x679C;&#x4F7F;&#x7528; <code>css-loader</code> &#x5F15;&#x5165; CSS &#x6587;&#x4EF6;&#xFF0C;&#x6837;&#x5F0F;&#x6587;&#x4EF6;&#x4F1A;&#x88AB;&#x7F16;&#x8BD1;&#x4E3A;&#x5B57;&#x7B26;&#x4E32;&#x3002;&#x4E3E;&#x4E2A;&#x4F8B;&#x5B50;&#xFF1A;</p>
+<pre><code class="lang-css"><span class="hljs-comment">/** comments.css */</span>
+<span class="hljs-selector-class">.comment</span> {
+  <span class="hljs-attribute">color</span>: black;
+}
+</code></pre>
+<p>&#x5C06;&#x53D8;&#x4E3A;&#xFF1A;</p>
+<pre><code class="lang-js"><span class="hljs-comment">// minified bundle.js (part of)</span>
+exports=<span class="hljs-built_in">module</span>.exports=__webpack_require__(<span class="hljs-number">1</span>)(),
+exports.push([<span class="hljs-built_in">module</span>.i,<span class="hljs-string">&quot;.comment {\r\n  color: black;\r\n}&quot;</span>,<span class="hljs-string">&quot;&quot;</span>]);
+</code></pre>
+<p>&#x7531;&#x4E8E; UglifyJs &#x65E0;&#x6CD5;&#x538B;&#x7F29;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x6B64;&#x65F6;&#xFF0C;&#x53EF;&#x8BBE;&#x5B9A; loader &#x7684;&#x538B;&#x7F29;&#x53C2;&#x6570;&#xFF1A;</p>
+<pre><code class="lang-js"><span class="hljs-comment">/** webpack.config.js */</span>
+<span class="hljs-built_in">module</span>.exports = {
   <span class="hljs-built_in">module</span>: {
-    rules: [
+    rule: [
       {
         test: <span class="hljs-regexp">/\.css$/</span>,
         use: [
           <span class="hljs-string">&apos;style-loader&apos;</span>,
-          <span class="hljs-string">&apos;css-loader&apos;</span>
+          { loader: <span class="hljs-string">&apos;css-loader&apos;</span>, options: { minimize: <span class="hljs-literal">true</span> } }
         ]
       }
     ]
   }
 }
 </code></pre>
-<p>&#x8FD9;&#x6837;&#x5C31;&#x53EF;&#x4EE5;&#x5728; js &#x6587;&#x4EF6;&#x4E2D;&#x5F15;&#x5165; CSS &#x6587;&#x4EF6;&#xFF1A;</p>
-<p><strong>src/index.js</strong></p>
-<pre><code class="lang-js"><span class="hljs-keyword">import</span> <span class="hljs-string">&apos;./style.css&apos;</span>
-</code></pre>
-<h3 id="&#x52A0;&#x8F7D;&#x56FE;&#x7247;">&#x52A0;&#x8F7D;&#x56FE;&#x7247;</h3>
-<p>&#x4F7F;&#x7528; <code>file-loader</code> &#x53EF;&#x4EE5;&#x8F7B;&#x6613;&#x7684;&#x52A0;&#x8F7D;&#x56FE;&#x7247;&#xFF1A;</p>
-<pre><code>npm install --save-dev file-loader
-</code></pre><p><strong>webpack.config.js</strong></p>
-<pre><code class="lang-js"><span class="hljs-built_in">module</span>.exports = {
-  <span class="hljs-built_in">module</span>: {
-    rules: [
-      {
-        test: <span class="hljs-regexp">/\.(png|svg|jpg|gif)$/</span>,
-        use: [
-          <span class="hljs-string">&apos;file-loader&apos;</span>
-        ]
-      }
-    ]
-  }
-}
-</code></pre>
-<p>&#x6B64;&#x540E;&#xFF0C;&#x5F53;&#x4F60;&#x5728; js &#x6587;&#x4EF6;&#x4E2D;&#x4F7F;&#x7528; <code>import MyImage from &apos;./my-image.png&apos;</code> &#x65F6;&#xFF0C;&#x56FE;&#x7247;&#x5C31;&#x4F1A;&#x7ECF;&#x8FC7;&#x5904;&#x7406;&#xFF0C;&#x5E76;&#x6DFB;&#x52A0;&#x5230;&#x4F60;&#x7684; <code>output</code> &#x76EE;&#x5F55;&#xFF0C;&#x540C;&#x65F6; <code>MyImage</code> &#x53D8;&#x91CF;&#x4F1A;&#x5305;&#x542B;&#x7ECF;&#x8FC7;&#x5904;&#x7406;&#x7684;&#x6700;&#x7EC8;&#x8DEF;&#x5F84;&#x3002;</p>
 <blockquote>
-<p>&#x672A;&#x5B8C;&#x5F85;&#x7EED;...</p>
+<p>&#x6CE8;&#x610F;&#xFF0C;UglifyJS &#x63D2;&#x4EF6;&#x65E0;&#x6CD5;&#x538B;&#x7F29; ES2015+&#xFF08;ES6+&#xFF09;&#x4EE3;&#x7801;&#x3002;&#x8FD9;&#x610F;&#x5473;&#x7740;&#xFF0C;&#x5982;&#x679C;&#x4F60;&#x7684;&#x4EE3;&#x7801;&#x4F7F;&#x7528;&#x4E86;&#x7BAD;&#x5934;&#x51FD;&#x6570;&#xFF0C;class &#x7C7B;&#x58F0;&#x660E;&#x7B49;&#x65B0;&#x8BED;&#x6CD5;&#xFF0C;&#x5E76;&#x4E14;&#x6CA1;&#x6709;&#x8F6C;&#x8BD1;&#x4E3A; ES5&#xFF0C;&#x63D2;&#x4EF6;&#x4F1A;&#x62A5;&#x9519;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x4F60;&#x9700;&#x8981;&#x7F16;&#x8BD1;&#x65B0;&#x8BED;&#x6CD5;&#xFF0C;&#x53EF;&#x4EE5;&#x8003;&#x8651; <a href="https://github.com/webpack-contrib/uglifyjs-webpack-plugin" target="_blank">uglifyjs-webpack-plugin</a> &#x63D2;&#x4EF6;&#x3002;&#x5B83;&#x548C; webpack &#x81EA;&#x5907;&#x7684; uglifyJS &#x63D2;&#x4EF6;&#x4E00;&#x6837;&#xFF0C;&#x53EA;&#x662F;&#x66F4;&#x65B0;&#x800C;&#x5DF2;&#xFF0C;&#x53EF;&#x4EE5;&#x7F16;&#x8BD1; ES2015+ &#x4EE3;&#x7801;&#x3002;</p>
 </blockquote>
-<h3 id="ref">REF</h3>
+<h3 id="&#x8BBE;&#x5B9A;-nodeenvproduction">&#x8BBE;&#x5B9A; <code>NODE_ENV=production</code></h3>
+<p>&#x53E6;&#x4E00;&#x4E2A;&#x51CF;&#x5C0F;&#x4F53;&#x79EF;&#x7684;&#x65B9;&#x5F0F;&#x662F;&#x8BBE;&#x5B9A;&#x73AF;&#x5883;&#x53D8;&#x91CF; <code>NODE_ENV=production</code>&#x3002;</p>
+<p>&#x7B2C;&#x4E09;&#x65B9;&#x5E93;&#x4F1A;&#x6839;&#x636E; <code>NODE_ENV</code> &#x7684;&#x503C;&#x5224;&#x65AD;&#x5F53;&#x524D;&#x7684;&#x6D3B;&#x52A8;&#x73AF;&#x5883;&#xFF0C;&#x662F;&#x5F00;&#x53D1;&#x73AF;&#x5883;&#x8FD8;&#x662F;&#x751F;&#x4EA7;&#x73AF;&#x5883;&#x3002;&#x6709;&#x7684;&#x5E93;&#x4F1A;&#x6839;&#x636E; <code>NODE_ENV</code> &#x4F5C;&#x4E0D;&#x540C;&#x8C03;&#x6574;&#x3002;&#x6BD4;&#x5982;&#xFF0C;&#x5982;&#x679C; <code>NODE_ENV</code> &#x4E0D;&#x662F; <code>production</code>&#xFF0C;Vue.js &#x4F1A;&#x505A;&#x989D;&#x5916;&#x7684;&#x5224;&#x65AD;&#xFF0C;&#x8FD8;&#x4F1A;&#x6253;&#x5370;&#x8B66;&#x544A;&#x6D88;&#x606F;&#xFF1A;</p>
+<pre><code class="lang-js"><span class="hljs-comment">// vue/dist/vue.runtime.esm.js</span>
+<span class="hljs-comment">// ...</span>
+<span class="hljs-keyword">if</span> (process.env.NODE_ENV !== <span class="hljs-string">&apos;production&apos;</span>) {
+  warn(<span class="hljs-string">&apos;props must be strings when using array syntax.&apos;</span>);
+}
+<span class="hljs-comment">// &#x2026;</span>
+</code></pre>
+<p>React &#x4E5F;&#x662F;&#x7C7B;&#x4F3C;&#x7684;&#xFF0C;&#x5728;&#x5F00;&#x53D1;&#x73AF;&#x5883;&#x4F1A;&#x589E;&#x52A0;&#x5F88;&#x591A;&#x529F;&#x80FD;&#x3002;</p>
+<p>&#x8FD9;&#x4E9B;&#x68C0;&#x6D4B;&#x548C;&#x8B66;&#x544A;&#x4FE1;&#x606F;&#x901A;&#x5E38;&#x5728;&#x751F;&#x4EA7;&#x73AF;&#x5883;&#x662F;&#x591A;&#x4F59;&#x7684;&#xFF0C;&#x4F46;&#x662F;&#x5B83;&#x4EEC;&#x53EA;&#x8981;&#x5B58;&#x5728;&#x4EE3;&#x7801;&#x4E2D;&#xFF0C;&#x5C31;&#x4F1A;&#x589E;&#x52A0;&#x4F53;&#x79EF;&#x3002;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; <a href="https://webpack.js.org/plugins/define-plugin/" target="_blank">DefinePlugin</a> &#x79FB;&#x9664;&#x8FD9;&#x4E9B;&#x591A;&#x4F59;&#x4EE3;&#x7801;&#xFF1A;</p>
+<pre><code class="lang-js"><span class="hljs-comment">/** webpack.config.js */</span>
+<span class="hljs-keyword">const</span> webpack = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;webpack&apos;</span>)
+
+<span class="hljs-built_in">module</span>.exports = {
+  plugins: [
+    <span class="hljs-keyword">new</span> webpack.DefinePlugin({
+      <span class="hljs-string">&apos;process.env.NODE_ENV&apos;</span>: <span class="hljs-string">&apos;&quot;production&quot;&apos;</span>,
+    }),
+    <span class="hljs-keyword">new</span> webpack.optimize.UglifyJsPlugin()
+  ],
+}
+</code></pre>
+<p><code>DefinePlugin</code> &#x4F1A;&#x5C06;&#x6240;&#x6709;&#x7279;&#x5B9A;&#x53D8;&#x91CF;&#x51FA;&#x73B0;&#x7684;&#x5730;&#x65B9;&#x66FF;&#x6362;&#x4E3A;&#x6307;&#x5B9A;&#x7684;&#x6570;&#x503C;&#x3002;&#x7136;&#x540E;&#xFF0C;<code>UglifyJS</code> &#x63D2;&#x4EF6;&#x4F1A;&#x5220;&#x9664;&#x8FD9;&#x4E9B;&#x65E0;&#x6548;&#x5206;&#x679D;&#xFF0C;&#x56E0;&#x4E3A;&#x5B83;&#x77E5;&#x9053;&#x8FD9;&#x4E9B;&#x903B;&#x8F91;&#x5206;&#x679D;&#x6C38;&#x8FDC;&#x4E3A;&#x5047;&#x3002;</p>
+<blockquote>
+<p>&#x6CE8;&#x610F;&#xFF0C;&#x5E76;&#x4E0D;&#x4E00;&#x5B9A;&#x5FC5;&#x987B;&#x4F7F;&#x7528; UglifyJsPlugin&#x3002;&#x4EFB;&#x4F55;&#x652F;&#x6301; dead code removal &#x7684;&#x5DE5;&#x5177;&#x90FD;&#x53EF;&#x4EE5;&#xFF0C;&#x6BD4;&#x5982; <a href="https://github.com/webpack-contrib/babel-minify-webpack-plugin" target="_blank">Babel Minify plugin</a> &#x6216;&#x8005; <a href="https://github.com/roman01la/webpack-closure-compiler" target="_blank">Google Closure Compiler plugin</a>&#x3002;</p>
+</blockquote>
+<h3 id="&#x4F7F;&#x7528;-es-&#x6A21;&#x5757;">&#x4F7F;&#x7528; ES &#x6A21;&#x5757;</h3>
+<p>&#x524D;&#x7AEF;&#x51CF;&#x80A5;&#x7684;&#x4E0B;&#x4E00;&#x6B65;&#x662F;&#x4F7F;&#x7528; <a href="https://ponyfoo.com/articles/es6-modules-in-depth" target="_blank">ES &#x6A21;&#x5757;</a>&#x3002;</p>
+<p>&#x5982;&#x679C;&#x4F7F;&#x7528; ES &#x6A21;&#x5757;&#xFF0C;webpack &#x53EF;&#x4EE5;&#x6267;&#x884C; <code>tree-shaking</code>&#x3002;Tree-shaking &#x5C31;&#x662F;&#x5220;&#x9664; ES &#x6A21;&#x5757;&#x65E0;&#x7528;&#x7684;&#x4EE3;&#x7801;&#x3002;</p>
+<p><a href="https://developers.google.com/web/fundamentals/performance/webpack/decrease-frontend-size#use_es_modules" target="_blank">&#xFF08;&#x672A;&#x5B8C;&#x5F85;&#x7EED;&#xFF09;</a></p>
+<h2 id="&#x4F7F;&#x7528;&#x957F;&#x671F;&#x7F13;&#x5B58;">&#x4F7F;&#x7528;&#x957F;&#x671F;&#x7F13;&#x5B58;</h2>
+<h2 id="&#x76D1;&#x6D4B;&#x5206;&#x6790;&#x5E94;&#x7528;">&#x76D1;&#x6D4B;&#x5206;&#x6790;&#x5E94;&#x7528;</h2>
+<h2 id="&#x603B;&#x7ED3;">&#x603B;&#x7ED3;</h2>
+<h2 id="ref">REF</h2>
 <ul>
-<li><a href="https://webpack.js.org/guides/asset-management/" target="_blank">https://webpack.js.org/guides/asset-management/</a></li>
-<li><a href="https://survivejs.com/webpack/loading/fonts/" target="_blank">https://survivejs.com/webpack/loading/fonts/</a></li>
+<li><a href="https://developers.google.com/web/fundamentals/performance/webpack/" target="_blank">Web Performance Optimization with Webpack - Google Developers</a><ul>
+<li><a href="https://developers.google.com/web/fundamentals/performance/webpack/decrease-frontend-size" target="_blank">Decrease Front-end Size</a>, by Ivan Akulov</li>
+</ul>
+</li>
+<li><a href="https://github.com/GoogleChromeLabs/webpack-training-project" target="_blank">webpack training project</a></li>
+<li><a href="https://github.com/webpack-contrib/uglifyjs-webpack-plugin" target="_blank">uglifyjs-webpack-plugin - github</a></li>
 </ul>
 
                                 
@@ -877,12 +918,12 @@
 
             
                 
-                <a href="caching.html" class="navigation navigation-prev " aria-label="Previous page: 缓存">
+                <a href="../bundle/" class="navigation navigation-prev " aria-label="Previous page: webpack bundle 详解">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="../modules/" class="navigation navigation-next " aria-label="Next page: 模块">
+                <a href="../migrating-versions/" class="navigation navigation-next " aria-label="Next page: 版本迁移">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -893,7 +934,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"素材管理","level":"1.4.2","depth":2,"next":{"title":"模块","level":"1.5","depth":1,"path":"content/modules/README.md","ref":"./content/modules/README.md","articles":[{"title":"模块的路径解析","level":"1.5.1","depth":2,"path":"content/modules/resolution.md","ref":"./content/modules/resolution.md","articles":[]},{"title":"模块方法","level":"1.5.2","depth":2,"path":"content/modules/methods.md","ref":"./content/modules/methods.md","articles":[]}]},"previous":{"title":"缓存","level":"1.4.1","depth":2,"path":"content/guides/caching.md","ref":"./content/guides/caching.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"root":"./src","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"content/guides/asset-management.md","mtime":"2018-02-17T14:19:53.117Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-02-20T16:19:10.861Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"webpack 优化技巧","level":"1.16","depth":1,"next":{"title":"版本迁移","level":"1.17","depth":1,"path":"content/migrating-versions/README.md","ref":"./content/migrating-versions/README.md","articles":[{"title":"module.loaders 变为 module.rules","level":"1.17.1","depth":2,"path":"content/migrating-versions/module-loaders.md","ref":"./content/migrating-versions/module-loaders.md","articles":[]},{"title":"级联 loaders","level":"1.17.2","depth":2,"path":"content/migrating-versions/chaining-loaders.md","ref":"./content/migrating-versions/chaining-loaders.md","articles":[]}]},"previous":{"title":"webpack bundle 详解","level":"1.15","depth":1,"path":"content/bundle/README.md","ref":"./content/bundle/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"root":"./src","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"content/optimize/README.md","mtime":"2018-02-20T16:18:58.101Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-02-20T16:19:10.861Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
