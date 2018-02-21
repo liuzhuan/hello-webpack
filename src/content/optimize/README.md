@@ -104,7 +104,37 @@ module.exports = {
 
 前端减肥的下一步是使用 [ES 模块][es-module]。
 
-如果使用 ES 模块，webpack 可以执行 `tree-shaking`。Tree-shaking 就是删除 ES 模块无用的代码。
+如果使用 ES 模块，webpack 可以执行 `tree-shaking`。Tree-shaking 可以删除 ES 模块中用不到的代码。
+
+比如，我们有下面的代码：
+
+```js
+/** foo.js */
+export const render = () => { return 'Rendered' }
+export const commentRestEndpoint = '/rest/comments'
+
+/** app.js */
+import { render } from './foo'
+render()
+```
+
+webpack 知道，`foo.js` 中，`commentRestEndPoint` 代码无需输出，因此生成如下 bundle：
+
+```js
+(function(module, __webpack_exports__, __webpack_require__) {
+  "use strict";
+  const render = () => { return 'Rendered' }
+  /* harmony export (immutable) */ __webpack_exports__["a"] = render;
+  const commentRestEndpoint = '/rest/comments'
+  /* unused harmony export commentRestEndpoint */
+})
+```
+
+接下来，`UglifyJsPlugin` 会移除无效代码。
+
+```js
+function(e,t,r){"use strict";t.a=(()=>"Rendered")
+```
 
 [（未完待续）](https://developers.google.com/web/fundamentals/performance/webpack/decrease-frontend-size#use_es_modules)
 
