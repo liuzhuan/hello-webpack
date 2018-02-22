@@ -130,13 +130,130 @@ webpack 知道，`foo.js` 中，`commentRestEndPoint` 代码无需输出，因�
 })
 ```
 
-接下来，`UglifyJsPlugin` 会移除无效代码。
+接下来，`UglifyJsPlugin` 会移除无效代码。最终结果如下
 
 ```js
 function(e,t,r){"use strict";t.a=(()=>"Rendered")
 ```
 
-[（未完待续）](https://developers.google.com/web/fundamentals/performance/webpack/decrease-frontend-size#use_es_modules)
+> 使用 commonJS 模块，webpack 不会开启 tree-shaking 功能，所有代码均会打包到最终 bundle。
+
+注意，在 webpack 中，必须使用压缩器才能实现 tree-shaking。webpack 只是将未使用的代码未做导出处理，真正移除无效代码的是 **UglifyJsPlugin**。因此，如果没有使用压缩器，以上代码体积并不会减小。
+
+⚠️ 警告：千万不要把 ES 模块编译为 CommonJS 模块。
+
+如果使用 Babel 转译器，并且开启了 `babel-preset-env` 或 `babel-preset-es2015` 预设值，一定要仔细检查这些配置。它们默认会把 ES 的 `import` 和 `export` 编译为 CommonJS 的 `require` 和 `module.exports`。设定 `{ modules: false }` 可以禁止该默认行为。
+
+TypeScript 也是一样，记得要在 `tsconfig.json` 中设定 `{ "compilerOptions": { "module": "es2015" } }` 。
+
+延伸阅读
+- [ES6 Modules in Depth](https://ponyfoo.com/articles/es6-modules-in-depth), by Nicolás Bevacqua, 2015/09/25
+- [webpack 文档： Tree Shaking](https://webpack.js.org/guides/tree-shaking/)
+
+### 优化图像
+
+图像占据了[页面体积的一半][stats]以上。尽管它们不如 JavaScript 那么重要（比如，它们不会阻塞渲染），但依然消耗着大部分带宽。在 webpack 中可以使用 `url-loader`, `svg-url-loader` 和 `image-webpack-loader` 优化图像。
+
+`url-loader` 会把小型静态资源内联到应用中。没有配置情况下，它会把输入文件放置到编译的 bundle 附近，并返回该资源的 url 地址。如果设置了 `limit` 选项，它会把小于该限制的资源编译为 [Base64 data url][data-uris]，并返回该 url。这会把图像内联到 JavaScript 中，减少一个 HTTP 请求：
+
+```js
+/** webpack.config.js */
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.(jpe?g|png|gif)$/,
+        loader: 'url-loader',
+        options: {
+          // 内联小于 10 kB 的图像（10240 bytes）
+          limit: 10 * 1024
+        }
+      }
+    ]
+  }
+}
+```
+
+```js
+/** index.js */
+import imageUrl from './image.png'
+
+/**
+* 如果 image.png 小于 10 kB，imageUrl 会包含编译后的代码。比如：`data:image/png;base64,ivbor2sdo...`
+* 否则，image.png 会包含它的 url 地址，比如：`/2fcd56a1920.png`
+*/
+```
+
+注意：内联图像会降低请求数量，这确实是好事。但会增加下载和解析时间，并且会增大内存消耗。务必不要内联大尺寸图像，也要控制内联图像的总量，否则增加的 bundle 时间会和带来的优势相抵消。
+
+`svg-url-loader` 和 `url-loader` 工作原理相似，只不过它使用 [URL 编码][url-enc]，而不是 Base64 编码。这对 SVG 图像很有用，因为 SVG 就是普通文本，这个编码体积更小：
+
+```js
+/** webpack.config.js */
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.svg$/,
+        loader: 'svg-url-loader',
+        options: {
+          // 内联小于 10 kB 的图像（10240 比特）
+          limit: 10 * 1024,
+          // 删除 url 的引号（因为大部分情况下是多余的）
+          noquotes: true
+        }
+      }
+    ]
+  }
+}
+```
+
+注意：`svg-url-loader` 有些选项可以增强 IE 支持度，但是会对其他浏览器的内联造成坏的影响。如果需要支持 IE，可以设置 `iesafe: true` 选项。
+
+`image-webpack-loader` 压缩图像，支持 JPG, PNG, GIF 和 SVG，所以这些类型都可以使用。
+
+该 loader 不能把图像内嵌到应用，因此必须和 `url-loader` 和 `svg-url-loader` 配合使用。为了避免在多个 rules 中复制粘贴（一个针对 JPG/PNG/GIF 图像，另一个针对 SVG），我们可以包含一个单独的 rule，并设置 [`enforce: 'pre'`][rule-enforce] 选项：
+
+```js
+/** webpack.config.js */
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.(jpe?g|png|gif|svg)$/,
+        loader: 'image-webpack-loader',
+        /** 该属性会让此 loader 优先执行 */
+        enforce: 'pre'
+      }
+    ]
+  }
+}
+```
+
+loader 的默认配置已经足够好了。如果你想更进一步配置，可以查看[插件选项][image-webpack-loader]。如果不知道如何设置，可以查看 Addy Osmani 的[有关图像优化的建议][images-guide]。
+
+延伸阅读
+
+- [base64 的用途是什么？](https://stackoverflow.com/questions/201479/what-is-base-64-encoding-used-for) - stackoverflow
+- Addy Osmani 的[图片优化建议](https://images.guide) 👍
+
+### 优化依赖
+
+平均超过一半的 JavaScript 体积来自依赖，而且其中一部分可能还是多余的。
+
+比如，Lodash（v4.17.4）会对最终的打包文件贡献 72 KB 的代码量。如果你仅使用了其中 20 个函数，那么剩下的 65 KB 代码就是多余的。
+
+另一个例子是 Momenet.js。它的 2.19.1 版本压缩后占据 223 KB，的确很大 - 据统计，2017年10月的 JavaScript 平均体积是 452 KB。但是 Moment.js 中 170 KB 代码都是本地化相关的，如果你不需要在 Moment.js 中使用多语种，这些多出来的 170 KB 就毫无意义。
+
+这些多余的依赖可被轻松优化。我们在 Github 仓库中搜集了优化方法，看这里！
+
+### 开启 ES 模块的串联（即作用域提升 scope hoisting）
+
+当你构建 bundle 时，webpack 会把每个模块包裹成一个函数：
+
+过去，为了隔离 CommonJS/AMD 模块，必须这么做。但这种做法增大了每个模块的体积和运行开销。
+
+[（未完待续...）](https://developers.google.com/web/fundamentals/performance/webpack/decrease-frontend-size#enable_module_concatenation_for_es_modules_aka_scope_hoisting)
 
 ## 使用长期缓存
 
@@ -160,3 +277,9 @@ function(e,t,r){"use strict";t.a=(()=>"Rendered")
 [webpack-closure]: https://github.com/roman01la/webpack-closure-compiler
 [babel-minify]: https://github.com/webpack-contrib/babel-minify-webpack-plugin
 [es-module]: https://ponyfoo.com/articles/es6-modules-in-depth
+[stats]: http://httparchive.org/interesting.php
+[data-uris]: https://css-tricks.com/data-uris/
+[url-enc]: https://developer.mozilla.org/en-US/docs/Glossary/percent-encoding
+[rule-enforce]: https://webpack.js.org/configuration/module/#rule-enforce
+[image-webpack-loader]: https://github.com/tcoopman/image-webpack-loader#options
+[images-guide]: https://images.guide/
