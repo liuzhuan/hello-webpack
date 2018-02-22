@@ -1,4 +1,4 @@
-# 减小前端尺寸
+# 减小前端体积
 
 优化的第一步是减小文件体积。
 
@@ -402,7 +402,7 @@ define(["/libraries/react.min.js", "/libraries/react-dom.min.js"], function () {
 
 如果非 webpack 代码使用同样的 URL 地址加载依赖，那么这些文件就会只加载一次，后续请求会使用缓存。
 
-✨ 注意：webpack 仅会替换 `external` 对象键值对应的导入对象。这意味着，如果你的代码是 `import React from 'react/umd/react.production.min.js'`，这个库不会从 bundle 中排除。这是合理的，因为 webpack 不知道 `import 'react'` 和 `import 'react/umd/react.production.min.js'` 是否是一回事。因此要注意这点。
+> ✨ 注意：webpack 仅会替换 `externals` 对象键值对应的导入对象。这意味着，如果你的代码是 `import React from 'react/umd/react.production.min.js'`，这个库不会从 bundle 中排除。这是合理的，因为 webpack 不知道 `import 'react'` 和 `import 'react/umd/react.production.min.js'` 是否是一回事。谨记这一点。
 
 延伸阅读
 

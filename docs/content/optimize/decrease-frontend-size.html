@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>减小前端体重 · GitBook</title>
+        <title>减小前端体积 · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,7 +57,7 @@
     <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="webpack-vs-http2.html" />
+    <link rel="next" href="use-long-term-caching.html" />
     
     
     <link rel="prev" href="./" />
@@ -690,7 +690,7 @@
                 <a href="decrease-frontend-size.html">
             
                     
-                    减小前端体重
+                    减小前端体积
             
                 </a>
             
@@ -698,7 +698,20 @@
             
         </li>
     
-        <li class="chapter " data-level="1.15.2" data-path="webpack-vs-http2.html">
+        <li class="chapter " data-level="1.15.2" data-path="use-long-term-caching.html">
+            
+                <a href="use-long-term-caching.html">
+            
+                    
+                    开启长期缓存
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.3" data-path="webpack-vs-http2.html">
             
                 <a href="webpack-vs-http2.html">
             
@@ -804,7 +817,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../.." >减小前端体重</a>
+        <a href="../.." >减小前端体积</a>
     </h1>
 </div>
 
@@ -819,7 +832,7 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="&#x51CF;&#x5C0F;&#x524D;&#x7AEF;&#x5C3A;&#x5BF8;">&#x51CF;&#x5C0F;&#x524D;&#x7AEF;&#x5C3A;&#x5BF8;</h1>
+                                <h1 id="&#x51CF;&#x5C0F;&#x524D;&#x7AEF;&#x4F53;&#x79EF;">&#x51CF;&#x5C0F;&#x524D;&#x7AEF;&#x4F53;&#x79EF;</h1>
 <p>&#x4F18;&#x5316;&#x7684;&#x7B2C;&#x4E00;&#x6B65;&#x662F;&#x51CF;&#x5C0F;&#x6587;&#x4EF6;&#x4F53;&#x79EF;&#x3002;</p>
 <h2 id="&#x5F00;&#x542F;&#x538B;&#x7F29;">&#x5F00;&#x542F;&#x538B;&#x7F29;</h2>
 <p>webpack &#x652F;&#x6301;&#x4E24;&#x79CD;&#x538B;&#x7F29;&#x4EE3;&#x7801;&#x7684;&#x65B9;&#x6CD5;&#xFF1A;UglifyJS &#x63D2;&#x4EF6;&#x548C; loader &#x7684;&#x7279;&#x6B8A;&#x9009;&#x9879;&#xFF0C;&#x5E94;&#x540C;&#x65F6;&#x542F;&#x7528;&#x4E24;&#x8005;&#x3002;</p>
@@ -1124,7 +1137,9 @@ render()
 define([<span class="hljs-string">&quot;/libraries/react.min.js&quot;</span>, <span class="hljs-string">&quot;/libraries/react-dom.min.js&quot;</span>], <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{ &#x2026; });
 </code></pre>
 <p>&#x5982;&#x679C;&#x975E; webpack &#x4EE3;&#x7801;&#x4F7F;&#x7528;&#x540C;&#x6837;&#x7684; URL &#x5730;&#x5740;&#x52A0;&#x8F7D;&#x4F9D;&#x8D56;&#xFF0C;&#x90A3;&#x4E48;&#x8FD9;&#x4E9B;&#x6587;&#x4EF6;&#x5C31;&#x4F1A;&#x53EA;&#x52A0;&#x8F7D;&#x4E00;&#x6B21;&#xFF0C;&#x540E;&#x7EED;&#x8BF7;&#x6C42;&#x4F1A;&#x4F7F;&#x7528;&#x7F13;&#x5B58;&#x3002;</p>
-<p>&#x2728; &#x6CE8;&#x610F;&#xFF1A;webpack &#x4EC5;&#x4F1A;&#x66FF;&#x6362; <code>external</code> &#x5BF9;&#x8C61;&#x952E;&#x503C;&#x5BF9;&#x5E94;&#x7684;&#x5BFC;&#x5165;&#x5BF9;&#x8C61;&#x3002;&#x8FD9;&#x610F;&#x5473;&#x7740;&#xFF0C;&#x5982;&#x679C;&#x4F60;&#x7684;&#x4EE3;&#x7801;&#x662F; <code>import React from &apos;react/umd/react.production.min.js&apos;</code>&#xFF0C;&#x8FD9;&#x4E2A;&#x5E93;&#x4E0D;&#x4F1A;&#x4ECE; bundle &#x4E2D;&#x6392;&#x9664;&#x3002;&#x8FD9;&#x662F;&#x5408;&#x7406;&#x7684;&#xFF0C;&#x56E0;&#x4E3A; webpack &#x4E0D;&#x77E5;&#x9053; <code>import &apos;react&apos;</code> &#x548C; <code>import &apos;react/umd/react.production.min.js&apos;</code> &#x662F;&#x5426;&#x662F;&#x4E00;&#x56DE;&#x4E8B;&#x3002;&#x56E0;&#x6B64;&#x8981;&#x6CE8;&#x610F;&#x8FD9;&#x70B9;&#x3002;</p>
+<blockquote>
+<p>&#x2728; &#x6CE8;&#x610F;&#xFF1A;webpack &#x4EC5;&#x4F1A;&#x66FF;&#x6362; <code>externals</code> &#x5BF9;&#x8C61;&#x952E;&#x503C;&#x5BF9;&#x5E94;&#x7684;&#x5BFC;&#x5165;&#x5BF9;&#x8C61;&#x3002;&#x8FD9;&#x610F;&#x5473;&#x7740;&#xFF0C;&#x5982;&#x679C;&#x4F60;&#x7684;&#x4EE3;&#x7801;&#x662F; <code>import React from &apos;react/umd/react.production.min.js&apos;</code>&#xFF0C;&#x8FD9;&#x4E2A;&#x5E93;&#x4E0D;&#x4F1A;&#x4ECE; bundle &#x4E2D;&#x6392;&#x9664;&#x3002;&#x8FD9;&#x662F;&#x5408;&#x7406;&#x7684;&#xFF0C;&#x56E0;&#x4E3A; webpack &#x4E0D;&#x77E5;&#x9053; <code>import &apos;react&apos;</code> &#x548C; <code>import &apos;react/umd/react.production.min.js&apos;</code> &#x662F;&#x5426;&#x662F;&#x4E00;&#x56DE;&#x4E8B;&#x3002;&#x8C28;&#x8BB0;&#x8FD9;&#x4E00;&#x70B9;&#x3002;</p>
+</blockquote>
 <p>&#x5EF6;&#x4F38;&#x9605;&#x8BFB;</p>
 <ul>
 <li>webpack <a href="https://webpack.js.org/configuration/externals/" target="_blank">&#x6709;&#x5173; externals</a> &#x7684;&#x5B98;&#x65B9;&#x6587;&#x6863;</li>
@@ -1180,7 +1195,7 @@ define([<span class="hljs-string">&quot;/libraries/react.min.js&quot;</span>, <s
                 </a>
                 
                 
-                <a href="webpack-vs-http2.html" class="navigation navigation-next " aria-label="Next page: HTTP/2">
+                <a href="use-long-term-caching.html" class="navigation navigation-next " aria-label="Next page: 开启长期缓存">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -1191,7 +1206,7 @@ define([<span class="hljs-string">&quot;/libraries/react.min.js&quot;</span>, <s
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"减小前端体重","level":"1.15.1","depth":2,"next":{"title":"HTTP/2","level":"1.15.2","depth":2,"path":"content/optimize/webpack-vs-http2.md","ref":"./content/optimize/webpack-vs-http2.md","articles":[]},"previous":{"title":"优化建议","level":"1.15","depth":1,"path":"content/optimize/README.md","ref":"./content/optimize/README.md","articles":[{"title":"减小前端体重","level":"1.15.1","depth":2,"path":"content/optimize/decrease-frontend-size.md","ref":"./content/optimize/decrease-frontend-size.md","articles":[]},{"title":"HTTP/2","level":"1.15.2","depth":2,"path":"content/optimize/webpack-vs-http2.md","ref":"./content/optimize/webpack-vs-http2.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":[],"root":"./src","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"content/optimize/decrease-frontend-size.md","mtime":"2018-02-22T09:16:02.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-02-22T09:17:29.142Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"减小前端体积","level":"1.15.1","depth":2,"next":{"title":"开启长期缓存","level":"1.15.2","depth":2,"path":"content/optimize/use-long-term-caching.md","ref":"./content/optimize/use-long-term-caching.md","articles":[]},"previous":{"title":"优化建议","level":"1.15","depth":1,"path":"content/optimize/README.md","ref":"./content/optimize/README.md","articles":[{"title":"减小前端体积","level":"1.15.1","depth":2,"path":"content/optimize/decrease-frontend-size.md","ref":"./content/optimize/decrease-frontend-size.md","articles":[]},{"title":"开启长期缓存","level":"1.15.2","depth":2,"path":"content/optimize/use-long-term-caching.md","ref":"./content/optimize/use-long-term-caching.md","articles":[]},{"title":"HTTP/2","level":"1.15.3","depth":2,"path":"content/optimize/webpack-vs-http2.md","ref":"./content/optimize/webpack-vs-http2.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":[],"root":"./src","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"content/optimize/decrease-frontend-size.md","mtime":"2018-02-22T10:26:57.183Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-02-22T10:38:27.592Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
