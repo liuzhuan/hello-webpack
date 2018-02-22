@@ -138,7 +138,7 @@ function(e,t,r){"use strict";t.a=(()=>"Rendered")
 
 > 使用 commonJS 模块，webpack 不会开启 tree-shaking 功能，所有代码均会打包到最终 bundle。
 
-注意，在 webpack 中，必须使用压缩器才能实现 tree-shaking。webpack 只是将未使用的代码未做导出处理，真正移除无效代码的是 **UglifyJsPlugin**。因此，如果没有使用压缩器，以上代码体积并不会减小。
+注意，在 webpack 中，必须使用压缩器才能实现 tree-shaking。webpack 只是将未使用的代码不做导出处理，真正移除无效代码的是 **UglifyJsPlugin**。因此，如果没有使用压缩器，代码体积并不会减小。
 
 ⚠️ 警告：千万不要把 ES 模块编译为 CommonJS 模块。
 
@@ -154,7 +154,7 @@ TypeScript 也是一样，记得要在 `tsconfig.json` 中设定 `{ "compilerOpt
 
 图像占据了[页面体积的一半][stats]以上。尽管它们不如 JavaScript 那么重要（比如，它们不会阻塞渲染），但依然消耗着大部分带宽。在 webpack 中可以使用 `url-loader`, `svg-url-loader` 和 `image-webpack-loader` 优化图像。
 
-`url-loader` 会把小型静态资源内联到应用中。没有配置情况下，它会把输入文件放置到编译的 bundle 附近，并返回该资源的 url 地址。如果设置了 `limit` 选项，它会把小于该限制的资源编译为 [Base64 data url][data-uris]，并返回该 url。这会把图像内联到 JavaScript 中，减少一个 HTTP 请求：
+`url-loader` 会把小型静态资源内联到页面中。没有配置情况下，它会把原始图像拷贝到编译的 bundle 同级目录，并返回该资源的 url 地址。如果设置了 `limit` 选项，它会把小于该限制的资源编译为 [Base64 data url][data-uris]，并返回该 url。这会把图像内联到 JavaScript 中，从而减少一个 HTTP 请求：
 
 ```js
 /** webpack.config.js */
@@ -184,7 +184,7 @@ import imageUrl from './image.png'
 */
 ```
 
-注意：内联图像会降低请求数量，这确实是好事。但会增加下载和解析时间，并且会增大内存消耗。务必不要内联大尺寸图像，也要控制内联图像的总量，否则增加的 bundle 时间会和带来的优势相抵消。
+注意：内联图像会降低请求数量，这确实是好事。但会增加下载和解析时间，并且会增大内存消耗。务必不要内联大尺寸图像，也要控制内联图像的总量，否则增加的 bundle 时间会抵消内联的优势。
 
 `svg-url-loader` 和 `url-loader` 工作原理相似，只不过它使用 [URL 编码][url-enc]，而不是 Base64 编码。这对 SVG 图像很有用，因为 SVG 就是普通文本，这个编码体积更小：
 
@@ -212,7 +212,7 @@ module.exports = {
 
 `image-webpack-loader` 压缩图像，支持 JPG, PNG, GIF 和 SVG，所以这些类型都可以使用。
 
-该 loader 不能把图像内嵌到应用，因此必须和 `url-loader` 和 `svg-url-loader` 配合使用。为了避免在多个 rules 中复制粘贴（一个针对 JPG/PNG/GIF 图像，另一个针对 SVG），我们可以包含一个单独的 rule，并设置 [`enforce: 'pre'`][rule-enforce] 选项：
+该 loader 无法将图像内嵌到页面，因此必须和 `url-loader` 和 `svg-url-loader` 配合使用。为了避免在多个 rules 中复制粘贴（一个针对 JPG/PNG/GIF 图像，另一个针对 SVG），我们可以包含一个单独的 rule，并设置 [`enforce: 'pre'`][rule-enforce] 选项：
 
 ```js
 /** webpack.config.js */
@@ -245,15 +245,105 @@ loader 的默认配置已经足够好了。如果你想更进一步配置，可�
 
 另一个例子是 Momenet.js。它的 2.19.1 版本压缩后占据 223 KB，的确很大 - 据统计，2017年10月的 JavaScript 平均体积是 452 KB。但是 Moment.js 中 170 KB 代码都是本地化相关的，如果你不需要在 Moment.js 中使用多语种，这些多出来的 170 KB 就毫无意义。
 
-这些多余的依赖可被轻松优化。我们在 Github 仓库中搜集了优化方法，看这里！
+这些多余的依赖可被轻松优化。我们在 Github 仓库中搜集了优化方法，[看这里][webpack-libs-optimize]！
 
-### 开启 ES 模块的串联（即作用域提升 scope hoisting）
+### 开启 ES 模块拼接（即作用域提升 scope hoisting）
 
 当你构建 bundle 时，webpack 会把每个模块包裹成一个函数：
 
-过去，为了隔离 CommonJS/AMD 模块，必须这么做。但这种做法增大了每个模块的体积和运行开销。
+```js
+/** index.js */
+import { render } from './comments.js'
+render()
 
-[（未完待续...）](https://developers.google.com/web/fundamentals/performance/webpack/decrease-frontend-size#enable_module_concatenation_for_es_modules_aka_scope_hoisting)
+/** comments.js */
+export function render(data, target) {
+  console.log('Rendered!')
+}
+```
+
+会转变为：
+
+```js
+/** bundle.js (part of) */
+/* 0 */
+(function(module, __webpack_exports__, __webpack_require__) {
+  "use strict"
+  Object.defineProperty(__webpack_exports__, "__esModule", { value: true })
+  var __WEBPACK_IMPORTED_MODULE_0__comments_js__ = __webpack_require__(1)
+  Object(__WEBPACK_IMPORTED_MODULE_0__comments_js__["a" /* render */])()
+}),
+/* 1 */
+(function(module, __webpack_exports__, __webpack_require__) {
+  "use strict"
+  __webpack_exports__["a"] = render
+  function render(data, target) {
+    console.log('Rendered!')
+  }
+})
+```
+
+过去，为了隔离 CommonJS/AMD 模块，必须这么做。但这种做法会增大每个模块的体积和运行开销。
+
+webpack 2 引入了对 ES 模块的支持。与 CommonJS 和 AMD 模块不同，打包时不再使用函数包裹每个模块。webpack 3 通过 `ModuleConcatenationPlugin` 让打包成为可能。以下是插件的用法：
+
+```js
+/** index.js */
+import { render } from './comments.js'
+render()
+
+/** comments.js */
+export function render(data, target) {
+  console.log('Rendered!')
+}
+```
+
+会变为：
+
+```js
+/** 与上次的打包不同，本次输出只包含一个模块，它拥有两个文件的内容 */
+
+/** bundle.js (part of; 应用了 ModuleConcatenationPlugin) */
+/* 0 */
+(function(module, __webpack_exports__, __webpack_require__) {
+  "use strict"
+  Object.defineProperty(__webpack_exports__, "__esModule", { value: true })
+  // CONCATENATED MODULE: ./comments.js
+  function render(data, target) {
+    console.log('Rendered!')
+  }
+
+  // CONCATENATED MODULE: ./index.js
+  render()
+})
+```
+
+看到区别了吧？在普通 bundle 中，模块 0 从 模块 1 中引入 `render` 函数。使用 `ModuleConcatenationPlugin` 插件后，`require` 直接替换为目标函数，模块 1 被移除。bundle 的模块数量降低，从而也减少了模块运行消耗。
+
+要开启该行为，只需在 `plugins` 数组中增加 `ModuleConcatenationPlugin` 即可：
+
+```js
+/** webpack.config.js */
+const webpack = require('webpack')
+
+module.exports = {
+  plugins: [
+    new webpack.optimize.ModuleConcatenationPlugin()
+  ]
+}
+```
+
+✨ 注意：想知道为什么这个特性没有默认开启吗？模块拼接（Concatenating Modules）确实很酷，但[会造成更长的编译时间，还会破坏模块热更新][scope-hoist-issue]。因此，它只能在生产环境开启。
+
+延伸阅读
+
+- [ModuleConcatenationPlugin 的文档][module-concatenation-plugin]
+- [作用域提升的简介][breif-scope-hoisting]
+- 该插件工作原理的[详细描述][detailed-module-concat-plugin]
+
+### 使用 `externals`，当你的部分代码不受 webpack 控制时
+
+
 
 ## 使用长期缓存
 
@@ -283,3 +373,8 @@ loader 的默认配置已经足够好了。如果你想更进一步配置，可�
 [rule-enforce]: https://webpack.js.org/configuration/module/#rule-enforce
 [image-webpack-loader]: https://github.com/tcoopman/image-webpack-loader#options
 [images-guide]: https://images.guide/
+[webpack-libs-optimize]: https://github.com/GoogleChromeLabs/webpack-libs-optimizations
+[scope-hoist-issue]: https://twitter.com/TheLarkInn/status/925800563144454144
+[module-concatenation-plugin]: https://webpack.js.org/plugins/module-concatenation-plugin/
+[breif-scope-hoisting]: https://medium.com/webpack/brief-introduction-to-scope-hoisting-in-webpack-8435084c171f
+[detailed-module-concat-plugin]: https://medium.com/webpack/webpack-freelancing-log-book-week-5-7-4764be3266f5
