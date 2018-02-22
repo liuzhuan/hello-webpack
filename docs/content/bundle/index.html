@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>webpack bundle 详解 · GitBook</title>
+        <title>bundle 详解 · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -60,7 +60,7 @@
     <link rel="next" href="../optimize/" />
     
     
-    <link rel="prev" href="../optimize/webpack-vs-http2.html" />
+    <link rel="prev" href="../plugins/clean-webpack-plugin.html" />
     
 
     </head>
@@ -658,25 +658,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.14" data-path="../optimize/webpack-vs-http2.html">
-            
-                <a href="../optimize/webpack-vs-http2.html">
-            
-                    
-                    webpack & HTTP/2
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter active" data-level="1.15" data-path="./">
+        <li class="chapter active" data-level="1.14" data-path="./">
             
                 <a href="./">
             
                     
-                    webpack bundle 详解
+                    bundle 详解
             
                 </a>
             
@@ -684,12 +671,26 @@
             
         </li>
     
-        <li class="chapter " data-level="1.16" data-path="../optimize/">
+        <li class="chapter " data-level="1.15" data-path="../optimize/">
             
                 <a href="../optimize/">
             
                     
-                    webpack 优化技巧
+                    优化建议
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.15.1" data-path="../optimize/decrease-frontend-size.html">
+            
+                <a href="../optimize/decrease-frontend-size.html">
+            
+                    
+                    减小前端体重
             
                 </a>
             
@@ -697,7 +698,25 @@
             
         </li>
     
-        <li class="chapter " data-level="1.17" data-path="../migrating-versions/">
+        <li class="chapter " data-level="1.15.2" data-path="../optimize/webpack-vs-http2.html">
+            
+                <a href="../optimize/webpack-vs-http2.html">
+            
+                    
+                    HTTP/2
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16" data-path="../migrating-versions/">
             
                 <a href="../migrating-versions/">
             
@@ -711,7 +730,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.17.1" data-path="../migrating-versions/module-loaders.html">
+        <li class="chapter " data-level="1.16.1" data-path="../migrating-versions/module-loaders.html">
             
                 <a href="../migrating-versions/module-loaders.html">
             
@@ -724,7 +743,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.17.2" data-path="../migrating-versions/chaining-loaders.html">
+        <li class="chapter " data-level="1.16.2" data-path="../migrating-versions/chaining-loaders.html">
             
                 <a href="../migrating-versions/chaining-loaders.html">
             
@@ -742,7 +761,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.18" data-path="../references.html">
+        <li class="chapter " data-level="1.17" data-path="../references.html">
             
                 <a href="../references.html">
             
@@ -785,7 +804,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../.." >webpack bundle 详解</a>
+        <a href="../.." >bundle 详解</a>
     </h1>
 </div>
 
@@ -1305,12 +1324,12 @@ commons.js    4.09 kB       2  [emitted]  commons
 
             
                 
-                <a href="../optimize/webpack-vs-http2.html" class="navigation navigation-prev " aria-label="Previous page: webpack & HTTP/2">
+                <a href="../plugins/clean-webpack-plugin.html" class="navigation navigation-prev " aria-label="Previous page: clean-webpack-plugin">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="../optimize/" class="navigation navigation-next " aria-label="Next page: webpack 优化技巧">
+                <a href="../optimize/" class="navigation navigation-next " aria-label="Next page: 优化建议">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -1321,7 +1340,7 @@ commons.js    4.09 kB       2  [emitted]  commons
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"webpack bundle 详解","level":"1.15","depth":1,"next":{"title":"webpack 优化技巧","level":"1.16","depth":1,"path":"content/optimize/README.md","ref":"./content/optimize/README.md","articles":[]},"previous":{"title":"webpack & HTTP/2","level":"1.14","depth":1,"path":"content/optimize/webpack-vs-http2.md","ref":"./content/optimize/webpack-vs-http2.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"root":"./src","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"content/bundle/README.md","mtime":"2018-02-22T02:19:03.297Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-02-22T06:18:28.662Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"bundle 详解","level":"1.14","depth":1,"next":{"title":"优化建议","level":"1.15","depth":1,"path":"content/optimize/README.md","ref":"./content/optimize/README.md","articles":[{"title":"减小前端体重","level":"1.15.1","depth":2,"path":"content/optimize/decrease-frontend-size.md","ref":"./content/optimize/decrease-frontend-size.md","articles":[]},{"title":"HTTP/2","level":"1.15.2","depth":2,"path":"content/optimize/webpack-vs-http2.md","ref":"./content/optimize/webpack-vs-http2.md","articles":[]}]},"previous":{"title":"clean-webpack-plugin","level":"1.13.10","depth":2,"path":"content/plugins/clean-webpack-plugin.md","ref":"./content/plugins/clean-webpack-plugin.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"root":"./src","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"content/bundle/README.md","mtime":"2018-02-22T02:19:03.297Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-02-22T09:17:29.142Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
