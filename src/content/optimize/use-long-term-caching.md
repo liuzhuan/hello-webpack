@@ -76,8 +76,53 @@ module.exports = {
 
 ```js
 /** webpack.config.js */
-module.exports 
+module.exports = {
+  output: {
+    filename: '[name].[chunkhash].js'
+  }
+}
 ```
+
+当 webpack 编译 app 时，会把 `[name]` 替换为 chunk 的名字。不过不加名称，就需要根据哈希值判断 chunk ，这将十分困难。
+
+2. 将 `entry` 字段转换为对象类型：
+
+```js
+/** webpack.config.js */
+module.exports = {
+  entry: {
+    main: './index.js'
+  }
+}
+```
+
+在上面的片段中，`main` 是 chunk 的名字，它会替换步骤 1 中的 `[name]` 部分。现在如果编译 app，这个 chunk 会包含所有的 app 代码，就像以前一样。很快就会变化了。
+
+3. 增加 `CommonsChunkPlugin` 插件：
+
+```js
+/** webpack.config.js */
+module.exports = {
+  plugins: [
+    new webpack.optimize.CommonsChunkPlugin({
+      /** 指定 chunk 的名字，它将包含所有依赖，它的名字会替换步骤 1 中的 [name] */
+      name: 'vendor',
+      /** 用来指定哪些模块可以进入该 chunk 的条件 */
+      minChunks: module => module.context && module.context.includes('node_modules')
+    })
+  ]
+}
+```
+
+这个插件会把所有路径包含 `node_modules` 的模块移动到一个单独文件，名称为 `vendor.[chunkhash].js`。
+
+经过这些步骤，每次编译会产生两个文件，而不是原来的一个。浏览器可以分别缓存他们，只有在变化后才重新下载。
+
+**webpack 运行时代码**
+
+不幸的是，仅仅提取第三方库是不够的。如果改变 app 的代码：
+
+
 
 ## REF
 
