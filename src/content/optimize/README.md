@@ -341,9 +341,86 @@ module.exports = {
 - [作用域提升的简介][breif-scope-hoisting]
 - 该插件工作原理的[详细描述][detailed-module-concat-plugin]
 
-### 使用 `externals`，当你的部分代码不受 webpack 控制时
+### 使用 `externals` 如果 webpack 和非 webpack 代码并存
 
+在一些大型项目中，会出现部分代码使用 webpack 编译，还有部分代码使用其他构建工具的情况。比如，视频托管网站中，播放器组件可能使用 webpack 构建，周围的页面元素可能使用其他构建工具。
 
+如果两者有公共的依赖，可以通过分享代码避免多次下载。这可以通过 [webpack 的 externals][externals] 选项实现，它会将模块替换为变量或者其他外部引入模块。
+
+#### 如果依赖存在于 `window`
+
+如果你的非 webpack 代码依赖于 `window` 中的变量，即依赖变量名称：
+
+```js
+/** webpack.config.js */
+module.exports = {
+  externals: {
+    'react': 'React',
+    'react-dom': 'ReactDOM'
+  }
+}
+```
+
+通过该配置，webpack 将不会打包 `react` 和 `react-dom`。它们会被替换为类似如下代码：
+
+```js
+// bundle.js (part of)
+(function(module, exports) {
+  // A module that exports `window.React`. Without `externals`,
+  // this module would include the whole React bundle
+  module.exports = React;
+}),
+(function(module, exports) {
+  // A module that exports `window.ReactDOM`. Without `externals`,
+  // this module would include the whole ReactDOM bundle
+  module.exports = ReactDOM;
+})
+```
+
+#### 如果依赖通过 AMD 模块引入
+
+如果非 webpack 代码没有向 `window` 中暴露依赖，事情就会更加复杂。如果这些依赖是 AMD 模块形式，还是可以避免多次加载同样的代码。
+
+为了实现该目的，可以把 webpack 代码编译为 AMD 模块，并且将依赖的模块别名重定向到库 URL 地址：
+
+```js
+/** webpack.config.js */
+module.exports = {
+  output: {
+    libraryTarget: 'amd'
+  },
+
+  externals: {
+    'react': { amd: '/libraries/react.min.js' },
+    'react-dom', { amd: '/libraries/react-dom.js' }
+  }
+}
+```
+
+webpack 会使用 `define()` 打包这些 bundle ，使其依赖这些 URL 地址：
+
+```js
+// bundle.js (beginning)
+define(["/libraries/react.min.js", "/libraries/react-dom.min.js"], function () { … });
+```
+
+如果非 webpack 代码使用同样的 URL 地址加载依赖，那么这些文件就会只加载一次，后续请求会使用缓存。
+
+✨ 注意：webpack 仅会替换 `external` 对象键值对应的导入对象。这意味着，如果你的代码是 `import React from 'react/umd/react.production.min.js'`，这个库不会从 bundle 中排除。这是合理的，因为 webpack 不知道 `import 'react'` 和 `import 'react/umd/react.production.min.js'` 是否是一回事。因此要注意这点。
+
+延伸阅读
+
+- webpack [有关 externals][externals] 的官方文档
+
+### 总结
+
+- 使用 `UglifyJsPlugin` 和 loader 选项压缩代码
+- 使用 `DefinePlugin` 移除开发环境的代码
+- 使用 ES 模块开启 tree shaking
+- 压缩图像
+- 开启依赖特有的优化
+- 开启模块拼接
+- 依据个人实际情况，酌情使用 `externals`
 
 ## 使用长期缓存
 
@@ -378,3 +455,4 @@ module.exports = {
 [module-concatenation-plugin]: https://webpack.js.org/plugins/module-concatenation-plugin/
 [breif-scope-hoisting]: https://medium.com/webpack/brief-introduction-to-scope-hoisting-in-webpack-8435084c171f
 [detailed-module-concat-plugin]: https://medium.com/webpack/webpack-freelancing-log-book-week-5-7-4764be3266f5
+[externals]: https://webpack.js.org/configuration/externals/
