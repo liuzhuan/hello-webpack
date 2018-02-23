@@ -63,8 +63,8 @@ bundlesize 确保 webpack 资源的体积在限定值以下。将它和 CI 整�
 
 **找到最大的体积**
 
-1. 优化 app，使其体积尽量小。执行生产构建。
-2. 在 `package.json` 中增加 `bundlesize` 字段，写入以下内容：
+#### 1. 优化 app，使其体积尽量小。执行生产构建。
+#### 2. 在 `package.json` 中增加 `bundlesize` 字段，写入以下内容：
 
 ```json
 {
@@ -76,7 +76,7 @@ bundlesize 确保 webpack 资源的体积在限定值以下。将它和 CI 整�
 }
 ```
 
-3. 使用 `npx` 执行 `bundlesize`
+#### 3. 使用 `npx` 执行 `bundlesize`
 
 ```sh
 npx bundlesize
@@ -91,17 +91,17 @@ PASS  ./dist/main.0c8b617dfc40c2827ae3.js: 16.28KB
 PASS  ./dist/vendor.ff9f7ea865884e6a84c8.js: 31.49KB
 ```
 
-4. 为每个尺寸增加 10~20%，就能得到最大体积。10~20% 的余量可以保证你正常开发 app，并且当体积过大时给予警告。
+#### 4. 为每个尺寸增加 10~20%，就能得到最大体积。10~20% 的余量可以保证你正常开发 app，并且当体积过大时给予警告。
 
 **开启 `bundlesize`**
 
-5. 安装 `bundlesize`，作为开发依赖
+#### 5. 安装 `bundlesize`，作为开发依赖
 
 ```sh
 npm install bundlesize --save-dev
 ```
 
-6. 在 `package.json` 的 `bundlesize` 区域，设定实际的最大值。对于某些文件（比如，图像），可能会根据文件类型来设定最大尺寸，而不是所有文件一视同仁。
+#### 6. 在 `package.json` 的 `bundlesize` 区域，设定实际的最大值。对于某些文件（比如，图像），可能会根据文件类型来设定最大尺寸，而不是所有文件一视同仁。
 
 ```json
 {
@@ -122,7 +122,7 @@ npm install bundlesize --save-dev
 }
 ```
 
-7. 增加一个 npm 脚本
+#### 7. 增加一个 npm 脚本
 
 ```json
 {
@@ -132,7 +132,7 @@ npm install bundlesize --save-dev
 }
 ```
 
-8. 配置 CI，在每次 push 后执行 `npm run check-size`。（也可以在 Github 上整合 bundlesize）
+#### 8. 配置 CI，在每次 push 后执行 `npm run check-size`。（也可以在 Github 上整合 bundlesize）
 
 大功告成！如果你运行 `npm run check-size` 或提交代码，你会知道是否文件足够小。
 

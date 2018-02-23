@@ -19,7 +19,7 @@ module.exports = {
 }
 ```
 
-loader 相关的压缩选项，可以压缩 UglifyJsPlugin 无能为力的代码。比如，如果使用 `css-loader` 引入 CSS 文件，样式文件会被编译为字符串。举个例子：
+loader 相关的压缩选项，可以压缩 `UglifyJsPlugin` 无能为力的代码。比如，如果使用 `css-loader` 引入 CSS 文件，样式文件会被编译为字符串。举个例子：
 
 ```css
 /** comments.css */
@@ -36,7 +36,7 @@ exports=module.exports=__webpack_require__(1)(),
 exports.push([module.i,".comment {\r\n  color: black;\r\n}",""]);
 ```
 
-由于 UglifyJs 无法压缩字符串，此时，可设定 loader 的压缩参数：
+由于 UglifyJs 无法压缩字符串，此时，可设定 `css-loader` 的压缩参数 `minimize`：
 
 ```js
 /** webpack.config.js */
@@ -76,7 +76,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 React 也是类似的，在开发环境会增加很多功能。
 
-这些检测和警告信息通常在生产环境是多余的，但是它们只要存在代码中，就会增加体积。可以使用 [DefinePlugin][define-plugin] 移除这些多余代码：
+这些检测和警告信息通常在生产环境是多余的，只要存在代码中，就会增加体积。可以使用 [DefinePlugin][define-plugin] 移除这些多余代码：
 
 ```js
 /** webpack.config.js */
@@ -92,7 +92,7 @@ module.exports = {
 }
 ```
 
-`DefinePlugin` 会将所有特定变量出现的地方替换为指定的数值。然后，`UglifyJS` 插件会删除这些无效分枝，因为它知道这些逻辑分枝永远为假。
+`DefinePlugin` 会将所有指定的变量替换为对应的数值。接着，`UglifyJS` 插件会删除这些无效的逻辑分支，因为它知道这些逻辑分支的判断条件永远为假。
 
 > 注意，并不一定必须使用 UglifyJsPlugin。任何支持 dead code removal 的工具都可以，比如 [Babel Minify plugin][babel-minify] 或者 [Google Closure Compiler plugin][webpack-closure]。
 
@@ -136,11 +136,11 @@ function(e,t,r){"use strict";t.a=(()=>"Rendered")
 
 注意，在 webpack 中，必须使用压缩器才能实现 tree-shaking。webpack 只是将未使用的代码不做导出处理，真正移除无效代码的是 **UglifyJsPlugin**。因此，如果没有使用压缩器，代码体积并不会减小。
 
-⚠️ 警告：千万不要把 ES 模块编译为 CommonJS 模块。
+> ⚠️ 警告：千万不要把 ES 模块编译为 CommonJS 模块。
 
-如果使用 Babel 转译器，并且开启了 `babel-preset-env` 或 `babel-preset-es2015` 预设值，一定要仔细检查这些配置。它们默认会把 ES 的 `import` 和 `export` 编译为 CommonJS 的 `require` 和 `module.exports`。设定 `{ modules: false }` 可以禁止该默认行为。
+> 如果使用 Babel 转译器，并且开启了 `babel-preset-env` 或 `babel-preset-es2015` 预设值，一定要仔细检查这些配置。它们默认会把 ES 的 `import` 和 `export` 编译为 CommonJS 的 `require` 和 `module.exports`。设定 `{ modules: false }` 可以禁止该默认行为。
 
-TypeScript 也是一样，记得要在 `tsconfig.json` 中设定 `{ "compilerOptions": { "module": "es2015" } }` 。
+> TypeScript 也是一样，记得要在 `tsconfig.json` 中设定 `{ "compilerOptions": { "module": "es2015" } }` 。
 
 延伸阅读
 - [ES6 Modules in Depth](https://ponyfoo.com/articles/es6-modules-in-depth), by Nicolás Bevacqua, 2015/09/25
@@ -180,7 +180,7 @@ import imageUrl from './image.png'
 */
 ```
 
-注意：内联图像会降低请求数量，这确实是好事。但会增加下载和解析时间，并且会增大内存消耗。务必不要内联大尺寸图像，也要控制内联图像的总量，否则增加的 bundle 时间会抵消内联的优势。
+> ✨ 注意：内联图像会降低请求数量，这确实是好事。但会增加下载和解析时间，并且会增大内存消耗。务必不要内联大尺寸图像，也要控制内联图像的总量，否则增加的 bundle 时间会抵消内联的优势。
 
 `svg-url-loader` 和 `url-loader` 工作原理相似，只不过它使用 [URL 编码][url-enc]，而不是 Base64 编码。这对 SVG 图像很有用，因为 SVG 就是普通文本，这个编码体积更小：
 
@@ -204,7 +204,7 @@ module.exports = {
 }
 ```
 
-注意：`svg-url-loader` 有些选项可以增强 IE 支持度，但是会对其他浏览器的内联造成坏的影响。如果需要支持 IE，可以设置 `iesafe: true` 选项。
+> ✨ 注意：`svg-url-loader` 有些选项可以增强 IE 支持度，但是会对其他浏览器的内联造成坏的影响。如果需要支持 IE，可以设置 `iesafe: true` 选项。
 
 `image-webpack-loader` 压缩图像，支持 JPG, PNG, GIF 和 SVG，所以这些类型都可以使用。
 
@@ -329,7 +329,7 @@ module.exports = {
 }
 ```
 
-✨ 注意：想知道为什么这个特性没有默认开启吗？模块拼接（Concatenating Modules）确实很酷，但[会造成更长的编译时间，还会破坏模块热更新][scope-hoist-issue]。因此，它只能在生产环境开启。
+> ✨ 注意：想知道为什么这个特性没有默认开启吗？模块拼接（Concatenating Modules）确实很酷，但[会造成更长的编译时间，还会破坏模块热更新][scope-hoist-issue]。因此，它只能在生产环境开启。
 
 延伸阅读
 

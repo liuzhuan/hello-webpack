@@ -703,7 +703,7 @@
                 <a href="use-long-term-caching.html">
             
                     
-                    开启长期缓存
+                    使用长期缓存
             
                 </a>
             
@@ -859,7 +859,7 @@
   ]
 }
 </code></pre>
-<p>loader &#x76F8;&#x5173;&#x7684;&#x538B;&#x7F29;&#x9009;&#x9879;&#xFF0C;&#x53EF;&#x4EE5;&#x538B;&#x7F29; UglifyJsPlugin &#x65E0;&#x80FD;&#x4E3A;&#x529B;&#x7684;&#x4EE3;&#x7801;&#x3002;&#x6BD4;&#x5982;&#xFF0C;&#x5982;&#x679C;&#x4F7F;&#x7528; <code>css-loader</code> &#x5F15;&#x5165; CSS &#x6587;&#x4EF6;&#xFF0C;&#x6837;&#x5F0F;&#x6587;&#x4EF6;&#x4F1A;&#x88AB;&#x7F16;&#x8BD1;&#x4E3A;&#x5B57;&#x7B26;&#x4E32;&#x3002;&#x4E3E;&#x4E2A;&#x4F8B;&#x5B50;&#xFF1A;</p>
+<p>loader &#x76F8;&#x5173;&#x7684;&#x538B;&#x7F29;&#x9009;&#x9879;&#xFF0C;&#x53EF;&#x4EE5;&#x538B;&#x7F29; <code>UglifyJsPlugin</code> &#x65E0;&#x80FD;&#x4E3A;&#x529B;&#x7684;&#x4EE3;&#x7801;&#x3002;&#x6BD4;&#x5982;&#xFF0C;&#x5982;&#x679C;&#x4F7F;&#x7528; <code>css-loader</code> &#x5F15;&#x5165; CSS &#x6587;&#x4EF6;&#xFF0C;&#x6837;&#x5F0F;&#x6587;&#x4EF6;&#x4F1A;&#x88AB;&#x7F16;&#x8BD1;&#x4E3A;&#x5B57;&#x7B26;&#x4E32;&#x3002;&#x4E3E;&#x4E2A;&#x4F8B;&#x5B50;&#xFF1A;</p>
 <pre><code class="lang-css"><span class="hljs-comment">/** comments.css */</span>
 <span class="hljs-selector-class">.comment</span> {
   <span class="hljs-attribute">color</span>: black;
@@ -870,7 +870,7 @@
 exports=<span class="hljs-built_in">module</span>.exports=__webpack_require__(<span class="hljs-number">1</span>)(),
 exports.push([<span class="hljs-built_in">module</span>.i,<span class="hljs-string">&quot;.comment {\r\n  color: black;\r\n}&quot;</span>,<span class="hljs-string">&quot;&quot;</span>]);
 </code></pre>
-<p>&#x7531;&#x4E8E; UglifyJs &#x65E0;&#x6CD5;&#x538B;&#x7F29;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x6B64;&#x65F6;&#xFF0C;&#x53EF;&#x8BBE;&#x5B9A; loader &#x7684;&#x538B;&#x7F29;&#x53C2;&#x6570;&#xFF1A;</p>
+<p>&#x7531;&#x4E8E; UglifyJs &#x65E0;&#x6CD5;&#x538B;&#x7F29;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x6B64;&#x65F6;&#xFF0C;&#x53EF;&#x8BBE;&#x5B9A; <code>css-loader</code> &#x7684;&#x538B;&#x7F29;&#x53C2;&#x6570; <code>minimize</code>&#xFF1A;</p>
 <pre><code class="lang-js"><span class="hljs-comment">/** webpack.config.js */</span>
 <span class="hljs-built_in">module</span>.exports = {
   <span class="hljs-built_in">module</span>: {
@@ -901,7 +901,7 @@ exports.push([<span class="hljs-built_in">module</span>.i,<span class="hljs-stri
 <span class="hljs-comment">// &#x2026;</span>
 </code></pre>
 <p>React &#x4E5F;&#x662F;&#x7C7B;&#x4F3C;&#x7684;&#xFF0C;&#x5728;&#x5F00;&#x53D1;&#x73AF;&#x5883;&#x4F1A;&#x589E;&#x52A0;&#x5F88;&#x591A;&#x529F;&#x80FD;&#x3002;</p>
-<p>&#x8FD9;&#x4E9B;&#x68C0;&#x6D4B;&#x548C;&#x8B66;&#x544A;&#x4FE1;&#x606F;&#x901A;&#x5E38;&#x5728;&#x751F;&#x4EA7;&#x73AF;&#x5883;&#x662F;&#x591A;&#x4F59;&#x7684;&#xFF0C;&#x4F46;&#x662F;&#x5B83;&#x4EEC;&#x53EA;&#x8981;&#x5B58;&#x5728;&#x4EE3;&#x7801;&#x4E2D;&#xFF0C;&#x5C31;&#x4F1A;&#x589E;&#x52A0;&#x4F53;&#x79EF;&#x3002;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; <a href="https://webpack.js.org/plugins/define-plugin/" target="_blank">DefinePlugin</a> &#x79FB;&#x9664;&#x8FD9;&#x4E9B;&#x591A;&#x4F59;&#x4EE3;&#x7801;&#xFF1A;</p>
+<p>&#x8FD9;&#x4E9B;&#x68C0;&#x6D4B;&#x548C;&#x8B66;&#x544A;&#x4FE1;&#x606F;&#x901A;&#x5E38;&#x5728;&#x751F;&#x4EA7;&#x73AF;&#x5883;&#x662F;&#x591A;&#x4F59;&#x7684;&#xFF0C;&#x53EA;&#x8981;&#x5B58;&#x5728;&#x4EE3;&#x7801;&#x4E2D;&#xFF0C;&#x5C31;&#x4F1A;&#x589E;&#x52A0;&#x4F53;&#x79EF;&#x3002;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; <a href="https://webpack.js.org/plugins/define-plugin/" target="_blank">DefinePlugin</a> &#x79FB;&#x9664;&#x8FD9;&#x4E9B;&#x591A;&#x4F59;&#x4EE3;&#x7801;&#xFF1A;</p>
 <pre><code class="lang-js"><span class="hljs-comment">/** webpack.config.js */</span>
 <span class="hljs-keyword">const</span> webpack = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;webpack&apos;</span>)
 
@@ -914,7 +914,7 @@ exports.push([<span class="hljs-built_in">module</span>.i,<span class="hljs-stri
   ],
 }
 </code></pre>
-<p><code>DefinePlugin</code> &#x4F1A;&#x5C06;&#x6240;&#x6709;&#x7279;&#x5B9A;&#x53D8;&#x91CF;&#x51FA;&#x73B0;&#x7684;&#x5730;&#x65B9;&#x66FF;&#x6362;&#x4E3A;&#x6307;&#x5B9A;&#x7684;&#x6570;&#x503C;&#x3002;&#x7136;&#x540E;&#xFF0C;<code>UglifyJS</code> &#x63D2;&#x4EF6;&#x4F1A;&#x5220;&#x9664;&#x8FD9;&#x4E9B;&#x65E0;&#x6548;&#x5206;&#x679D;&#xFF0C;&#x56E0;&#x4E3A;&#x5B83;&#x77E5;&#x9053;&#x8FD9;&#x4E9B;&#x903B;&#x8F91;&#x5206;&#x679D;&#x6C38;&#x8FDC;&#x4E3A;&#x5047;&#x3002;</p>
+<p><code>DefinePlugin</code> &#x4F1A;&#x5C06;&#x6240;&#x6709;&#x6307;&#x5B9A;&#x7684;&#x53D8;&#x91CF;&#x66FF;&#x6362;&#x4E3A;&#x5BF9;&#x5E94;&#x7684;&#x6570;&#x503C;&#x3002;&#x63A5;&#x7740;&#xFF0C;<code>UglifyJS</code> &#x63D2;&#x4EF6;&#x4F1A;&#x5220;&#x9664;&#x8FD9;&#x4E9B;&#x65E0;&#x6548;&#x7684;&#x903B;&#x8F91;&#x5206;&#x652F;&#xFF0C;&#x56E0;&#x4E3A;&#x5B83;&#x77E5;&#x9053;&#x8FD9;&#x4E9B;&#x903B;&#x8F91;&#x5206;&#x652F;&#x7684;&#x5224;&#x65AD;&#x6761;&#x4EF6;&#x6C38;&#x8FDC;&#x4E3A;&#x5047;&#x3002;</p>
 <blockquote>
 <p>&#x6CE8;&#x610F;&#xFF0C;&#x5E76;&#x4E0D;&#x4E00;&#x5B9A;&#x5FC5;&#x987B;&#x4F7F;&#x7528; UglifyJsPlugin&#x3002;&#x4EFB;&#x4F55;&#x652F;&#x6301; dead code removal &#x7684;&#x5DE5;&#x5177;&#x90FD;&#x53EF;&#x4EE5;&#xFF0C;&#x6BD4;&#x5982; <a href="https://github.com/webpack-contrib/babel-minify-webpack-plugin" target="_blank">Babel Minify plugin</a> &#x6216;&#x8005; <a href="https://github.com/roman01la/webpack-closure-compiler" target="_blank">Google Closure Compiler plugin</a>&#x3002;</p>
 </blockquote>
@@ -946,9 +946,11 @@ render()
 <p>&#x4F7F;&#x7528; commonJS &#x6A21;&#x5757;&#xFF0C;webpack &#x4E0D;&#x4F1A;&#x5F00;&#x542F; tree-shaking &#x529F;&#x80FD;&#xFF0C;&#x6240;&#x6709;&#x4EE3;&#x7801;&#x5747;&#x4F1A;&#x6253;&#x5305;&#x5230;&#x6700;&#x7EC8; bundle&#x3002;</p>
 </blockquote>
 <p>&#x6CE8;&#x610F;&#xFF0C;&#x5728; webpack &#x4E2D;&#xFF0C;&#x5FC5;&#x987B;&#x4F7F;&#x7528;&#x538B;&#x7F29;&#x5668;&#x624D;&#x80FD;&#x5B9E;&#x73B0; tree-shaking&#x3002;webpack &#x53EA;&#x662F;&#x5C06;&#x672A;&#x4F7F;&#x7528;&#x7684;&#x4EE3;&#x7801;&#x4E0D;&#x505A;&#x5BFC;&#x51FA;&#x5904;&#x7406;&#xFF0C;&#x771F;&#x6B63;&#x79FB;&#x9664;&#x65E0;&#x6548;&#x4EE3;&#x7801;&#x7684;&#x662F; <strong>UglifyJsPlugin</strong>&#x3002;&#x56E0;&#x6B64;&#xFF0C;&#x5982;&#x679C;&#x6CA1;&#x6709;&#x4F7F;&#x7528;&#x538B;&#x7F29;&#x5668;&#xFF0C;&#x4EE3;&#x7801;&#x4F53;&#x79EF;&#x5E76;&#x4E0D;&#x4F1A;&#x51CF;&#x5C0F;&#x3002;</p>
+<blockquote>
 <p>&#x26A0;&#xFE0F; &#x8B66;&#x544A;&#xFF1A;&#x5343;&#x4E07;&#x4E0D;&#x8981;&#x628A; ES &#x6A21;&#x5757;&#x7F16;&#x8BD1;&#x4E3A; CommonJS &#x6A21;&#x5757;&#x3002;</p>
 <p>&#x5982;&#x679C;&#x4F7F;&#x7528; Babel &#x8F6C;&#x8BD1;&#x5668;&#xFF0C;&#x5E76;&#x4E14;&#x5F00;&#x542F;&#x4E86; <code>babel-preset-env</code> &#x6216; <code>babel-preset-es2015</code> &#x9884;&#x8BBE;&#x503C;&#xFF0C;&#x4E00;&#x5B9A;&#x8981;&#x4ED4;&#x7EC6;&#x68C0;&#x67E5;&#x8FD9;&#x4E9B;&#x914D;&#x7F6E;&#x3002;&#x5B83;&#x4EEC;&#x9ED8;&#x8BA4;&#x4F1A;&#x628A; ES &#x7684; <code>import</code> &#x548C; <code>export</code> &#x7F16;&#x8BD1;&#x4E3A; CommonJS &#x7684; <code>require</code> &#x548C; <code>module.exports</code>&#x3002;&#x8BBE;&#x5B9A; <code>{ modules: false }</code> &#x53EF;&#x4EE5;&#x7981;&#x6B62;&#x8BE5;&#x9ED8;&#x8BA4;&#x884C;&#x4E3A;&#x3002;</p>
 <p>TypeScript &#x4E5F;&#x662F;&#x4E00;&#x6837;&#xFF0C;&#x8BB0;&#x5F97;&#x8981;&#x5728; <code>tsconfig.json</code> &#x4E2D;&#x8BBE;&#x5B9A; <code>{ &quot;compilerOptions&quot;: { &quot;module&quot;: &quot;es2015&quot; } }</code> &#x3002;</p>
+</blockquote>
 <p>&#x5EF6;&#x4F38;&#x9605;&#x8BFB;</p>
 <ul>
 <li><a href="https://ponyfoo.com/articles/es6-modules-in-depth" target="_blank">ES6 Modules in Depth</a>, by Nicol&#xE1;s Bevacqua, 2015/09/25</li>
@@ -981,7 +983,9 @@ render()
 * &#x5426;&#x5219;&#xFF0C;image.png &#x4F1A;&#x5305;&#x542B;&#x5B83;&#x7684; url &#x5730;&#x5740;&#xFF0C;&#x6BD4;&#x5982;&#xFF1A;`/2fcd56a1920.png`
 */</span>
 </code></pre>
-<p>&#x6CE8;&#x610F;&#xFF1A;&#x5185;&#x8054;&#x56FE;&#x50CF;&#x4F1A;&#x964D;&#x4F4E;&#x8BF7;&#x6C42;&#x6570;&#x91CF;&#xFF0C;&#x8FD9;&#x786E;&#x5B9E;&#x662F;&#x597D;&#x4E8B;&#x3002;&#x4F46;&#x4F1A;&#x589E;&#x52A0;&#x4E0B;&#x8F7D;&#x548C;&#x89E3;&#x6790;&#x65F6;&#x95F4;&#xFF0C;&#x5E76;&#x4E14;&#x4F1A;&#x589E;&#x5927;&#x5185;&#x5B58;&#x6D88;&#x8017;&#x3002;&#x52A1;&#x5FC5;&#x4E0D;&#x8981;&#x5185;&#x8054;&#x5927;&#x5C3A;&#x5BF8;&#x56FE;&#x50CF;&#xFF0C;&#x4E5F;&#x8981;&#x63A7;&#x5236;&#x5185;&#x8054;&#x56FE;&#x50CF;&#x7684;&#x603B;&#x91CF;&#xFF0C;&#x5426;&#x5219;&#x589E;&#x52A0;&#x7684; bundle &#x65F6;&#x95F4;&#x4F1A;&#x62B5;&#x6D88;&#x5185;&#x8054;&#x7684;&#x4F18;&#x52BF;&#x3002;</p>
+<blockquote>
+<p>&#x2728; &#x6CE8;&#x610F;&#xFF1A;&#x5185;&#x8054;&#x56FE;&#x50CF;&#x4F1A;&#x964D;&#x4F4E;&#x8BF7;&#x6C42;&#x6570;&#x91CF;&#xFF0C;&#x8FD9;&#x786E;&#x5B9E;&#x662F;&#x597D;&#x4E8B;&#x3002;&#x4F46;&#x4F1A;&#x589E;&#x52A0;&#x4E0B;&#x8F7D;&#x548C;&#x89E3;&#x6790;&#x65F6;&#x95F4;&#xFF0C;&#x5E76;&#x4E14;&#x4F1A;&#x589E;&#x5927;&#x5185;&#x5B58;&#x6D88;&#x8017;&#x3002;&#x52A1;&#x5FC5;&#x4E0D;&#x8981;&#x5185;&#x8054;&#x5927;&#x5C3A;&#x5BF8;&#x56FE;&#x50CF;&#xFF0C;&#x4E5F;&#x8981;&#x63A7;&#x5236;&#x5185;&#x8054;&#x56FE;&#x50CF;&#x7684;&#x603B;&#x91CF;&#xFF0C;&#x5426;&#x5219;&#x589E;&#x52A0;&#x7684; bundle &#x65F6;&#x95F4;&#x4F1A;&#x62B5;&#x6D88;&#x5185;&#x8054;&#x7684;&#x4F18;&#x52BF;&#x3002;</p>
+</blockquote>
 <p><code>svg-url-loader</code> &#x548C; <code>url-loader</code> &#x5DE5;&#x4F5C;&#x539F;&#x7406;&#x76F8;&#x4F3C;&#xFF0C;&#x53EA;&#x4E0D;&#x8FC7;&#x5B83;&#x4F7F;&#x7528; <a href="https://developer.mozilla.org/en-US/docs/Glossary/percent-encoding" target="_blank">URL &#x7F16;&#x7801;</a>&#xFF0C;&#x800C;&#x4E0D;&#x662F; Base64 &#x7F16;&#x7801;&#x3002;&#x8FD9;&#x5BF9; SVG &#x56FE;&#x50CF;&#x5F88;&#x6709;&#x7528;&#xFF0C;&#x56E0;&#x4E3A; SVG &#x5C31;&#x662F;&#x666E;&#x901A;&#x6587;&#x672C;&#xFF0C;&#x8FD9;&#x4E2A;&#x7F16;&#x7801;&#x4F53;&#x79EF;&#x66F4;&#x5C0F;&#xFF1A;</p>
 <pre><code class="lang-js"><span class="hljs-comment">/** webpack.config.js */</span>
 <span class="hljs-built_in">module</span>.exports = {
@@ -1001,7 +1005,9 @@ render()
   }
 }
 </code></pre>
-<p>&#x6CE8;&#x610F;&#xFF1A;<code>svg-url-loader</code> &#x6709;&#x4E9B;&#x9009;&#x9879;&#x53EF;&#x4EE5;&#x589E;&#x5F3A; IE &#x652F;&#x6301;&#x5EA6;&#xFF0C;&#x4F46;&#x662F;&#x4F1A;&#x5BF9;&#x5176;&#x4ED6;&#x6D4F;&#x89C8;&#x5668;&#x7684;&#x5185;&#x8054;&#x9020;&#x6210;&#x574F;&#x7684;&#x5F71;&#x54CD;&#x3002;&#x5982;&#x679C;&#x9700;&#x8981;&#x652F;&#x6301; IE&#xFF0C;&#x53EF;&#x4EE5;&#x8BBE;&#x7F6E; <code>iesafe: true</code> &#x9009;&#x9879;&#x3002;</p>
+<blockquote>
+<p>&#x2728; &#x6CE8;&#x610F;&#xFF1A;<code>svg-url-loader</code> &#x6709;&#x4E9B;&#x9009;&#x9879;&#x53EF;&#x4EE5;&#x589E;&#x5F3A; IE &#x652F;&#x6301;&#x5EA6;&#xFF0C;&#x4F46;&#x662F;&#x4F1A;&#x5BF9;&#x5176;&#x4ED6;&#x6D4F;&#x89C8;&#x5668;&#x7684;&#x5185;&#x8054;&#x9020;&#x6210;&#x574F;&#x7684;&#x5F71;&#x54CD;&#x3002;&#x5982;&#x679C;&#x9700;&#x8981;&#x652F;&#x6301; IE&#xFF0C;&#x53EF;&#x4EE5;&#x8BBE;&#x7F6E; <code>iesafe: true</code> &#x9009;&#x9879;&#x3002;</p>
+</blockquote>
 <p><code>image-webpack-loader</code> &#x538B;&#x7F29;&#x56FE;&#x50CF;&#xFF0C;&#x652F;&#x6301; JPG, PNG, GIF &#x548C; SVG&#xFF0C;&#x6240;&#x4EE5;&#x8FD9;&#x4E9B;&#x7C7B;&#x578B;&#x90FD;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x3002;</p>
 <p>&#x8BE5; loader &#x65E0;&#x6CD5;&#x5C06;&#x56FE;&#x50CF;&#x5185;&#x5D4C;&#x5230;&#x9875;&#x9762;&#xFF0C;&#x56E0;&#x6B64;&#x5FC5;&#x987B;&#x548C; <code>url-loader</code> &#x548C; <code>svg-url-loader</code> &#x914D;&#x5408;&#x4F7F;&#x7528;&#x3002;&#x4E3A;&#x4E86;&#x907F;&#x514D;&#x5728;&#x591A;&#x4E2A; rules &#x4E2D;&#x590D;&#x5236;&#x7C98;&#x8D34;&#xFF08;&#x4E00;&#x4E2A;&#x9488;&#x5BF9; JPG/PNG/GIF &#x56FE;&#x50CF;&#xFF0C;&#x53E6;&#x4E00;&#x4E2A;&#x9488;&#x5BF9; SVG&#xFF09;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5305;&#x542B;&#x4E00;&#x4E2A;&#x5355;&#x72EC;&#x7684; rule&#xFF0C;&#x5E76;&#x8BBE;&#x7F6E; <a href="https://webpack.js.org/configuration/module/#rule-enforce" target="_blank"><code>enforce: &apos;pre&apos;</code></a> &#x9009;&#x9879;&#xFF1A;</p>
 <pre><code class="lang-js"><span class="hljs-comment">/** webpack.config.js */</span>
@@ -1097,7 +1103,9 @@ render()
   ]
 }
 </code></pre>
+<blockquote>
 <p>&#x2728; &#x6CE8;&#x610F;&#xFF1A;&#x60F3;&#x77E5;&#x9053;&#x4E3A;&#x4EC0;&#x4E48;&#x8FD9;&#x4E2A;&#x7279;&#x6027;&#x6CA1;&#x6709;&#x9ED8;&#x8BA4;&#x5F00;&#x542F;&#x5417;&#xFF1F;&#x6A21;&#x5757;&#x62FC;&#x63A5;&#xFF08;Concatenating Modules&#xFF09;&#x786E;&#x5B9E;&#x5F88;&#x9177;&#xFF0C;&#x4F46;<a href="https://twitter.com/TheLarkInn/status/925800563144454144" target="_blank">&#x4F1A;&#x9020;&#x6210;&#x66F4;&#x957F;&#x7684;&#x7F16;&#x8BD1;&#x65F6;&#x95F4;&#xFF0C;&#x8FD8;&#x4F1A;&#x7834;&#x574F;&#x6A21;&#x5757;&#x70ED;&#x66F4;&#x65B0;</a>&#x3002;&#x56E0;&#x6B64;&#xFF0C;&#x5B83;&#x53EA;&#x80FD;&#x5728;&#x751F;&#x4EA7;&#x73AF;&#x5883;&#x5F00;&#x542F;&#x3002;</p>
+</blockquote>
 <p>&#x5EF6;&#x4F38;&#x9605;&#x8BFB;</p>
 <ul>
 <li><a href="https://webpack.js.org/plugins/module-concatenation-plugin/" target="_blank">ModuleConcatenationPlugin &#x7684;&#x6587;&#x6863;</a></li>
@@ -1208,7 +1216,7 @@ define([<span class="hljs-string">&quot;/libraries/react.min.js&quot;</span>, <s
                 </a>
                 
                 
-                <a href="use-long-term-caching.html" class="navigation navigation-next " aria-label="Next page: 开启长期缓存">
+                <a href="use-long-term-caching.html" class="navigation navigation-next " aria-label="Next page: 使用长期缓存">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -1219,7 +1227,7 @@ define([<span class="hljs-string">&quot;/libraries/react.min.js&quot;</span>, <s
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"减小前端体积","level":"1.15.1","depth":2,"next":{"title":"开启长期缓存","level":"1.15.2","depth":2,"path":"content/optimize/use-long-term-caching.md","ref":"./content/optimize/use-long-term-caching.md","articles":[]},"previous":{"title":"优化建议","level":"1.15","depth":1,"path":"content/optimize/README.md","ref":"./content/optimize/README.md","articles":[{"title":"减小前端体积","level":"1.15.1","depth":2,"path":"content/optimize/decrease-frontend-size.md","ref":"./content/optimize/decrease-frontend-size.md","articles":[]},{"title":"开启长期缓存","level":"1.15.2","depth":2,"path":"content/optimize/use-long-term-caching.md","ref":"./content/optimize/use-long-term-caching.md","articles":[]},{"title":"监测和分析","level":"1.15.3","depth":2,"path":"content/optimize/monitor-and-analyze.md","ref":"./content/optimize/monitor-and-analyze.md","articles":[]},{"title":"总结","level":"1.15.4","depth":2,"path":"content/optimize/conclusion.md","ref":"./content/optimize/conclusion.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":[],"root":"./src","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"content/optimize/decrease-frontend-size.md","mtime":"2018-02-22T10:26:57.183Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-02-23T11:04:36.889Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"减小前端体积","level":"1.15.1","depth":2,"next":{"title":"使用长期缓存","level":"1.15.2","depth":2,"path":"content/optimize/use-long-term-caching.md","ref":"./content/optimize/use-long-term-caching.md","articles":[]},"previous":{"title":"优化建议","level":"1.15","depth":1,"path":"content/optimize/README.md","ref":"./content/optimize/README.md","articles":[{"title":"减小前端体积","level":"1.15.1","depth":2,"path":"content/optimize/decrease-frontend-size.md","ref":"./content/optimize/decrease-frontend-size.md","articles":[]},{"title":"使用长期缓存","level":"1.15.2","depth":2,"path":"content/optimize/use-long-term-caching.md","ref":"./content/optimize/use-long-term-caching.md","articles":[]},{"title":"监测和分析","level":"1.15.3","depth":2,"path":"content/optimize/monitor-and-analyze.md","ref":"./content/optimize/monitor-and-analyze.md","articles":[]},{"title":"总结","level":"1.15.4","depth":2,"path":"content/optimize/conclusion.md","ref":"./content/optimize/conclusion.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":[],"root":"./src","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"content/optimize/decrease-frontend-size.md","mtime":"2018-02-23T13:16:01.974Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-02-23T13:45:34.346Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

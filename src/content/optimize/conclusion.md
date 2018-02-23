@@ -11,7 +11,7 @@
 
 ## REF
 
-- [Conclusion][google]
+- [Conclusion][google], by Ivan Akulov, Google Devlopers
 
 [google]: https://developers.google.com/web/fundamentals/performance/webpack/conclusion
 [pwa]: https://developers.google.com/web/progressive-web-apps/

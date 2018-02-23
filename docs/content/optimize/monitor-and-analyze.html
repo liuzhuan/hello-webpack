@@ -703,7 +703,7 @@
                 <a href="use-long-term-caching.html">
             
                     
-                    开启长期缓存
+                    使用长期缓存
             
                 </a>
             
@@ -883,10 +883,8 @@
 <p>bundlesize &#x786E;&#x4FDD; webpack &#x8D44;&#x6E90;&#x7684;&#x4F53;&#x79EF;&#x5728;&#x9650;&#x5B9A;&#x503C;&#x4EE5;&#x4E0B;&#x3002;&#x5C06;&#x5B83;&#x548C; CI &#x6574;&#x5408;&#x53EF;&#x4EE5;&#x5728;&#x8D44;&#x6E90;&#x53D8;&#x5F97;&#x8FC7;&#x5927;&#x65F6;&#x62A5;&#x8B66;&#x3002;</p>
 <p>&#x4E0B;&#x9762;&#x662F;&#x914D;&#x7F6E;&#x65B9;&#x6CD5;&#xFF1A;</p>
 <p><strong>&#x627E;&#x5230;&#x6700;&#x5927;&#x7684;&#x4F53;&#x79EF;</strong></p>
-<ol>
-<li>&#x4F18;&#x5316; app&#xFF0C;&#x4F7F;&#x5176;&#x4F53;&#x79EF;&#x5C3D;&#x91CF;&#x5C0F;&#x3002;&#x6267;&#x884C;&#x751F;&#x4EA7;&#x6784;&#x5EFA;&#x3002;</li>
-<li>&#x5728; <code>package.json</code> &#x4E2D;&#x589E;&#x52A0; <code>bundlesize</code> &#x5B57;&#x6BB5;&#xFF0C;&#x5199;&#x5165;&#x4EE5;&#x4E0B;&#x5185;&#x5BB9;&#xFF1A;</li>
-</ol>
+<h4 id="1-&#x4F18;&#x5316;-app&#xFF0C;&#x4F7F;&#x5176;&#x4F53;&#x79EF;&#x5C3D;&#x91CF;&#x5C0F;&#x3002;&#x6267;&#x884C;&#x751F;&#x4EA7;&#x6784;&#x5EFA;&#x3002;">1. &#x4F18;&#x5316; app&#xFF0C;&#x4F7F;&#x5176;&#x4F53;&#x79EF;&#x5C3D;&#x91CF;&#x5C0F;&#x3002;&#x6267;&#x884C;&#x751F;&#x4EA7;&#x6784;&#x5EFA;&#x3002;</h4>
+<h4 id="2-&#x5728;-packagejson-&#x4E2D;&#x589E;&#x52A0;-bundlesize-&#x5B57;&#x6BB5;&#xFF0C;&#x5199;&#x5165;&#x4EE5;&#x4E0B;&#x5185;&#x5BB9;&#xFF1A;">2. &#x5728; <code>package.json</code> &#x4E2D;&#x589E;&#x52A0; <code>bundlesize</code> &#x5B57;&#x6BB5;&#xFF0C;&#x5199;&#x5165;&#x4EE5;&#x4E0B;&#x5185;&#x5BB9;&#xFF1A;</h4>
 <pre><code class="lang-json">{
   <span class="hljs-string">&quot;bundlesize&quot;</span>: [
     {
@@ -895,9 +893,7 @@
   ]
 }
 </code></pre>
-<ol>
-<li>&#x4F7F;&#x7528; <code>npx</code> &#x6267;&#x884C; <code>bundlesize</code></li>
-</ol>
+<h4 id="3-&#x4F7F;&#x7528;-npx-&#x6267;&#x884C;-bundlesize">3. &#x4F7F;&#x7528; <code>npx</code> &#x6267;&#x884C; <code>bundlesize</code></h4>
 <pre><code class="lang-sh">npx bundlesize
 </code></pre>
 <p>&#x8FD9;&#x4F1A;&#x5217;&#x51FA;&#x6BCF;&#x4E2A;&#x6587;&#x4EF6;&#x7684;&#x538B;&#x7F29;&#x5C3A;&#x5BF8;&#xFF1A;</p>
@@ -906,18 +902,12 @@ PASS  ./dist/icon512.c3e073a4100bd0c28a86.png: 13.1KB
 PASS  ./dist/main.0c8b617dfc40c2827ae3.js: 16.28KB
 PASS  ./dist/vendor.ff9f7ea865884e6a84c8.js: 31.49KB
 </code></pre>
-<ol>
-<li>&#x4E3A;&#x6BCF;&#x4E2A;&#x5C3A;&#x5BF8;&#x589E;&#x52A0; 10~20%&#xFF0C;&#x5C31;&#x80FD;&#x5F97;&#x5230;&#x6700;&#x5927;&#x4F53;&#x79EF;&#x3002;10~20% &#x7684;&#x4F59;&#x91CF;&#x53EF;&#x4EE5;&#x4FDD;&#x8BC1;&#x4F60;&#x6B63;&#x5E38;&#x5F00;&#x53D1; app&#xFF0C;&#x5E76;&#x4E14;&#x5F53;&#x4F53;&#x79EF;&#x8FC7;&#x5927;&#x65F6;&#x7ED9;&#x4E88;&#x8B66;&#x544A;&#x3002;</li>
-</ol>
+<h4 id="4-&#x4E3A;&#x6BCF;&#x4E2A;&#x5C3A;&#x5BF8;&#x589E;&#x52A0;-1020&#xFF0C;&#x5C31;&#x80FD;&#x5F97;&#x5230;&#x6700;&#x5927;&#x4F53;&#x79EF;&#x3002;1020-&#x7684;&#x4F59;&#x91CF;&#x53EF;&#x4EE5;&#x4FDD;&#x8BC1;&#x4F60;&#x6B63;&#x5E38;&#x5F00;&#x53D1;-app&#xFF0C;&#x5E76;&#x4E14;&#x5F53;&#x4F53;&#x79EF;&#x8FC7;&#x5927;&#x65F6;&#x7ED9;&#x4E88;&#x8B66;&#x544A;&#x3002;">4. &#x4E3A;&#x6BCF;&#x4E2A;&#x5C3A;&#x5BF8;&#x589E;&#x52A0; 10~20%&#xFF0C;&#x5C31;&#x80FD;&#x5F97;&#x5230;&#x6700;&#x5927;&#x4F53;&#x79EF;&#x3002;10~20% &#x7684;&#x4F59;&#x91CF;&#x53EF;&#x4EE5;&#x4FDD;&#x8BC1;&#x4F60;&#x6B63;&#x5E38;&#x5F00;&#x53D1; app&#xFF0C;&#x5E76;&#x4E14;&#x5F53;&#x4F53;&#x79EF;&#x8FC7;&#x5927;&#x65F6;&#x7ED9;&#x4E88;&#x8B66;&#x544A;&#x3002;</h4>
 <p><strong>&#x5F00;&#x542F; <code>bundlesize</code></strong></p>
-<ol>
-<li>&#x5B89;&#x88C5; <code>bundlesize</code>&#xFF0C;&#x4F5C;&#x4E3A;&#x5F00;&#x53D1;&#x4F9D;&#x8D56;</li>
-</ol>
+<h4 id="5-&#x5B89;&#x88C5;-bundlesize&#xFF0C;&#x4F5C;&#x4E3A;&#x5F00;&#x53D1;&#x4F9D;&#x8D56;">5. &#x5B89;&#x88C5; <code>bundlesize</code>&#xFF0C;&#x4F5C;&#x4E3A;&#x5F00;&#x53D1;&#x4F9D;&#x8D56;</h4>
 <pre><code class="lang-sh">npm install bundlesize --save-dev
 </code></pre>
-<ol>
-<li>&#x5728; <code>package.json</code> &#x7684; <code>bundlesize</code> &#x533A;&#x57DF;&#xFF0C;&#x8BBE;&#x5B9A;&#x5B9E;&#x9645;&#x7684;&#x6700;&#x5927;&#x503C;&#x3002;&#x5BF9;&#x4E8E;&#x67D0;&#x4E9B;&#x6587;&#x4EF6;&#xFF08;&#x6BD4;&#x5982;&#xFF0C;&#x56FE;&#x50CF;&#xFF09;&#xFF0C;&#x53EF;&#x80FD;&#x4F1A;&#x6839;&#x636E;&#x6587;&#x4EF6;&#x7C7B;&#x578B;&#x6765;&#x8BBE;&#x5B9A;&#x6700;&#x5927;&#x5C3A;&#x5BF8;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x6240;&#x6709;&#x6587;&#x4EF6;&#x4E00;&#x89C6;&#x540C;&#x4EC1;&#x3002;</li>
-</ol>
+<h4 id="6-&#x5728;-packagejson-&#x7684;-bundlesize-&#x533A;&#x57DF;&#xFF0C;&#x8BBE;&#x5B9A;&#x5B9E;&#x9645;&#x7684;&#x6700;&#x5927;&#x503C;&#x3002;&#x5BF9;&#x4E8E;&#x67D0;&#x4E9B;&#x6587;&#x4EF6;&#xFF08;&#x6BD4;&#x5982;&#xFF0C;&#x56FE;&#x50CF;&#xFF09;&#xFF0C;&#x53EF;&#x80FD;&#x4F1A;&#x6839;&#x636E;&#x6587;&#x4EF6;&#x7C7B;&#x578B;&#x6765;&#x8BBE;&#x5B9A;&#x6700;&#x5927;&#x5C3A;&#x5BF8;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x6240;&#x6709;&#x6587;&#x4EF6;&#x4E00;&#x89C6;&#x540C;&#x4EC1;&#x3002;">6. &#x5728; <code>package.json</code> &#x7684; <code>bundlesize</code> &#x533A;&#x57DF;&#xFF0C;&#x8BBE;&#x5B9A;&#x5B9E;&#x9645;&#x7684;&#x6700;&#x5927;&#x503C;&#x3002;&#x5BF9;&#x4E8E;&#x67D0;&#x4E9B;&#x6587;&#x4EF6;&#xFF08;&#x6BD4;&#x5982;&#xFF0C;&#x56FE;&#x50CF;&#xFF09;&#xFF0C;&#x53EF;&#x80FD;&#x4F1A;&#x6839;&#x636E;&#x6587;&#x4EF6;&#x7C7B;&#x578B;&#x6765;&#x8BBE;&#x5B9A;&#x6700;&#x5927;&#x5C3A;&#x5BF8;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x6240;&#x6709;&#x6587;&#x4EF6;&#x4E00;&#x89C6;&#x540C;&#x4EC1;&#x3002;</h4>
 <pre><code class="lang-json">{
   <span class="hljs-string">&quot;bundlesize&quot;</span>: [
     {
@@ -935,18 +925,14 @@ PASS  ./dist/vendor.ff9f7ea865884e6a84c8.js: 31.49KB
   ]
 }
 </code></pre>
-<ol>
-<li>&#x589E;&#x52A0;&#x4E00;&#x4E2A; npm &#x811A;&#x672C;</li>
-</ol>
+<h4 id="7-&#x589E;&#x52A0;&#x4E00;&#x4E2A;-npm-&#x811A;&#x672C;">7. &#x589E;&#x52A0;&#x4E00;&#x4E2A; npm &#x811A;&#x672C;</h4>
 <pre><code class="lang-json">{
   <span class="hljs-string">&quot;scripts&quot;</span>: {
     <span class="hljs-string">&quot;check-size&quot;</span>: <span class="hljs-string">&quot;bundlesize&quot;</span>
   }
 }
 </code></pre>
-<ol>
-<li>&#x914D;&#x7F6E; CI&#xFF0C;&#x5728;&#x6BCF;&#x6B21; push &#x540E;&#x6267;&#x884C; <code>npm run check-size</code>&#x3002;&#xFF08;&#x4E5F;&#x53EF;&#x4EE5;&#x5728; Github &#x4E0A;&#x6574;&#x5408; bundlesize&#xFF09;</li>
-</ol>
+<h4 id="8-&#x914D;&#x7F6E;-ci&#xFF0C;&#x5728;&#x6BCF;&#x6B21;-push-&#x540E;&#x6267;&#x884C;-npm-run-check-size&#x3002;&#xFF08;&#x4E5F;&#x53EF;&#x4EE5;&#x5728;-github-&#x4E0A;&#x6574;&#x5408;-bundlesize&#xFF09;">8. &#x914D;&#x7F6E; CI&#xFF0C;&#x5728;&#x6BCF;&#x6B21; push &#x540E;&#x6267;&#x884C; <code>npm run check-size</code>&#x3002;&#xFF08;&#x4E5F;&#x53EF;&#x4EE5;&#x5728; Github &#x4E0A;&#x6574;&#x5408; bundlesize&#xFF09;</h4>
 <p>&#x5927;&#x529F;&#x544A;&#x6210;&#xFF01;&#x5982;&#x679C;&#x4F60;&#x8FD0;&#x884C; <code>npm run check-size</code> &#x6216;&#x63D0;&#x4EA4;&#x4EE3;&#x7801;&#xFF0C;&#x4F60;&#x4F1A;&#x77E5;&#x9053;&#x662F;&#x5426;&#x6587;&#x4EF6;&#x8DB3;&#x591F;&#x5C0F;&#x3002;</p>
 <p>&#x5EF6;&#x4F38;&#x9605;&#x8BFB;</p>
 <ul>
@@ -1009,7 +995,7 @@ PASS  ./dist/vendor.ff9f7ea865884e6a84c8.js: 31.49KB
 
             
                 
-                <a href="use-long-term-caching.html" class="navigation navigation-prev " aria-label="Previous page: 开启长期缓存">
+                <a href="use-long-term-caching.html" class="navigation navigation-prev " aria-label="Previous page: 使用长期缓存">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
@@ -1025,7 +1011,7 @@ PASS  ./dist/vendor.ff9f7ea865884e6a84c8.js: 31.49KB
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"监测和分析","level":"1.15.3","depth":2,"next":{"title":"总结","level":"1.15.4","depth":2,"path":"content/optimize/conclusion.md","ref":"./content/optimize/conclusion.md","articles":[]},"previous":{"title":"开启长期缓存","level":"1.15.2","depth":2,"path":"content/optimize/use-long-term-caching.md","ref":"./content/optimize/use-long-term-caching.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"root":"./src","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"content/optimize/monitor-and-analyze.md","mtime":"2018-02-23T10:55:57.655Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-02-23T11:04:36.889Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"监测和分析","level":"1.15.3","depth":2,"next":{"title":"总结","level":"1.15.4","depth":2,"path":"content/optimize/conclusion.md","ref":"./content/optimize/conclusion.md","articles":[]},"previous":{"title":"使用长期缓存","level":"1.15.2","depth":2,"path":"content/optimize/use-long-term-caching.md","ref":"./content/optimize/use-long-term-caching.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"root":"./src","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"content/optimize/monitor-and-analyze.md","mtime":"2018-02-23T13:43:49.374Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-02-23T13:45:34.346Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

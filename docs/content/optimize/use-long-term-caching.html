@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>开启长期缓存 · GitBook</title>
+        <title>使用长期缓存 · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -703,7 +703,7 @@
                 <a href="use-long-term-caching.html">
             
                     
-                    开启长期缓存
+                    使用长期缓存
             
                 </a>
             
@@ -830,7 +830,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../.." >开启长期缓存</a>
+        <a href="../.." >使用长期缓存</a>
     </h1>
 </div>
 
@@ -845,26 +845,22 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="&#x5F00;&#x542F;&#x957F;&#x671F;&#x7F13;&#x5B58;">&#x5F00;&#x542F;&#x957F;&#x671F;&#x7F13;&#x5B58;</h1>
+                                <h1 id="&#x4F7F;&#x7528;&#x957F;&#x671F;&#x7F13;&#x5B58;">&#x4F7F;&#x7528;&#x957F;&#x671F;&#x7F13;&#x5B58;</h1>
 <p>&#x53EF;&#x4EE5;&#x6539;&#x5584;&#x5E94;&#x7528;&#x4E0B;&#x8F7D;&#x65F6;&#x95F4;&#x7684;&#x7B2C;&#x4E8C;&#x6B65;&#xFF08;&#x7B2C;&#x4E00;&#x6B65;&#x662F;<a href="decrease-frontend-size.html">&#x538B;&#x7F29;&#x4F53;&#x79EF;</a>&#xFF09;&#x5C31;&#x662F;&#x5F00;&#x542F;&#x7F13;&#x5B58;&#x3002;&#x8FD9;&#x6837;&#x5E94;&#x7528;&#x7684;&#x90E8;&#x5206;&#x8D44;&#x6E90;&#x5C31;&#x53EF;&#x4EE5;&#x9A7B;&#x7559;&#x5728;&#x5BA2;&#x6237;&#x7AEF;&#xFF0C;&#x9632;&#x6B62;&#x6BCF;&#x6B21;&#x8BBF;&#x95EE;&#x90FD;&#x91CD;&#x65B0;&#x4E0B;&#x8F7D;&#x3002;</p>
 <h2 id="&#x4F7F;&#x7528;-bundle-&#x7248;&#x672C;&#x53F7;&#x548C;&#x7F13;&#x5B58;&#x5934;">&#x4F7F;&#x7528; bundle &#x7248;&#x672C;&#x53F7;&#x548C;&#x7F13;&#x5B58;&#x5934;</h2>
 <p>&#x4F7F;&#x7528;&#x7F13;&#x5B58;&#x7684;&#x4E00;&#x822C;&#x6B65;&#x9AA4;&#x662F;&#xFF1A;</p>
-<ol>
-<li>&#x901A;&#x77E5;&#x6D4F;&#x89C8;&#x5668;&#x5BF9;&#x67D0;&#x4E2A;&#x8D44;&#x6E90;&#x7F13;&#x5B58;&#x5F88;&#x957F;&#x65F6;&#x95F4;&#xFF08;&#x6BD4;&#x5982;&#xFF0C;&#x4E00;&#x5E74;&#xFF09;&#xFF1A;</li>
-</ol>
+<h3 id="1-&#x8BA9;&#x6D4F;&#x89C8;&#x5668;&#x957F;&#x671F;&#x7F13;&#x5B58;&#x67D0;&#x8D44;&#x6E90;&#xFF08;&#x6BD4;&#x5982;&#xFF0C;&#x4E00;&#x5E74;&#xFF09;">1. &#x8BA9;&#x6D4F;&#x89C8;&#x5668;&#x957F;&#x671F;&#x7F13;&#x5B58;&#x67D0;&#x8D44;&#x6E90;&#xFF08;&#x6BD4;&#x5982;&#xFF0C;&#x4E00;&#x5E74;&#xFF09;</h3>
 <pre><code># &#x670D;&#x52A1;&#x5668;&#x5934;
 Cache-Control: max-age=31536000
 </code></pre><p>&#x5982;&#x679C;&#x4F60;&#x4E0D;&#x719F;&#x6089; <code>Cache-Control</code> &#x7684;&#x7528;&#x6CD5;&#xFF0C;&#x53EF;&#x53C2;&#x8003; Jake Archibald &#x7684;<a href="https://jakearchibald.com/2016/caching-best-practices/" target="_blank">&#x5173;&#x4E8E;&#x7F13;&#x5B58;&#x7684;&#x6700;&#x4F73;&#x5B9E;&#x8DF5;</a>&#x7CBE;&#x5F69;&#x535A;&#x6587;&#x3002;</p>
-<ol>
-<li>&#x5F53;&#x6587;&#x4EF6;&#x5185;&#x5BB9;&#x53D8;&#x5316;&#x65F6;&#xFF0C;&#x91CD;&#x547D;&#x540D;&#x6587;&#x4EF6;&#xFF0C;&#x4EE5;&#x4FBF;&#x91CD;&#x65B0;&#x4E0B;&#x8F7D;&#xFF1A;</li>
-</ol>
+<h3 id="2-&#x5F53;&#x6587;&#x4EF6;&#x5185;&#x5BB9;&#x53D8;&#x5316;&#x65F6;&#xFF0C;&#x91CD;&#x547D;&#x540D;&#x6587;&#x4EF6;&#xFF0C;&#x4EE5;&#x4FBF;&#x91CD;&#x65B0;&#x4E0B;&#x8F7D;">2. &#x5F53;&#x6587;&#x4EF6;&#x5185;&#x5BB9;&#x53D8;&#x5316;&#x65F6;&#xFF0C;&#x91CD;&#x547D;&#x540D;&#x6587;&#x4EF6;&#xFF0C;&#x4EE5;&#x4FBF;&#x91CD;&#x65B0;&#x4E0B;&#x8F7D;</h3>
 <pre><code class="lang-html"><span class="hljs-comment">&lt;!-- &#x6539;&#x53D8;&#x524D; --&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;./index-v15.js&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
 <span class="hljs-comment">&lt;!-- &#x6539;&#x53D8;&#x540E; --&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;./index-v16.js&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 </code></pre>
-<p>&#x901A;&#x8FC7; webpack &#x53EF;&#x4EE5;&#x8FBE;&#x5230;&#x540C;&#x6837;&#x76EE;&#x7684;&#x3002;&#x4F46;&#x662F;&#x4E0D;&#x662F;&#x7528;&#x7248;&#x672C;&#x53F7;&#xFF0C;&#x800C;&#x662F;&#x6307;&#x5B9A;&#x6587;&#x4EF6;&#x54C8;&#x5E0C;&#x503C;&#x3002;&#x4E3A;&#x4E86;&#x5728;&#x6587;&#x4EF6;&#x540D;&#x4E2D;&#x5305;&#x542B;&#x54C8;&#x5E0C;&#x503C;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; <code>[chunkhash]</code> &#xFF1A;</p>
+<p>&#x901A;&#x8FC7; webpack &#x53EF;&#x4EE5;&#x8FBE;&#x5230;&#x540C;&#x6837;&#x76EE;&#x7684;&#x3002;&#x4F46;&#x4E0D;&#x662F;&#x7528;&#x7248;&#x672C;&#x53F7;&#xFF0C;&#x800C;&#x662F;&#x6307;&#x5B9A;&#x6587;&#x4EF6;&#x54C8;&#x5E0C;&#x503C;&#x3002;&#x4E3A;&#x4E86;&#x5728;&#x6587;&#x4EF6;&#x540D;&#x4E2D;&#x5305;&#x542B;&#x54C8;&#x5E0C;&#x503C;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; <code>[chunkhash]</code> &#xFF1A;</p>
 <pre><code class="lang-js"><span class="hljs-comment">/** webpack.config.js */</span>
 <span class="hljs-built_in">module</span>.exports = {
   entry: <span class="hljs-string">&apos;./index.js&apos;</span>,
@@ -899,9 +895,7 @@ Cache-Control: max-age=31536000
 <p>&#x1F511; &#x5173;&#x952E;&#x672F;&#x8BED;&#xFF1A;&#x5728; webpack &#x672F;&#x8BED;&#x4E2D;&#xFF0C;app &#x4EE3;&#x7801;&#x4E4B;&#x5916;&#x7684;&#x72EC;&#x7ACB;&#x4EE3;&#x7801;&#x6587;&#x4EF6;&#x79F0;&#x4E3A; <em>chunks</em>&#x3002;&#x540E;&#x9762;&#x4F1A;&#x4F7F;&#x7528;&#x8FD9;&#x4E2A;&#x540D;&#x79F0;&#x3002;</p>
 </blockquote>
 <p>&#x4E3A;&#x4E86;&#x628A;&#x4F9D;&#x8D56;&#x63D0;&#x53D6;&#x5230;&#x5355;&#x72EC;&#x7684; chunk &#x4E2D;&#xFF0C;&#x9700;&#x8981;&#x5206;&#x4E09;&#x4E2A;&#x6B65;&#x9AA4;&#xFF1A;</p>
-<ol>
-<li>&#x5C06;&#x8F93;&#x51FA;&#x6587;&#x4EF6;&#x540D;&#x79F0;&#x66FF;&#x6362;&#x4E3A; <code>[name].[chunkname].js</code></li>
-</ol>
+<h3 id="1-&#x5C06;&#x8F93;&#x51FA;&#x6587;&#x4EF6;&#x540D;&#x79F0;&#x66FF;&#x6362;&#x4E3A;-namechunkhashjs">1. &#x5C06;&#x8F93;&#x51FA;&#x6587;&#x4EF6;&#x540D;&#x79F0;&#x66FF;&#x6362;&#x4E3A; <code>[name].[chunkhash].js</code></h3>
 <pre><code class="lang-js"><span class="hljs-comment">/** webpack.config.js */</span>
 <span class="hljs-built_in">module</span>.exports = {
   output: {
@@ -909,10 +903,8 @@ Cache-Control: max-age=31536000
   }
 }
 </code></pre>
-<p>&#x5F53; webpack &#x7F16;&#x8BD1; app &#x65F6;&#xFF0C;&#x4F1A;&#x628A; <code>[name]</code> &#x66FF;&#x6362;&#x4E3A; chunk &#x7684;&#x540D;&#x5B57;&#x3002;&#x4E0D;&#x8FC7;&#x4E0D;&#x52A0;&#x540D;&#x79F0;&#xFF0C;&#x5C31;&#x9700;&#x8981;&#x6839;&#x636E;&#x54C8;&#x5E0C;&#x503C;&#x5224;&#x65AD; chunk &#xFF0C;&#x8FD9;&#x5C06;&#x5341;&#x5206;&#x56F0;&#x96BE;&#x3002;</p>
-<ol>
-<li>&#x5C06; <code>entry</code> &#x5B57;&#x6BB5;&#x8F6C;&#x6362;&#x4E3A;&#x5BF9;&#x8C61;&#x7C7B;&#x578B;&#xFF1A;</li>
-</ol>
+<p>&#x5F53; webpack &#x7F16;&#x8BD1; app &#x65F6;&#xFF0C;&#x4F1A;&#x628A; <code>[name]</code> &#x66FF;&#x6362;&#x4E3A; chunk &#x7684;&#x540D;&#x5B57;&#x3002;&#x5982;&#x679C;&#x4E0D;&#x52A0;&#x540D;&#x5B57;&#xFF0C;&#x5C31;&#x9700;&#x8981;&#x6839;&#x636E;&#x54C8;&#x5E0C;&#x503C;&#x8FA8;&#x522B; chunk &#xFF0C;&#x8FD9;&#x4F1A;&#x5341;&#x5206;&#x56F0;&#x96BE;&#x3002;</p>
+<h3 id="2-&#x5C06;-entry-&#x5B57;&#x6BB5;&#x8F6C;&#x6362;&#x4E3A;&#x5BF9;&#x8C61;&#x7C7B;&#x578B;">2. &#x5C06; <code>entry</code> &#x5B57;&#x6BB5;&#x8F6C;&#x6362;&#x4E3A;&#x5BF9;&#x8C61;&#x7C7B;&#x578B;</h3>
 <pre><code class="lang-js"><span class="hljs-comment">/** webpack.config.js */</span>
 <span class="hljs-built_in">module</span>.exports = {
   entry: {
@@ -920,10 +912,8 @@ Cache-Control: max-age=31536000
   }
 }
 </code></pre>
-<p>&#x5728;&#x4E0A;&#x9762;&#x7684;&#x7247;&#x6BB5;&#x4E2D;&#xFF0C;<code>main</code> &#x662F; chunk &#x7684;&#x540D;&#x5B57;&#xFF0C;&#x5B83;&#x4F1A;&#x66FF;&#x6362;&#x6B65;&#x9AA4; 1 &#x4E2D;&#x7684; <code>[name]</code> &#x90E8;&#x5206;&#x3002;&#x73B0;&#x5728;&#x5982;&#x679C;&#x7F16;&#x8BD1; app&#xFF0C;&#x8FD9;&#x4E2A; chunk &#x4F1A;&#x5305;&#x542B;&#x6240;&#x6709;&#x7684; app &#x4EE3;&#x7801;&#xFF0C;&#x5C31;&#x50CF;&#x4EE5;&#x524D;&#x4E00;&#x6837;&#x3002;&#x5F88;&#x5FEB;&#x5C31;&#x4F1A;&#x53D8;&#x5316;&#x4E86;&#x3002;</p>
-<ol>
-<li>&#x589E;&#x52A0; <code>CommonsChunkPlugin</code> &#x63D2;&#x4EF6;&#xFF1A;</li>
-</ol>
+<p>&#x5728;&#x4E0A;&#x9762;&#x7684;&#x7247;&#x6BB5;&#x4E2D;&#xFF0C;<code>main</code> &#x662F; chunk &#x7684;&#x540D;&#x5B57;&#xFF0C;&#x5B83;&#x4F1A;&#x66FF;&#x6362;&#x6B65;&#x9AA4; 1 &#x4E2D;&#x7684; <code>[name]</code> &#x90E8;&#x5206;&#x3002;&#x73B0;&#x5728;&#x5982;&#x679C;&#x7F16;&#x8BD1; app&#xFF0C;&#x8FD9;&#x4E2A; chunk &#x4F1A;&#x5305;&#x542B;&#x6240;&#x6709;&#x7684; app &#x4EE3;&#x7801;&#xFF0C;&#x4F1A;&#x50CF;&#x4EE5;&#x524D;&#x4E00;&#x6A21;&#x4E00;&#x6837;&#x3002;&#x7EE7;&#x7EED;&#x5F80;&#x4E0B;&#x770B;&#xFF0C;&#x5F88;&#x5FEB;&#x5C31;&#x4E0D;&#x4E00;&#x6837;&#x4E86;&#x3002;</p>
+<h3 id="3-&#x589E;&#x52A0;-commonschunkplugin-&#x63D2;&#x4EF6;">3. &#x589E;&#x52A0; <code>CommonsChunkPlugin</code> &#x63D2;&#x4EF6;</h3>
 <pre><code class="lang-js"><span class="hljs-comment">/** webpack.config.js */</span>
 <span class="hljs-built_in">module</span>.exports = {
   plugins: [
@@ -946,7 +936,7 @@ Cache-Control: max-age=31536000
 <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;Wat&apos;</span>)
 </code></pre>
 <p>&#x5C06;&#x4F1A;&#x6CE8;&#x610F;&#x5230;&#xFF0C;<code>vendor</code> &#x54C8;&#x5E0C;&#x503C;&#x4E5F;&#x4F1A;&#x53D1;&#x751F;&#x53D8;&#x5316;&#x3002;</p>
-<p>&#x8FD9;&#x662F;&#x56E0;&#x4E3A;&#x5F53; webpack &#x6253;&#x5305;&#x65F6;&#xFF0C;&#x9664;&#x4E86;&#x6A21;&#x5757;&#x4EE3;&#x7801;&#xFF0C;&#x8FD8;&#x6709;&#x4E00;&#x4E2A;<a href="https://webpack.js.org/concepts/manifest/" target="_blank">&#x8FD0;&#x884C;&#x65F6;</a> - &#x4E00;&#x5C0F;&#x6BB5;&#x7BA1;&#x7406;&#x6A21;&#x5757;&#x6267;&#x884C;&#x7684;&#x4EE3;&#x7801;&#x3002;&#x5F53;&#x4F60;&#x5C06;&#x4EE3;&#x7801;&#x5206;&#x79BB;&#x4E3A;&#x591A;&#x4E2A;&#x6587;&#x4EF6;&#x65F6;&#xFF0C;&#x8FD9;&#x6BB5;&#x4EE3;&#x7801;&#x5F00;&#x59CB;&#x5305;&#x62EC; chunk ID &#x5230;&#x5BF9;&#x5E94;&#x6587;&#x4EF6;&#x7684;&#x6620;&#x5C04;&#xFF1A;</p>
+<p>&#x8FD9;&#x662F;&#x56E0;&#x4E3A;&#x5F53; webpack &#x6253;&#x5305;&#x65F6;&#xFF0C;&#x9664;&#x4E86;&#x6A21;&#x5757;&#x4EE3;&#x7801;&#xFF0C;&#x8FD8;&#x6709;&#x4E00;&#x4E2A;<a href="https://webpack.js.org/concepts/manifest/" target="_blank">&#x8FD0;&#x884C;&#x65F6;</a> - &#x4E00;&#x5C0F;&#x6BB5;&#x7BA1;&#x7406;&#x6A21;&#x5757;&#x6267;&#x884C;&#x7684;&#x4EE3;&#x7801;&#x3002;&#x5F53;&#x4F60;&#x5C06;&#x4EE3;&#x7801;&#x5206;&#x79BB;&#x4E3A;&#x591A;&#x4E2A;&#x6587;&#x4EF6;&#x65F6;&#xFF0C;&#x8FD9;&#x6BB5;&#x4EE3;&#x7801;&#x4F1A;&#x5305;&#x542B; chunk ID &#x4E0E;&#x5177;&#x4F53;&#x6587;&#x4EF6;&#x7684;&#x6620;&#x5C04;&#x5173;&#x7CFB;&#xFF1A;</p>
 <pre><code class="lang-js"><span class="hljs-comment">/** vendor.e6ea4504.js */</span>
 script.src = __webpack_require__.p + chunkId + <span class="hljs-string">&quot;.&quot;</span> + {
   <span class="hljs-string">&quot;0&quot;</span>: <span class="hljs-string">&quot;2f2269c7f0a55a5c1871&quot;</span>
@@ -954,7 +944,7 @@ script.src = __webpack_require__.p + chunkId + <span class="hljs-string">&quot;.
 </code></pre>
 <p>Webpack &#x4F1A;&#x5C06;&#x8FD0;&#x884C;&#x65F6;&#x6253;&#x5305;&#x5230;&#x6700;&#x540E;&#x4EA7;&#x751F;&#x7684; chunk &#x4E2D;&#xFF0C;&#x5728;&#x672C;&#x4F8B;&#x4E2D;&#x5C31;&#x662F; <code>vendor</code>&#x3002;&#x6BCF;&#x6B21;&#x4EFB;&#x4F55; chunk &#x7684;&#x6539;&#x53D8;&#xFF0C;&#x8FD0;&#x884C;&#x65F6;&#x7684;&#x8FD9;&#x6BB5;&#x6620;&#x5C04;&#x4EE3;&#x7801;&#x90FD;&#x4F1A;&#x53D8;&#x5316;&#xFF0C;&#x4ECE;&#x800C;&#x5BFC;&#x81F4;&#x6574;&#x4E2A; <code>vendor</code> chunk &#x53D8;&#x5316;&#x3002;</p>
 <blockquote>
-<p>&#x5728; webpack 3.11.0 &#x6CA1;&#x6709;&#x590D;&#x73B0; vendor &#x54C8;&#x5E0C;&#x503C;&#x53D8;&#x5316;&#xFF0C;&#x662F;&#x5426;&#x5DF2;&#x7ECF;&#x88AB;&#x4FEE;&#x590D;&#x4E86;&#xFF1F;</p>
+<p>&#x8BD1;&#x8005;&#x6CE8;&#xFF1A;&#x8C37;&#x6B4C;&#x5B98;&#x7F51;&#x6559;&#x7A0B;&#x4F7F;&#x7528;&#x7684; webpack &#x7248;&#x672C;&#x662F; v3.8.1&#xFF0C;&#x53EF;&#x80FD;&#x6709;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#x3002;&#x5177;&#x4F53;&#x64CD;&#x4F5C;&#x4E2D;&#xFF0C;&#x5728; webpack 3.11.0 &#x6CA1;&#x6709;&#x590D;&#x73B0; vendor &#x54C8;&#x5E0C;&#x503C;&#x53D8;&#x5316;&#xFF0C;&#x662F;&#x5426;&#x5DF2;&#x7ECF;&#x88AB;&#x4FEE;&#x590D;&#x4E86;&#xFF1F;</p>
 </blockquote>
 <p>&#x4E3A;&#x4E86;&#x89E3;&#x51B3;&#x5B83;&#xFF0C;&#x53EF;&#x4EE5;&#x628A;&#x8FD0;&#x884C;&#x65F6;&#x6253;&#x5305;&#x5230;&#x5355;&#x72EC;&#x6587;&#x4EF6;&#x4E2D;&#xFF0C;&#x5177;&#x4F53;&#x505A;&#x6CD5;&#x662F;&#x901A;&#x8FC7; <code>CommonsChunkPlugin</code> &#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x989D;&#x5916;&#x7A7A; chunk &#xFF1A;</p>
 <pre><code class="lang-js"><span class="hljs-comment">/** webpack.config.js */</span>
@@ -1020,9 +1010,7 @@ Time: 3816ms
 }
 </code></pre>
 <h3 id="&#x5982;&#x679C;&#x4F7F;&#x7528;&#x81EA;&#x5B9A;&#x4E49;&#x540E;&#x7AEF;&#x903B;&#x8F91;&#x4EA7;&#x751F;-html">&#x5982;&#x679C;&#x4F7F;&#x7528;&#x81EA;&#x5B9A;&#x4E49;&#x540E;&#x7AEF;&#x903B;&#x8F91;&#x4EA7;&#x751F; HTML</h3>
-<ol>
-<li>&#x901A;&#x8FC7;&#x8BBE;&#x5B9A; <code>filename</code> &#x8BA9;&#x8FD0;&#x884C;&#x65F6;&#x7684;&#x540D;&#x79F0;&#x56FA;&#x5B9A;</li>
-</ol>
+<h4 id="1-&#x901A;&#x8FC7;&#x8BBE;&#x5B9A;-filename-&#x8BA9;&#x8FD0;&#x884C;&#x65F6;&#x7684;&#x540D;&#x79F0;&#x56FA;&#x5B9A;">1. &#x901A;&#x8FC7;&#x8BBE;&#x5B9A; <code>filename</code> &#x8BA9;&#x8FD0;&#x884C;&#x65F6;&#x7684;&#x540D;&#x79F0;&#x56FA;&#x5B9A;</h4>
 <pre><code class="lang-js"><span class="hljs-comment">/** webpack.config.js */</span>
 <span class="hljs-built_in">module</span>.exports = {
   plugins: [
@@ -1035,9 +1023,8 @@ Time: 3816ms
   ],
 };
 </code></pre>
-<ol>
-<li>&#x5C06; <code>runtime.js</code> &#x5185;&#x5BB9;&#x5185;&#x8054;&#x5230;&#x9875;&#x9762;&#x4E2D;&#x3002;&#x4F8B;&#x5982;&#xFF0C;&#x5982;&#x679C;&#x4F7F;&#x7528; Node.js &#x548C; Express&#xFF1A;</li>
-</ol>
+<h4 id="2-&#x5C06;-runtimejs-&#x5185;&#x5BB9;&#x5185;&#x8054;&#x5230;&#x9875;&#x9762;&#x4E2D;">2. &#x5C06; <code>runtime.js</code> &#x5185;&#x5BB9;&#x5185;&#x8054;&#x5230;&#x9875;&#x9762;&#x4E2D;</h4>
+<p>&#x4F8B;&#x5982;&#xFF0C;&#x5982;&#x679C;&#x4F7F;&#x7528; Node.js &#x548C; Express:</p>
 <pre><code class="lang-js"><span class="hljs-comment">/** server.js */</span>
 <span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;fs&apos;</span>)
 <span class="hljs-keyword">const</span> runtimeContent = fs.readFileSync(<span class="hljs-string">&apos;./runtime.js&apos;</span>, <span class="hljs-string">&apos;utf-8&apos;</span>)
@@ -1051,7 +1038,7 @@ app.get(<span class="hljs-string">&apos;/&apos;</span>, (req, res) =&gt; {
 })
 </code></pre>
 <h2 id="&#x61D2;&#x52A0;&#x8F7D;&#x6682;&#x65F6;&#x7528;&#x4E0D;&#x5230;&#x7684;&#x4EE3;&#x7801;">&#x61D2;&#x52A0;&#x8F7D;&#x6682;&#x65F6;&#x7528;&#x4E0D;&#x5230;&#x7684;&#x4EE3;&#x7801;</h2>
-<p>&#x6709;&#x65F6;&#x5019;&#xFF0C;&#x6709;&#x4E9B;&#x9875;&#x9762;&#x90E8;&#x5206;&#x4F18;&#x5148;&#x7EA7;&#x8F83;&#x4F4E;&#xFF0C;&#x4F46;&#x662F;&#x6570;&#x91CF;&#x8F83;&#x591A;&#xFF1A;</p>
+<p>&#x6709;&#x65F6;&#x5019;&#xFF0C;&#x9875;&#x9762;&#x4E2D;&#x5404;&#x4E2A;&#x7248;&#x5757;&#x7684;&#x4F18;&#x5148;&#x7EA7;&#x662F;&#x4E0D;&#x4E00;&#x6837;&#x7684;&#xFF1A;</p>
 <ul>
 <li>&#x5982;&#x679C;&#x52A0;&#x8F7D; YouTube &#x7684;&#x89C6;&#x9891;&#x9875;&#x9762;&#xFF0C;&#x4F60;&#x5173;&#x5FC3;&#x7684;&#x662F;&#x89C6;&#x9891;&#x800C;&#x4E0D;&#x662F;&#x8BC4;&#x8BBA;&#xFF0C;&#x6B64;&#x65F6;&#xFF0C;&#x89C6;&#x9891;&#x4F18;&#x5148;&#x7EA7;&#x9AD8;&#x4E8E;&#x8BC4;&#x8BBA;&#x3002;</li>
 <li>&#x5982;&#x679C;&#x6253;&#x5F00;&#x65B0;&#x95FB;&#x7F51;&#x7AD9;&#x7684;&#x6587;&#x7AE0;&#x9875;&#xFF0C;&#x4F60;&#x5173;&#x5FC3;&#x7684;&#x662F;&#x6587;&#x7AE0;&#x5185;&#x5BB9;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x5E7F;&#x544A;&#x3002;&#x6B64;&#x65F6;&#xFF0C;&#x6587;&#x672C;&#x6BD4;&#x5E7F;&#x544A;&#x91CD;&#x8981;&#x3002;</li>
@@ -1115,7 +1102,7 @@ Time: 4273ms
   },
 }
 </code></pre>
-<p>&#x5BF9;&#x6BCF;&#x4E2A;&#x5165;&#x53E3;&#x6587;&#x4EF6;&#xFF0C;webpack &#x90FD;&#x4F1A;&#x6784;&#x5EFA;&#x4E00;&#x4E2A;&#x5355;&#x72EC;&#x7684;&#x4F9D;&#x8D56;&#x6811;&#xFF0C;&#x5E76;&#x4EA7;&#x751F;&#x4E00;&#x4E2A;&#x54CD;&#x5E94;&#x7684; bundle&#xFF0C;&#x5176;&#x4E2D;&#x53EA;&#x5305;&#x542B;&#x8BE5;&#x5165;&#x53E3;&#x6587;&#x4EF6;&#x5F15;&#x7528;&#x7684;&#x6A21;&#x5757;&#xFF1A;</p>
+<p>&#x5BF9;&#x6BCF;&#x4E2A;&#x5165;&#x53E3;&#x6587;&#x4EF6;&#xFF0C;webpack &#x90FD;&#x4F1A;&#x6784;&#x5EFA;&#x4E00;&#x4E2A;&#x5355;&#x72EC;&#x7684;&#x4F9D;&#x8D56;&#x6811;&#xFF0C;&#x5E76;&#x4EA7;&#x751F;&#x4E00;&#x4E2A;&#x76F8;&#x5E94;&#x7684; bundle&#xFF0C;&#x5176;&#x4E2D;&#x53EA;&#x5305;&#x542B;&#x8BE5;&#x5165;&#x53E3;&#x6587;&#x4EF6;&#x5F15;&#x7528;&#x7684;&#x6A21;&#x5757;&#xFF1A;</p>
 <pre><code>$ webpack
 Hash: 318d7b8490a7382bf23b
 Version: webpack 3.8.1
@@ -1128,7 +1115,7 @@ Time: 4273ms
  ./vendor.4f14b6326a80f4752a98.js    46 kB       4  [emitted]  vendor
 ./runtime.318d7b8490a7382bf23b.js  1.45 kB       5  [emitted]  runtime
 </code></pre><p>&#x56E0;&#x6B64;&#xFF0C;&#x5982;&#x679C;&#x53EA;&#x6709;&#x6587;&#x7AE0;&#x9875;&#x4F7F;&#x7528; Lodash&#xFF0C;<code>home</code> &#x548C; <code>profile</code> bundle &#x5C31;&#x4E0D;&#x4F1A;&#x5305;&#x542B;&#x5B83;&#xFF0C;&#x7528;&#x6237;&#x4E5F;&#x65E0;&#x9700;&#x5728;&#x8BBF;&#x95EE;&#x9996;&#x9875;&#x65F6;&#x4E0B;&#x8F7D;&#x6574;&#x4E2A;&#x5E93;&#x3002;</p>
-<p>&#x4F46;&#x662F;&#x591A;&#x4F9D;&#x8D56;&#x6811;&#x4E5F;&#x6709;&#x7F3A;&#x70B9;&#x3002;&#x5982;&#x679C;&#x4E24;&#x4E2A;&#x5165;&#x53E3;&#x90FD;&#x7528;&#x5230;&#x4E86; Lodash&#xFF0C;&#x800C;&#x4E14;&#x6CA1;&#x6709;&#x5C1A;&#x672A;&#x5C06;&#x4F9D;&#x8D56;&#x79FB;&#x52A8;&#x5230; <code>vendor</code> bundle&#xFF0C;&#x4E24;&#x4E2A;&#x5165;&#x53E3;&#x5C31;&#x4F1A;&#x540C;&#x65F6;&#x5305;&#x542B;&#x4E00;&#x4EFD; Lodash &#x526F;&#x672C;&#x3002;&#x4E3A;&#x4E86;&#x89E3;&#x51B3;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; <code>CommonsChunkPlugin</code> - &#x5B83;&#x4F1A;&#x5C06;&#x516C;&#x5171;&#x7684;&#x4F9D;&#x8D56;&#x79FB;&#x52A8;&#x5230;&#x72EC;&#x7ACB;&#x7684;&#x6587;&#x4EF6;&#x4E2D;&#xFF1A;</p>
+<p>&#x4F46;&#x662F;&#x591A;&#x4F9D;&#x8D56;&#x6811;&#x4E5F;&#x6709;&#x7F3A;&#x70B9;&#x3002;&#x5982;&#x679C;&#x4E24;&#x4E2A;&#x5165;&#x53E3;&#x90FD;&#x7528;&#x5230;&#x4E86; Lodash&#xFF0C;&#x800C;&#x4E14;&#x5C1A;&#x672A;&#x5C06;&#x4F9D;&#x8D56;&#x79FB;&#x52A8;&#x5230; <code>vendor</code> bundle&#xFF0C;&#x4E24;&#x4E2A;&#x5165;&#x53E3;&#x5C31;&#x4F1A;&#x5404;&#x81EA;&#x5305;&#x542B;&#x4E00;&#x4EFD; Lodash &#x526F;&#x672C;&#x3002;&#x4E3A;&#x4E86;&#x89E3;&#x51B3;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; <code>CommonsChunkPlugin</code> - &#x5B83;&#x4F1A;&#x5C06;&#x516C;&#x5171;&#x7684;&#x4F9D;&#x8D56;&#x79FB;&#x52A8;&#x5230;&#x72EC;&#x7ACB;&#x7684;&#x6587;&#x4EF6;&#x4E2D;&#xFF1A;</p>
 <pre><code class="lang-js"><span class="hljs-comment">/** webpack.config.js */</span>
 <span class="hljs-built_in">module</span>.exports = {
   plugins: [
@@ -1153,8 +1140,8 @@ Time: 4273ms
 <li><a href="https://medium.com/webpack/webpack-bits-getting-the-most-out-of-the-commonschunkplugin-ab389e5f318" target="_blank">&#x7269;&#x5C3D;&#x5176;&#x7528;&#x4E4B; CommonsChunkPlugin</a></li>
 </ul>
 <h2 id="&#x4F7F;&#x6A21;&#x5757;-id-&#x66F4;&#x7A33;&#x5B9A;">&#x4F7F;&#x6A21;&#x5757; id &#x66F4;&#x7A33;&#x5B9A;</h2>
-<p>&#x5F53;&#x6784;&#x5EFA;&#x4EE3;&#x7801;&#x65F6;&#xFF0C;webpack &#x4F1A;&#x7ED9;&#x6BCF;&#x4E2A;&#x6A21;&#x5757;&#x5206;&#x914D;&#x4E00;&#x4E2A; ID&#x3002;&#x8FD9;&#x4E9B; ID &#x4F1A;&#x7528;&#x5728;&#x540E;&#x6765;&#x7684; <code>require()</code> &#x8BED;&#x53E5;&#x4E2D;&#x3002;&#x901A;&#x5E38;&#x53EF;&#x4EE5;&#x5728;&#x6784;&#x5EFA;&#x8F93;&#x51FA;&#x4E2D;&#x770B;&#x5230;&#x6A21;&#x5757; ID&#xFF0C;&#x5C31;&#x5728;&#x6A21;&#x5757;&#x8DEF;&#x5F84;&#x4E4B;&#x524D;&#x3002;</p>
-<p>&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;ID &#x901A;&#x8FC7;&#x4E00;&#x4E2A;&#x8BA1;&#x6570;&#x5668;&#x8BA1;&#x7B97;&#xFF08;&#x6BD4;&#x5982;&#xFF0C;&#x7B2C;&#x4E00;&#x4E2A;&#x6A21;&#x5757;&#x662F; 0&#xFF0C;&#x7B2C;&#x4E8C;&#x4E2A;&#x6A21;&#x5757;&#x662F; 1&#xFF0C;&#x7B49;&#x7B49;&#xFF09;&#x3002;&#x8FD9;&#x79CD;&#x5904;&#x7406;&#x65B9;&#x5F0F;&#x7684;&#x95EE;&#x9898;&#x5728;&#x4E8E;&#x5982;&#x679C;&#x4F60;&#x589E;&#x52A0;&#x4E86;&#x65B0;&#x7684;&#x6A21;&#x5757;&#xFF0C;&#x5B83;&#x53EF;&#x80FD;&#x51FA;&#x73B0;&#x5728;&#x6A21;&#x5757;&#x5217;&#x8868;&#x4E2D;&#x95F4;&#xFF0C;&#x4F7F;&#x540E;&#x9762;&#x7684;&#x6A21;&#x5757; ID &#x5168;&#x90E8;&#x53D8;&#x5316;&#x3002;</p>
+<p>&#x5F53;&#x6784;&#x5EFA;&#x4EE3;&#x7801;&#x65F6;&#xFF0C;webpack &#x4F1A;&#x7ED9;&#x6BCF;&#x4E2A;&#x6A21;&#x5757;&#x5206;&#x914D;&#x4E00;&#x4E2A; ID&#x3002;&#x8FD9;&#x4E9B; ID &#x4F1A;&#x5728;&#x4E4B;&#x540E;&#x7684; <code>require()</code> &#x8BED;&#x53E5;&#x4E2D;&#x4F7F;&#x7528;&#x3002;&#x901A;&#x5E38;&#x53EF;&#x4EE5;&#x5728;&#x6784;&#x5EFA;&#x8F93;&#x51FA;&#x4E2D;&#x770B;&#x5230;&#x6A21;&#x5757; ID&#xFF0C;&#x5C31;&#x5728;&#x6A21;&#x5757;&#x8DEF;&#x5F84;&#x4E4B;&#x524D;&#x3002;</p>
+<p>&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;ID &#x901A;&#x8FC7;&#x4E00;&#x4E2A;&#x8BA1;&#x6570;&#x5668;&#x8BA1;&#x7B97;&#xFF08;&#x6BD4;&#x5982;&#xFF0C;&#x7B2C;&#x4E00;&#x4E2A;&#x6A21;&#x5757;&#x662F; 0&#xFF0C;&#x7B2C;&#x4E8C;&#x4E2A;&#x6A21;&#x5757;&#x662F; 1&#xFF0C;&#x7B49;&#x7B49;&#xFF09;&#x3002;&#x8FD9;&#x79CD;&#x5904;&#x7406;&#x65B9;&#x5F0F;&#x7684;&#x95EE;&#x9898;&#x5728;&#x4E8E;&#x5982;&#x679C;&#x4F60;&#x589E;&#x52A0;&#x4E86;&#x65B0;&#x7684;&#x6A21;&#x5757;&#xFF0C;&#x5B83;&#x53EF;&#x80FD;&#x51FA;&#x73B0;&#x5728;&#x6A21;&#x5757;&#x5217;&#x8868;&#x4E2D;&#x95F4;&#xFF0C;&#x8BA9;&#x540E;&#x9762;&#x7684;&#x6A21;&#x5757; ID &#x5168;&#x90E8;&#x53D8;&#x5316;&#x3002;</p>
 <p>ID &#x7684;&#x53D8;&#x5316;&#x4F1A;&#x8BA9;&#x6240;&#x6709;&#x4F9D;&#x8D56;&#x5B83;&#x7684; chunk &#x5931;&#x6548; - &#x5373;&#x4F7F;&#x5B83;&#x4EEC;&#x7684;&#x5B9E;&#x9645;&#x4EE3;&#x7801;&#x6CA1;&#x6709;&#x53D8;&#x5316;&#x3002;&#x4E3A;&#x4E86;&#x89E3;&#x51B3;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; <a href="https://webpack.js.org/plugins/hashed-module-ids-plugin/" target="_blank"><code>HashedModuleIdsPlugin</code></a> &#x8BA1;&#x7B97;&#x6A21;&#x5757; ID&#x3002;&#x5B83;&#x4F1A;&#x7528;&#x6A21;&#x5757;&#x8DEF;&#x5F84;&#x7684;&#x54C8;&#x5E0C;&#x503C;&#x4EE3;&#x66FF;&#x8BA1;&#x6570;&#x5668;&#x7B97;&#x51FA;&#x7684; ID&#x3002;</p>
 <p>&#x901A;&#x8FC7;&#x8FD9;&#x79CD;&#x65B9;&#x5F0F;&#xFF0C;&#x53EA;&#x6709;&#x91CD;&#x547D;&#x540D;&#x6216;&#x8005;&#x79FB;&#x52A8;&#x6A21;&#x5757;&#x8DEF;&#x5F84;&#x65F6;&#xFF0C;&#x624D;&#x4F1A;&#x6539;&#x53D8;&#x6A21;&#x5757;&#x7684; ID&#x3002;&#x65B0;&#x7684;&#x6A21;&#x5757;&#x52A0;&#x5165;&#x4E0D;&#x4F1A;&#x5F71;&#x54CD;&#x5176;&#x4ED6;&#x6A21;&#x5757;&#x7684; ID&#x3002;</p>
 <p>&#x4E3A;&#x4E86;&#x5F00;&#x542F;&#x8BE5;&#x6A21;&#x5757;&#xFF0C;&#x53EF;&#x4EE5;&#x5C06;&#x5176;&#x52A0;&#x5165;&#x5230; <code>plugins</code> &#x9009;&#x9879;&#xFF1A;</p>
@@ -1225,7 +1212,7 @@ Time: 4273ms
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"开启长期缓存","level":"1.15.2","depth":2,"next":{"title":"监测和分析","level":"1.15.3","depth":2,"path":"content/optimize/monitor-and-analyze.md","ref":"./content/optimize/monitor-and-analyze.md","articles":[]},"previous":{"title":"减小前端体积","level":"1.15.1","depth":2,"path":"content/optimize/decrease-frontend-size.md","ref":"./content/optimize/decrease-frontend-size.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"root":"./src","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"content/optimize/use-long-term-caching.md","mtime":"2018-02-23T07:52:30.981Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-02-23T11:04:36.889Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"使用长期缓存","level":"1.15.2","depth":2,"next":{"title":"监测和分析","level":"1.15.3","depth":2,"path":"content/optimize/monitor-and-analyze.md","ref":"./content/optimize/monitor-and-analyze.md","articles":[]},"previous":{"title":"减小前端体积","level":"1.15.1","depth":2,"path":"content/optimize/decrease-frontend-size.md","ref":"./content/optimize/decrease-frontend-size.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"root":"./src","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"content/optimize/use-long-term-caching.md","mtime":"2018-02-23T13:40:24.723Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-02-23T13:45:34.346Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

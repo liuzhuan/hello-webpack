@@ -43,7 +43,7 @@
 - [bundle 详解](./content/bundle/README.md)
 - [优化建议](./content/optimize/README.md)
   - [减小前端体积](./content/optimize/decrease-frontend-size.md)
-  - [开启长期缓存](./content/optimize/use-long-term-caching.md)
+  - [使用长期缓存](./content/optimize/use-long-term-caching.md)
   - [监测和分析](./content/optimize/monitor-and-analyze.md)
   - [总结](./content/optimize/conclusion.md)
 - [版本迁移](./content/migrating-versions/README.md)

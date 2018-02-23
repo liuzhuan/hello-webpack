@@ -1,4 +1,4 @@
-# 开启长期缓存
+# 使用长期缓存
 
 可以改善应用下载时间的第二步（第一步是[压缩体积][step1]）就是开启缓存。这样应用的部分资源就可以驻留在客户端，防止每次访问都重新下载。
 
@@ -6,7 +6,7 @@
 
 使用缓存的一般步骤是：
 
-1. 通知浏览器对某个资源缓存很长时间（比如，一年）：
+### 1. 让浏览器长期缓存某资源（比如，一年）
 
 ```
 # 服务器头
@@ -15,7 +15,7 @@ Cache-Control: max-age=31536000
 
 如果你不熟悉 `Cache-Control` 的用法，可参考 Jake Archibald 的[关于缓存的最佳实践][caching-best]精彩博文。
 
-2. 当文件内容变化时，重命名文件，以便重新下载：
+### 2. 当文件内容变化时，重命名文件，以便重新下载
 
 ```html
 <!-- 改变前 -->
@@ -25,7 +25,7 @@ Cache-Control: max-age=31536000
 <script src="./index-v16.js"></script>
 ```
 
-通过 webpack 可以达到同样目的。但是不是用版本号，而是指定文件哈希值。为了在文件名中包含哈希值，可以使用 `[chunkhash]` ：
+通过 webpack 可以达到同样目的。但不是用版本号，而是指定文件哈希值。为了在文件名中包含哈希值，可以使用 `[chunkhash]` ：
 
 ```js
 /** webpack.config.js */
@@ -72,7 +72,7 @@ module.exports = {
 
 为了把依赖提取到单独的 chunk 中，需要分三个步骤：
 
-1. 将输出文件名称替换为 `[name].[chunkname].js`
+### 1. 将输出文件名称替换为 `[name].[chunkhash].js`
 
 ```js
 /** webpack.config.js */
@@ -83,9 +83,9 @@ module.exports = {
 }
 ```
 
-当 webpack 编译 app 时，会把 `[name]` 替换为 chunk 的名字。不过不加名称，就需要根据哈希值判断 chunk ，这将十分困难。
+当 webpack 编译 app 时，会把 `[name]` 替换为 chunk 的名字。如果不加名字，就需要根据哈希值辨别 chunk ，这会十分困难。
 
-2. 将 `entry` 字段转换为对象类型：
+### 2. 将 `entry` 字段转换为对象类型
 
 ```js
 /** webpack.config.js */
@@ -96,9 +96,9 @@ module.exports = {
 }
 ```
 
-在上面的片段中，`main` 是 chunk 的名字，它会替换步骤 1 中的 `[name]` 部分。现在如果编译 app，这个 chunk 会包含所有的 app 代码，就像以前一样。很快就会变化了。
+在上面的片段中，`main` 是 chunk 的名字，它会替换步骤 1 中的 `[name]` 部分。现在如果编译 app，这个 chunk 会包含所有的 app 代码，会像以前一模一样。继续往下看，很快就不一样了。
 
-3. 增加 `CommonsChunkPlugin` 插件：
+### 3. 增加 `CommonsChunkPlugin` 插件
 
 ```js
 /** webpack.config.js */
@@ -131,7 +131,7 @@ console.log('Wat')
 
 将会注意到，`vendor` 哈希值也会发生变化。
 
-这是因为当 webpack 打包时，除了模块代码，还有一个[运行时][manifest] - 一小段管理模块执行的代码。当你将代码分离为多个文件时，这段代码开始包括 chunk ID 到对应文件的映射：
+这是因为当 webpack 打包时，除了模块代码，还有一个[运行时][manifest] - 一小段管理模块执行的代码。当你将代码分离为多个文件时，这段代码会包含 chunk ID 与具体文件的映射关系：
 
 ```js
 /** vendor.e6ea4504.js */
@@ -142,7 +142,7 @@ script.src = __webpack_require__.p + chunkId + "." + {
 
 Webpack 会将运行时打包到最后产生的 chunk 中，在本例中就是 `vendor`。每次任何 chunk 的改变，运行时的这段映射代码都会变化，从而导致整个 `vendor` chunk 变化。
 
-> 在 webpack 3.11.0 没有复现 vendor 哈希值变化，是否已经被修复了？
+> 译者注：谷歌官网教程使用的 webpack 版本是 v3.8.1，可能有这个问题。具体操作中，在 webpack 3.11.0 没有复现 vendor 哈希值变化，是否已经被修复了？
 
 为了解决它，可以把运行时打包到单独文件中，具体做法是通过 `CommonsChunkPlugin` 创建一个额外空 chunk ：
 
@@ -225,7 +225,7 @@ module.exports = {
 
 ### 如果使用自定义后端逻辑产生 HTML
 
-1. 通过设定 `filename` 让运行时的名称固定
+#### 1. 通过设定 `filename` 让运行时的名称固定
 
 ```js
 /** webpack.config.js */
@@ -241,7 +241,9 @@ module.exports = {
 };
 ```
 
-2. 将 `runtime.js` 内容内联到页面中。例如，如果使用 Node.js 和 Express：
+#### 2. 将 `runtime.js` 内容内联到页面中
+
+例如，如果使用 Node.js 和 Express:
 
 ```js
 /** server.js */
@@ -259,7 +261,7 @@ app.get('/', (req, res) => {
 
 ## 懒加载暂时用不到的代码
 
-有时候，有些页面部分优先级较低，但是数量较多：
+有时候，页面中各个版块的优先级是不一样的：
 
 - 如果加载 YouTube 的视频页面，你关心的是视频而不是评论，此时，视频优先级高于评论。
 - 如果打开新闻网站的文章页，你关心的是文章内容，而不是广告。此时，文本比广告重要。
@@ -338,7 +340,7 @@ module.exports = {
 }
 ```
 
-对每个入口文件，webpack 都会构建一个单独的依赖树，并产生一个响应的 bundle，其中只包含该入口文件引用的模块：
+对每个入口文件，webpack 都会构建一个单独的依赖树，并产生一个相应的 bundle，其中只包含该入口文件引用的模块：
 
 ```
 $ webpack
@@ -356,7 +358,7 @@ Time: 4273ms
 
 因此，如果只有文章页使用 Lodash，`home` 和 `profile` bundle 就不会包含它，用户也无需在访问首页时下载整个库。
 
-但是多依赖树也有缺点。如果两个入口都用到了 Lodash，而且没有尚未将依赖移动到 `vendor` bundle，两个入口就会同时包含一份 Lodash 副本。为了解决这个问题，可以使用 `CommonsChunkPlugin` - 它会将公共的依赖移动到独立的文件中：
+但是多依赖树也有缺点。如果两个入口都用到了 Lodash，而且尚未将依赖移动到 `vendor` bundle，两个入口就会各自包含一份 Lodash 副本。为了解决这个问题，可以使用 `CommonsChunkPlugin` - 它会将公共的依赖移动到独立的文件中：
 
 ```js
 /** webpack.config.js */
@@ -386,9 +388,9 @@ module.exports = {
 
 ## 使模块 id 更稳定
 
-当构建代码时，webpack 会给每个模块分配一个 ID。这些 ID 会用在后来的 `require()` 语句中。通常可以在构建输出中看到模块 ID，就在模块路径之前。
+当构建代码时，webpack 会给每个模块分配一个 ID。这些 ID 会在之后的 `require()` 语句中使用。通常可以在构建输出中看到模块 ID，就在模块路径之前。
 
-默认情况下，ID 通过一个计数器计算（比如，第一个模块是 0，第二个模块是 1，等等）。这种处理方式的问题在于如果你增加了新的模块，它可能出现在模块列表中间，使后面的模块 ID 全部变化。
+默认情况下，ID 通过一个计数器计算（比如，第一个模块是 0，第二个模块是 1，等等）。这种处理方式的问题在于如果你增加了新的模块，它可能出现在模块列表中间，让后面的模块 ID 全部变化。
 
 ID 的变化会让所有依赖它的 chunk 失效 - 即使它们的实际代码没有变化。为了解决这个问题，可以使用 [`HashedModuleIdsPlugin`][hashed-module-ids-plugin] 计算模块 ID。它会用模块路径的哈希值代替计数器算出的 ID。
 
