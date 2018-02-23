@@ -122,7 +122,87 @@ module.exports = {
 
 不幸的是，仅仅提取第三方库是不够的。如果改变 app 的代码：
 
+```js
+/** index.js */
 
+// 比如，增加如下代码
+console.log('Wat')
+```
+
+将会注意到，`vendor` 哈希值也会发生变化。
+
+这是因为当 webpack 打包时，除了模块代码，还有一个[运行时][manifest] - 一小段管理模块执行的代码。当你将代码分离为多个文件时，这段代码开始包括 chunk ID 到对应文件的映射：
+
+```js
+/** vendor.e6ea4504.js */
+script.src = __webpack_require__.p + chunkId + "." + {
+  "0": "2f2269c7f0a55a5c1871"
+}[chunkId] + ".js"
+```
+
+Webpack 会将运行时打包到最后产生的 chunk 中，在本例中就是 `vendor`。每次任何 chunk 的改变，运行时的这段映射代码都会变化，从而导致整个 `vendor` chunk 变化。
+
+> 在 webpack 3.11.0 没有复现 vendor 哈希值变化，是否已经被修复了？
+
+为了解决它，可以把运行时打包到单独文件中，具体做法是通过 `CommonsChunkPlugin` 创建一个额外空 chunk ：
+
+```js
+/** webpack.config.js */
+module.exports = {
+  plugins: [
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      minChunks: module => module.context &&
+        module.context.includes('node_modules'),
+    }),
+
+    /** 这个插件必须在 vendor 之后（因为 webpack 会把运行时打包到最后的 chunk） */
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'runtime',
+      /** minChunks: Infinity 意味着其中不会包含任何 app 模块 */
+      minChunks: Infinity,
+    }),
+  ],
+}
+```
+
+之后，每次编译会产生三个文件：
+
+```sh
+$ webpack
+Hash: ac01483e8fec1fa70676
+Version: webpack 3.8.1
+Time: 3816ms
+                            Asset     Size  Chunks             Chunk Names
+   ./main.00bab6fd3100008a42b0.js    82 kB       0  [emitted]  main
+ ./vendor.26886caf15818fa82dfa.js    46 kB       1  [emitted]  vendor
+./runtime.79f17c27b335abc7aaf4.js  1.45 kB       3  [emitted]  runtime
+```
+
+在 `index.html` 中逆向引入这些文件，大功告成：
+
+```html
+<!-- index.html -->
+<script src="./runtime.79f17c27b335abc7aaf4.js"></script>
+<script src="./vendor.26886caf15818fa82dfa.js"></script>
+<script src="./main.00bab6fd3100008a42b0.js"></script>
+```
+
+延伸阅读
+
+- webpack 指南之[长期缓存][caching]
+- webpack 文档之 [webpack 运行时和清单][manifest]
+- [物尽其用之 CommonsChunkPlugin][commons-chunk-plugin]
+
+## 内联 webpack 运行时以减少额外 HTTP 请求
+
+为了更好的体验，可以把运行时代码内联到页面，可以帮你减小一个 HTTP 请求。
+
+下面展示具体做法
+
+### 如果使用 HtmlWebpackPlugin 产生页面
+
+如果使用 HtmlWebpackPlugin 插件产生静态页面，[InlineChunkWebpackPlugin][html-webpack-inline-chunk-plugin] 足够了。
 
 ## REF
 
@@ -135,3 +215,7 @@ module.exports = {
 [hash-bug]: https://github.com/webpack/webpack/issues/1479
 [html-webpack-plugin]: https://github.com/jantimon/html-webpack-plugin
 [webpack-manifest-plugin]: https://github.com/danethurber/webpack-manifest-plugin
+[manifest]: https://webpack.js.org/concepts/manifest/
+[caching]: https://webpack.js.org/guides/caching/
+[commons-chunk-plugin]: https://medium.com/webpack/webpack-bits-getting-the-most-out-of-the-commonschunkplugin-ab389e5f318
+[html-webpack-inline-chunk-plugin]: https://github.com/rohitlodha/html-webpack-inline-chunk-plugin
