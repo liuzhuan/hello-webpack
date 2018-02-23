@@ -204,6 +204,112 @@ Time: 3816ms
 
 如果使用 HtmlWebpackPlugin 插件产生静态页面，[InlineChunkWebpackPlugin][html-webpack-inline-chunk-plugin] 足够了。
 
+```js
+/** webpack.config.js */
+const HtmlWebpackInlineChunkPlugin = require('html-webpack-inline-chunk-plugin')
+
+module.exports = {
+  // ...
+  plugins: [
+    // ...
+    new HtmlWebpackPlugin({
+      title: 'Hello Webpack'
+    }),
+    
+    new HtmlWebpackInlineChunkPlugin({
+      inlineChunks: ['runtime']
+    })
+  ]
+}
+```
+
+### 如果使用自定义后端逻辑产生 HTML
+
+1. 通过设定 `filename` 让运行时的名称固定
+
+```js
+/** webpack.config.js */
+module.exports = {
+  plugins: [
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'runtime',
+      minChunks: Infinity,
+      /** 从此运行时的名称固定为 runtime.js */
+      filename: 'runtime.js'
+    }),
+  ],
+};
+```
+
+2. 将 `runtime.js` 内容内联到页面中。例如，如果使用 Node.js 和 Express：
+
+```js
+/** server.js */
+const fs = require('fs')
+const runtimeContent = fs.readFileSync('./runtime.js', 'utf-8')
+
+app.get('/', (req, res) => {
+  res.send(`
+    …
+    <script>${runtimeContent}</script>
+    …
+  `)
+})
+```
+
+## 懒加载暂时用不到的代码
+
+有时候，有些页面部分优先级较低，但是数量较多：
+
+- 如果加载 YouTube 的视频页面，你关心的是视频而不是评论，此时，视频优先级高于评论。
+- 如果打开新闻网站的文章页，你关心的是文章内容，而不是广告。此时，文本比广告重要。
+
+在这些场景，要提升页面首次下载速度，可以首先只下载重要的代码，然后懒加载其他的内容。具体可以使用 [import() 函数][import-func]和[代码分割][code-split]，如下所示：
+
+```js
+// videoPlayer.js
+export function renderVideoPlayer() { … }
+
+// comments.js
+export function renderComments() { … }
+
+// index.js
+import { renderVideoPlayer } from './videoPlayer'
+renderVideoPlayer()
+
+// …Custom event listener
+onShowCommentsClick(() => {
+  import('./comments').then((comments) => {
+    comments.renderComments()
+  })
+})
+```
+
+`import()` 表明你想动态加载某一特定模块。当 webpack 看到 `import('./module.js')` 时，它会把该模块移动到单独 chunk 中：
+
+```sh
+$ webpack
+Hash: 39b2a53cb4e73f0dc5b2
+Version: webpack 3.8.1
+Time: 4273ms
+                            Asset     Size  Chunks             Chunk Names
+      ./0.8ecaf182f5c85b7a8199.js  22.5 kB       0  [emitted]
+   ./main.f7e53d8e13e9a2745d6d.js    60 kB       1  [emitted]  main
+ ./vendor.4f14b6326a80f4752a98.js    46 kB       2  [emitted]  vendor
+./runtime.79f17c27b335abc7aaf4.js  1.45 kB       3  [emitted]  runtime
+```
+
+然后当代码执行到 `import()` 函数时，才下载该 chunk 。
+
+这可以让 `main` bundle 更小，首次下载时间更短。更棒的是，他还能优化缓存 - 如果你只是修改了主 chunk 代码，评论 chunk 不会受到任何影响。
+
+> ✨ 注意：如果你使用 Babel 转译代码，会遇到一个语法报错。因为 Babel 默认不理解 `import()` 的用法。为了避免该错误，可以增加 [`syntax-dynamic-import`][babel-dynamic-import] 插件。
+
+延伸阅读
+
+- webpack 文档之 [`import()` 函数][import-func]
+- JavaScript 提案之[实现 `import()` 语法][proposal-dynamic-import]
+
 ## REF
 
 - [Make use of long-term caching][google], by Ivan Akulov, Google Developers
@@ -219,3 +325,7 @@ Time: 3816ms
 [caching]: https://webpack.js.org/guides/caching/
 [commons-chunk-plugin]: https://medium.com/webpack/webpack-bits-getting-the-most-out-of-the-commonschunkplugin-ab389e5f318
 [html-webpack-inline-chunk-plugin]: https://github.com/rohitlodha/html-webpack-inline-chunk-plugin
+[import-func]: https://webpack.js.org/api/module-methods/#import-
+[code-split]: https://webpack.js.org/guides/code-splitting/
+[babel-dynamic-import]: https://www.npmjs.com/package/babel-plugin-syntax-dynamic-import
+[proposal-dynamic-import]: https://github.com/tc39/proposal-dynamic-import
