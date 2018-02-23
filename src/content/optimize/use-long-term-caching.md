@@ -310,6 +310,76 @@ Time: 4273ms
 - webpack 文档之 [`import()` 函数][import-func]
 - JavaScript 提案之[实现 `import()` 语法][proposal-dynamic-import]
 
+## 将代码拆分为路由和页面
+
+如果你的页面有多个路由或页面，但是只有一个单一 JS 文件（一个 `main` chunk），很可能每次请求时都会带上多余的字节。比如，当用户访问你的首页时，他们其实不需要其他页面的代码，但是也不得不下载。如果用户经常只访问首页，而且你修改了文章页的代码，webpack 就会让整个 bundle 失效，用户就不得不下载整个 app 代码。
+
+如果我们将代码拆分为多个页面（如果是单页，就拆分为多个路由），用户仅需要下载相关的代码。另外，浏览器会更好的缓存 app 代码：如果你修改了首页代码，webpack 仅会让相应的 chunk 失效。
+
+### 对于单页应用
+
+若要将单页 app 按路由拆分，可以使用 `import()`（参见上一小节）。如果你使用了框架，框架很可能已经自带解决方案：
+
+- `react-router` 文档之[“代码分割”][react-router]（适用于 React）
+- `vue-router` 文档之[“懒加载路由”][vue-router]（适用于 Vue.js）
+
+### 对于传统的多页应用
+
+为了将传统应用按页拆分，可以使用 webpack 的 [`entry points`][entry-points]。如果你的 app 包含三种类型页面：首页、文章页和用户账号页，它的入口可以这么设置：
+
+```js
+/** webpack.config.js */
+module.exports = {
+  entry: {
+    home: './src/Home/index.js',
+    article: './src/Article/index.js',
+    profile: './src/Profile/index.js'
+  },
+}
+```
+
+对每个入口文件，webpack 都会构建一个单独的依赖树，并产生一个响应的 bundle，其中只包含该入口文件引用的模块：
+
+```
+$ webpack
+Hash: 318d7b8490a7382bf23b
+Version: webpack 3.8.1
+Time: 4273ms
+                            Asset     Size  Chunks             Chunk Names
+      ./0.8ecaf182f5c85b7a8199.js  22.5 kB       0  [emitted]
+   ./home.91b9ed27366fe7e33d6a.js    18 kB       1  [emitted]  home
+./article.87a128755b16ac3294fd.js    32 kB       2  [emitted]  article
+./profile.de945dc02685f6166781.js    24 kB       3  [emitted]  profile
+ ./vendor.4f14b6326a80f4752a98.js    46 kB       4  [emitted]  vendor
+./runtime.318d7b8490a7382bf23b.js  1.45 kB       5  [emitted]  runtime
+```
+
+因此，如果只有文章页使用 Lodash，`home` 和 `profile` bundle 就不会包含它，用户也无需在访问首页时下载整个库。
+
+但是多依赖树也有缺点。如果两个入口都用到了 Lodash，而且没有尚未将依赖移动到 `vendor` bundle，两个入口就会同时包含一份 Lodash 副本。为了解决这个问题，可以使用 `CommonsChunkPlugin` - 它会将公共的依赖移动到独立的文件中：
+
+```js
+/** webpack.config.js */
+module.exports = {
+  plugins: [
+    new webpack.optimize.CommonsChunkPlugin({
+      /** 包含公共依赖的 chunk 名字 */
+      name: 'common',
+
+      /** 
+      * 该插件会把引用数大于 2 的模块移动到公共文件 
+      * （注意插件会分析所有 chunk，而不是仅仅入口模块）
+      */
+      minChunks: 2,    // 2 is the default value
+    }),
+  ],
+}
+```
+
+需要多次尝试设置 `minChunks` 的值，才能找到最佳数值。通常，希望其数值越小越好，但会随着 chunk 数量增多而变大。比如，chunk 为 3 时，`minChunks` 可以为 2，但是对于 30 个 chunk，数值可能会变为 8 - 因为如果你将其控制在 2，会有太多的模块进入 common 文件，导致其体积急剧膨胀。
+
+延伸阅读
+
 ## REF
 
 - [Make use of long-term caching][google], by Ivan Akulov, Google Developers
@@ -329,3 +399,6 @@ Time: 4273ms
 [code-split]: https://webpack.js.org/guides/code-splitting/
 [babel-dynamic-import]: https://www.npmjs.com/package/babel-plugin-syntax-dynamic-import
 [proposal-dynamic-import]: https://github.com/tc39/proposal-dynamic-import
+[react-router]: https://reacttraining.com/react-router/web/guides/code-splitting
+[vue-router]: https://router.vuejs.org/en/advanced/lazy-loading.html
+[entry-points]: https://webpack.js.org/concepts/entry-points/
