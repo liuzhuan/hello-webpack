@@ -380,6 +380,43 @@ module.exports = {
 
 延伸阅读
 
+- webpack 文档之 [entry points 概念][entry-points]
+- webpack 文档之 [CommonsChunkPlugin][plugins-commons]
+- [物尽其用之 CommonsChunkPlugin][commons-chunk-plugin]
+
+## 使模块 id 更稳定
+
+当构建代码时，webpack 会给每个模块分配一个 ID。这些 ID 会用在后来的 `require()` 语句中。通常可以在构建输出中看到模块 ID，就在模块路径之前。
+
+默认情况下，ID 通过一个计数器计算（比如，第一个模块是 0，第二个模块是 1，等等）。这种处理方式的问题在于如果你增加了新的模块，它可能出现在模块列表中间，使后面的模块 ID 全部变化。
+
+ID 的变化会让所有依赖它的 chunk 失效 - 即使它们的实际代码没有变化。为了解决这个问题，可以使用 [`HashedModuleIdsPlugin`][hashed-module-ids-plugin] 计算模块 ID。它会用模块路径的哈希值代替计数器算出的 ID。
+
+通过这种方式，只有重命名或者移动模块路径时，才会改变模块的 ID。新的模块加入不会影响其他模块的 ID。
+
+为了开启该模块，可以将其加入到 `plugins` 选项：
+
+```js
+/** webpack.config.js */
+module.exports = {
+  plugins: [
+    new webpack.HashedModuleIdsPlugin(),
+  ],
+}
+```
+
+延伸阅读
+
+- webpack 文档之 [`HashedModuleIdsPlugin`][hashed-module-ids-plugin]
+
+## 总结
+
+- 缓存 bundle，通过改变名称更新缓存
+- 将 bundle 拆分为 app 代码，厂商代码和运行时代码
+- 内联运行时代码，节省 HTTP 请求
+- 使用 `import()` 懒加载不重要的代码
+- 将代码按路由或页面拆分，防止加载非必须的代码
+
 ## REF
 
 - [Make use of long-term caching][google], by Ivan Akulov, Google Developers
@@ -402,3 +439,5 @@ module.exports = {
 [react-router]: https://reacttraining.com/react-router/web/guides/code-splitting
 [vue-router]: https://router.vuejs.org/en/advanced/lazy-loading.html
 [entry-points]: https://webpack.js.org/concepts/entry-points/
+[plugins-commons]: https://webpack.js.org/plugins/commons-chunk-plugin/
+[hashed-module-ids-plugin]: https://webpack.js.org/plugins/hashed-module-ids-plugin/
