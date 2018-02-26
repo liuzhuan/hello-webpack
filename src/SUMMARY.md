@@ -6,9 +6,10 @@
   - [输出文件](./content/core-concepts/output.md)
   - [加载器](./content/core-concepts/loaders.md)
   - [插件系统](./content/core-concepts/plugins.md)
-- [Guides](./content/guides/README.md)
-  - [缓存](./content/guides/caching.md)
-  - [素材管理](./content/guides/asset-management.md)
+- 操作指南
+  - [素材管理](./guides/asset-management.md)
+  - [开发](./guides/development/README.md)
+  - [缓存](./guides/caching.md)
 - [模块](./content/modules/README.md)
   - [模块的路径解析](./content/modules/resolution.md)
   - [模块方法](./content/modules/methods.md)
