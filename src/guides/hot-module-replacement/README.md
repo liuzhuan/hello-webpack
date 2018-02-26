@@ -33,7 +33,38 @@ module.exports = {
 
 > 还可以使用命令行修改 `webpack-dev-server` 的配置项，比如：`webpack-dev-server --hotOnly`
 
-注意，我们同时增加了 `NamedModulesPlugin` 来更清楚看到哪个依赖项被打补丁了。接着，我们使用 `npm start` 开启开发服务器。
+注意，我们同时增加了 `NamedModulesPlugin` 来更清楚看到哪个依赖项被打补丁了。接着，我们使用 `npm start` 启动开发服务器。
+
+我们现在来更新 `index.js` 文件，当监测到 `print.js` 有修改时，我们告知 webpack 来接收这些改变。
+
+```js
+/** index.js */
+import _ from 'lodash'
+import printMe from './print.js'
+
+function component() {
+  var element = document.createElement('div')
+  var btn = document.createElement('button')
+
+  element.innerHTML = _.join(['Hello', 'webpack'], ' ')
+
+  btn.innerHTML = 'Click me and check the console!'
+  btn.onclick = printMe
+
+  element.appendChild(btn)
+
+  return element
+}
+
+document.body.appendChild(component())
+
+if (module.hot) {
+  module.hot.accept('./print.js', function() {
+    console.log('Accepting the updated printMe module!')
+    printMe()
+  })
+}
+```
 
 ## REF
 
