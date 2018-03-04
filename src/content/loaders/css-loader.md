@@ -41,5 +41,8 @@ module.exports = {
 
 ### REF
 
-- https://webpack.js.org/loaders/css-loader/
-- https://github.com/webpack-contrib/css-loader
+- [css-loader][css-loader]
+- [webpack-contrib/css-loader][github]
+
+[css-loader]: https://webpack.js.org/loaders/css-loader/
+[github]: https://github.com/webpack-contrib/css-loader
