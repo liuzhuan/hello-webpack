@@ -4,5 +4,8 @@
   "scripts": {
     "dev": "gitbook serve ./ docs",
     "build": "gitbook build ./ docs"
+  },
+  "dependencies": {
+    "gitbook-cli": "^2.3.2"
   }
 }
