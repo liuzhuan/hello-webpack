@@ -6,6 +6,7 @@
   - [输出文件](./content/core-concepts/output.md)
   - [加载器](./content/core-concepts/loaders.md)
   - [插件系统](./content/core-concepts/plugins.md)
+  - [模式 Mode](./concepts/mode.md)
   - [模块热更新](./concepts/hmr/README.md)
 - 操作指南
   - [素材管理](./guides/asset-management.md)
